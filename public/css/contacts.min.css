@@ -1,0 +1,29 @@
+.contact-avatar{
+    margin:15px auto;
+    position:relative;
+    width:128px
+}
+.contact-avatar-btn{
+    background-color:rgba(0,0,0,.5);
+    background-image:none;
+    border:none;
+    border-radius:0 0;
+    bottom:0;
+    color:#fff;
+    cursor:pointer;
+    display:block;
+    font-size:13px;
+    height:30px;
+    line-height:30px;
+    margin:0;
+    overflow:hidden;
+    padding:0;
+    position:absolute;
+    right:0;
+    text-align:center;
+    width:30px;
+}
+.contact-avatar-btn:focus,.contact-avatar-btn:hover{
+    background-color:#d9230f;
+    color:#fff;
+}
