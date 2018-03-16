@@ -62,9 +62,9 @@
                                         <a href="{{ url('admin/user/restore', $user->id) }}" class="btn-xs btn-danger btn-pill">Restore</a>
                                     </td>
                                     <td>
-                                        <a href="{{ url('admin/user/forcedelete', $user->id) }}" class="btn-xs btn-primary btn-pill">Delete</button>
+                                        <a href="{{ url('admin/user/forcedelete', $user->id) }}" class="btn-xs btn-primary btn-pill">Delete</a>
                                     </td>
-                                </tr>
+                                </tr>z
                             @endforeach
                             </tbody>
                         </table>

@@ -8,8 +8,8 @@
 @section('content')
     <div class="title-bar">
         <h1 class="title-bar-title">
-            <span class="icon icon-th-large" style="color:#d9230f"></span>
-            <span class="d-ib">User Management</span>
+            <span class="icon icon-navicon" style="color:#d9230f"></span>
+            <span class="d-ib">All Users</span>
         </h1>
     </div>
     <div class="row">

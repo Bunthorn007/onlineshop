@@ -237,6 +237,12 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="sidenav-item">
+                        <a href="/admin/category">
+                            <span class="sidenav-icon icon icon-tags"></span>
+                            <span class="sidenav-label">Category</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>

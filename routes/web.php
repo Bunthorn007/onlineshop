@@ -36,4 +36,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Post Route List
 Route::resource('admin/post', 'AdminPostsController');
+
+Route::get('/admin/post/{id}/delete', 'AdminPostsController@delete');
+
+//Category Route
+Route::resource('admin/category', 'AdminCategoriesController');
+
+Route::get('/admin/category/{id}/delete', 'AdminCategoriesController@delete');

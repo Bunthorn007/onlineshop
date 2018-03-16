@@ -10,8 +10,8 @@
     <div class="signup">
         <div class="title-bar">
             <h1 class="title-bar-title">
-                <span class="icon icon-user" style="color:#d9230f"></span>
-                <span class="d-ib">User Registration Form</span>
+                <span class="icon icon-pencil-square-o" style="color:#d9230f"></span>
+                <span class="d-ib">Create User</span>
             </h1>
         </div>
 
@@ -157,7 +157,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-primary btn-block" type="submit">Sign up</button>
+                    <button class="btn btn-primary btn-block" type="submit"><span class="icon icon-save"></span>  Save User</button>
                 </div>
             </form>
         </div>

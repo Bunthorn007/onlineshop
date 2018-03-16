@@ -6,6 +6,7 @@ use App\Month;
 use App\Photo;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminUsersController extends Controller
 {
@@ -103,13 +104,27 @@ class AdminUsersController extends Controller
 
         $data = $request->all();
         if($file = $request->file('photo_id')){
+            //delete old file
+            if($user->photo_id != 0){
+                unlink(public_path(). $user->photo->file);
+                Photo::findOrFail($user->photo_id)->delete();
+            }
 
+            //Create new file
             $name = time(). $file->getClientOriginalName();
             $file->move('images', $name);
             $photo = Photo::create(['file'=> $name]);
             $data['photo_id'] = $photo->id;
+
+            //Update Session
+            if(Auth::user()->id == $id){
+                $username = $user->firstname. ' '. $user->lastname;
+                $image = $photo->file;
+                $request->session()->put(['username'=>$username, 'image'=>$image]);
+            }
         }
         $user->update($data);
+
         return redirect('admin/user');
     }
 

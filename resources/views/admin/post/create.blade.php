@@ -2,15 +2,15 @@
 
 @section('header')
     <title>Post Product</title>
-    <link rel="stylesheet" href="../../css/signup-2.min.css">
+    <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
 @endsection
 
 @section('content')
     <div class="signup">
         <div class="title-bar">
             <h1 class="title-bar-title">
-                <span class="icon icon-user" style="color:#d9230f"></span>
-                <span class="d-ib">Post Product</span>
+                <span class="icon icon-pencil-square-o" style="color:#d9230f"></span>
+                <span class="d-ib">Create Post</span>
             </h1>
         </div>
 
@@ -82,7 +82,7 @@
                     <div class="row gutter-xs">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block">Post Product</button>
+                                <button type="submit" class="btn btn-primary btn-block"><span class="icon icon-save"></span>  Save Post</button>
                             </div>
                         </div>
                     </div>

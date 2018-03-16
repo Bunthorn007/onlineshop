@@ -22,8 +22,10 @@ class CreatePostsTable extends Migration
             $table->text('content');
             $table->string('price');
             $table->string('location');
-            $table->integer('view');
+            $table->integer('view')->default(0);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

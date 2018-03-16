@@ -104,7 +104,26 @@ class AdminPostsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $post = Post::find($id);
+        $data = $request->all();
 
+        if($file = $request->file('photo_id')){
+            //delete old file
+            if($post->photo_id != 0){
+                unlink(public_path(). $post->photo->file);
+                Photo::findOrFail($post->photo_id)->delete();
+            }
+
+            $name = time(). $file->getClientOriginalName();
+            $file->move('images', $name);
+
+            $photo = Photo::create(['file'=> $name]);
+            $data['photo_id'] = $photo->id;
+        }
+
+        $post->update($data);
+
+        return redirect('/admin/post');
     }
 
     /**
@@ -115,6 +134,22 @@ class AdminPostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $post = Post::findOrFail($id);
+
+        if($post->photo_id != 0){
+            unlink(public_path(). $post->photo->file);
+            Photo::findOrFail($post->photo_id)->delete();
+        }
+        $post->delete();
+        return redirect('admin/post');
+    }
+
+    public function delete($id)
+    {
+        $post = Post::find($id);
+        $categories = Category::all();
+
+        return view('admin.post.delete', compact('post', 'categories'));
     }
 }

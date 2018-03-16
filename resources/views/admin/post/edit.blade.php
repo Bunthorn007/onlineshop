@@ -9,14 +9,15 @@
     <div class="signup">
         <div class="title-bar">
             <h1 class="title-bar-title">
-                <span class="icon icon-user" style="color:#d9230f"></span>
-                <span class="d-ib">Post Product</span>
+                <span class="icon icon-pencil-square-o" style="color:#d9230f"></span>
+                <span class="d-ib">Edit Post</span>
             </h1>
         </div>
 
         <div class="signup-body">
-            <form id="demo-uploader" action="{{url('admin/post')}}" method="post" enctype="multipart/form-data" data-toggle="validator" data-groups='{"birthdate": "birth_month birth_day birth_year"}'>
+            <form id="demo-uploader" action="{{url('admin/post/'.$post->id)}}" method="post" enctype="multipart/form-data" data-toggle="validator" data-groups='{"birthdate": "birth_month birth_day birth_year"}'>
                 {{csrf_field()}}
+                <input name="_method" type="hidden" value="PUT">
                 <div class="title-bar">
                     <label for="first-name">Upload Images</label>
                 </div>
@@ -29,7 +30,14 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <ul class="file-list"></ul>
+                            <ul class="file-list">
+                                <li class="file template-download">
+                                    <a class="file-link" href="#">
+                                        <div class="file-thumbnail" style="background-image: url({{asset($post->photo->file)}});">
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                         <input type="file" name="photo_id">
                     </div>
@@ -85,7 +93,7 @@
                     <div class="row gutter-xs">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block">Update Post</button>
+                                <button type="submit" class="btn btn-primary btn-block"><span class="icon icon-refresh"></span>  Update Post</button>
                             </div>
                         </div>
                     </div>

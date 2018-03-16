@@ -7,8 +7,8 @@
 @section('content')
     <div class="title-bar">
         <h1 class="title-bar-title">
-            <span class="icon icon-th-large" style="color:#d9230f"></span>
-            <span class="d-ib">All Post</span>
+            <span class="icon icon-navicon" style="color:#d9230f"></span>
+            <span class="d-ib">All Posts</span>
         </h1>
     </div>
     <div class="row">
@@ -49,10 +49,10 @@
                                                 <img class="circle" width="36" height="36" src="{{$post->user->photo->file ?$post->user->photo->file : '/images/profile.jpg'}}">
                                                 <span class="icon-child bg-facebook circle sq-8"></span>
                                             </span>
-                                            <strong>{{$post->title}}</strong>
+                                            <strong>{{str_limit($post->title, 25)}}</strong>
                                         </td>
                                         <td class="maw-320">
-                                            <span class="truncate">{{$post->content}}</span>
+                                            <span class="truncate">{{str_limit($post->content, 45)}}</span>
                                         </td>
                                         <td>{{$post->price}}</td>
                                         <td>{{$post->user->firstname.' '.$post->user->lastname}}</td>
@@ -91,7 +91,7 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#">
+                                                        <a href="post/{{$post->id}}/delete">
                                                             <div class="media">
                                                                 <div class="media-left">
                                                                     <span class="icon icon-trash icon-lg icon-fw"></span>

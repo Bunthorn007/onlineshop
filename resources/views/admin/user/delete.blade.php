@@ -2,17 +2,17 @@
 
 @section('header')
     <title>Create User</title>
-    <link rel="stylesheet" href="../../../css/signup-2.min.css">
-    <link rel="stylesheet" href="../../../css/contacts.min.css">
-    <link rel="stylesheet" href="../../../css/drive.min.css">
+    <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/contacts.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/drive.min.css')}}">
 @endsection
 
 @section('content')
     <div class="signup">
         <div class="title-bar">
             <h1 class="title-bar-title">
-                <span class="icon icon-user" style="color:#d9230f"></span>
-                <span class="d-ib"> User Information</span>
+                <span class="icon icon-trash" style="color:#d9230f"></span>
+                <span class="d-ib"> Delete User</span>
             </h1>
         </div>
         <div class="signup-body">
@@ -126,7 +126,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#delete">Delete</button>
+                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#delete"><span class="icon icon-trash"></span>  Delete</button>
                 </div>
 
         </div>
