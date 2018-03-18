@@ -2,7 +2,7 @@
 
 @section('header')
 
-    <title>Index</title>
+    <title>index</title>
     <link rel="stylesheet" href="css/store.min.css">
     <link rel="stylesheet" href="css/messenger.min.css">
 
@@ -94,180 +94,136 @@
             </div>
         </div>
         <div class="store-content">
+
             <div class="row">
+                <div class="divider"><h4 class="pull-left" style="padding-left: 30px;">Recommended</h4></div>
                 <div class="col-xs-12">
-                    <ul class="products">
-                        <li class="product">
-                            <div class="product-image">
-                                <a class="overlay" href="product.html">
-                                    <div class="overlay-image">
-                                        <img class="img-responsive" src="img/5615854990.jpg" alt="Raja Elephant T-shirt">
+                    @foreach($rmposts as $post)
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="media">
+                                    <div class="media-middle media-left">
+                                        <a href="#">
+                                            <img class="media-object img-circle" width="32" height="32" src="{{$post->user->photo->file}}">
+                                        </a>
                                     </div>
-                                    <div class="overlay-content overlay-top">
-                                        <span class="label label-success pull-right">SALE!</span>
+                                    <div class="media-middle media-body">
+                                        <a class="link-muted" href="#">
+                                            {{$post->user->firstname . ' '. $post->user->lastname}}
+                                        </a>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="card-image">
+                                <a class="link-muted" href="/detail/{{$post->id}}">
+                                    <img class="img-responsive" width="100%" height="50%" src="{{$post->photo->file}}">
                                 </a>
                             </div>
-                            <div class="product-details">
-                                <h5 class="product-name">
-                                    <a class="link-muted" href="product.html">Raja Elephant T-shirt Women's S-XL #4398</a>
-                                </h5>
-                                <span class="product-price">
-                                    <span class="product-price-current">$33.00</span>
-                                    <span class="product-price-old">$46.00</span>
-                                </span>
+                            <div class="card-body">
+                                <h4 class="card-title fw-l">
+                                    <strong><a class="link-muted" href="/detail/{{$post->id}}">{{str_limit($post->title, 19)}}</a></strong>
+                                </h4>
+                                <small>{{str_limit($post->content, 29)}}</small>
                             </div>
-                        </li>
-                        <li class="product">
-                            <div class="product-image">
-                                <a class="overlay" href="product.html">
-                                    <div class="overlay-image">
-                                        <img class="img-responsive" src="img/5615854990.jpg" alt="Raja Elephant T-shirt">
-                                    </div>
-                                    <div class="overlay-content overlay-top">
-                                        <span class="label label-success pull-right">SALE!</span>
-                                    </div>
-                                </a>
+                            <div class="card-footer">
+                                <small>
+                                    <span class="icon icon-eye icon-lg icon-fw"></span>{{$post->view}} views
+                                    <span class="pull-right"><span class="icon icon-clock-o icon-lg icon-fw"></span>{{$post-> created_at->diffForHumans()}}</span>
+                                </small>
                             </div>
-                            <div class="product-details">
-                                <h5 class="product-name">
-                                    <a class="link-muted" href="product.html">Raja Elephant T-shirt Women's S-XL #4398</a>
-                                </h5>
-                                <span class="product-price">
-                                    <span class="product-price-current">$33.00</span>
-                                    <span class="product-price-old">$46.00</span>
-                                </span>
-                            </div>
-                        </li>
-                        <li class="product">
-                            <div class="product-image">
-                                <a class="overlay" href="product.html">
-                                    <div class="overlay-image">
-                                        <img class="img-responsive" src="img/5615854990.jpg" alt="Raja Elephant T-shirt">
-                                    </div>
-                                    <div class="overlay-content overlay-top">
-                                        <span class="label label-success pull-right">SALE!</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="product-details">
-                                <h5 class="product-name">
-                                    <a class="link-muted" href="product.html">Raja Elephant T-shirt Women's S-XL #4398</a>
-                                </h5>
-                                <span class="product-price">
-                                    <span class="product-price-current">$33.00</span>
-                                    <span class="product-price-old">$46.00</span>
-                                </span>
-                            </div>
-                        </li>
-                        <li class="product">
-                            <div class="product-image">
-                                <a class="overlay" href="product.html">
-                                    <div class="overlay-image">
-                                        <img class="img-responsive" src="img/5615854990.jpg" alt="Raja Elephant T-shirt">
-                                    </div>
-                                    <div class="overlay-content overlay-top">
-                                        <span class="label label-success pull-right">SALE!</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="product-details">
-                                <h5 class="product-name">
-                                    <a class="link-muted" href="product.html">Raja Elephant T-shirt Women's S-XL #4398</a>
-                                </h5>
-                                <span class="product-price">
-                                    <span class="product-price-current">$33.00</span>
-                                    <span class="product-price-old">$46.00</span>
-                                </span>
-                            </div>
-                        </li>
-                        <li class="product">
-                            <div class="product-image">
-                                <a class="overlay" href="product.html">
-                                    <div class="overlay-image">
-                                        <img class="img-responsive" src="img/5615854990.jpg" alt="Raja Elephant T-shirt">
-                                    </div>
-                                    <div class="overlay-content overlay-top">
-                                        <span class="label label-success pull-right">SALE!</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="product-details">
-                                <h5 class="product-name">
-                                    <a class="link-muted" href="product.html">Raja Elephant T-shirt Women's S-XL #4398</a>
-                                </h5>
-                                <span class="product-price">
-                                    <span class="product-price-current">$33.00</span>
-                                    <span class="product-price-old">$46.00</span>
-                                </span>
-                            </div>
-                        </li>
-                        <li class="product">
-                            <div class="product-image">
-                                <a class="overlay" href="product.html">
-                                    <div class="overlay-image">
-                                        <img class="img-responsive" src="img/5615854990.jpg" alt="Raja Elephant T-shirt">
-                                    </div>
-                                    <div class="overlay-content overlay-top">
-                                        <span class="label label-success pull-right">SALE!</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="product-details">
-                                <h5 class="product-name">
-                                    <a class="link-muted" href="product.html">Raja Elephant T-shirt Women's S-XL #4398</a>
-                                </h5>
-                                <span class="product-price">
-                                    <span class="product-price-current">$33.00</span>
-                                    <span class="product-price-old">$46.00</span>
-                                </span>
-                            </div>
-                        </li>
-                        <li class="product">
-                            <div class="product-image">
-                                <a class="overlay" href="product.html">
-                                    <div class="overlay-image">
-                                        <img class="img-responsive" src="img/5615854990.jpg" alt="Raja Elephant T-shirt">
-                                    </div>
-                                    <div class="overlay-content overlay-top">
-                                        <span class="label label-success pull-right">SALE!</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="product-details">
-                                <h5 class="product-name">
-                                    <a class="link-muted" href="product.html">Raja Elephant T-shirt Women's S-XL #4398</a>
-                                </h5>
-                                <span class="product-price">
-                                    <span class="product-price-current">$33.00</span>
-                                    <span class="product-price-old">$46.00</span>
-                                </span>
-                            </div>
-                        </li>
-                        <li class="product">
-                            <div class="product-image">
-                                <a class="overlay" href="product.html">
-                                    <div class="overlay-image">
-                                        <img class="img-responsive" src="img/5615854990.jpg" alt="Raja Elephant T-shirt">
-                                    </div>
-                                    <div class="overlay-content overlay-top">
-                                        <span class="label label-success pull-right">SALE!</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="product-details">
-                                <h5 class="product-name">
-                                    <a class="link-muted" href="product.html">Raja Elephant T-shirt Women's S-XL #4398</a>
-                                </h5>
-                                <span class="product-price">
-                                    <span class="product-price-current">$33.00</span>
-                                    <span class="product-price-old">$46.00</span>
-                                </span>
-                            </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
             </div>
+
+            <div class="row">
+                <div class="divider"><h4 class="pull-left" style="padding-left: 30px;">Recently</h4></div>
+                <div class="col-xs-12">
+                    @foreach($rcposts as $post)
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="media">
+                                        <div class="media-middle media-left">
+                                            <a href="#">
+                                                <img class="media-object img-circle" width="32" height="32" src="{{$post->user->photo->file}}">
+                                            </a>
+                                        </div>
+                                        <div class="media-middle media-body">
+                                            <a class="link-muted" href="#">
+                                                {{$post->user->firstname . ' '. $post->user->lastname}}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-image">
+                                    <a class="link-muted" href="/detail/{{$post->id}}">
+                                        <img class="img-responsive" width="100%" height="50%" src="{{$post->photo->file}}">
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title fw-l">
+                                        <strong><a class="link-muted" href="/detail/{{$post->id}}">{{str_limit($post->title, 19)}}</a></strong>
+                                    </h4>
+                                    <small>{{str_limit($post->content, 29)}}</small>
+                                </div>
+                                <div class="card-footer">
+                                    <small>
+                                        <span class="icon icon-eye icon-lg icon-fw"></span>{{$post->view}} views
+                                        <span class="pull-right"><span class="icon icon-clock-o icon-lg icon-fw"></span>{{$post-> created_at->diffForHumans()}}</span>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="divider"><h4 class="pull-left" style="padding-left: 30px;">All Posts</h4></div>
+                <div class="col-xs-12">
+                    @foreach($posts as $post)
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="media">
+                                        <div class="media-middle media-left">
+                                            <a href="#">
+                                                <img class="media-object img-circle" width="32" height="32" src="{{$post->user->photo->file}}">
+                                            </a>
+                                        </div>
+                                        <div class="media-middle media-body">
+                                            <a class="link-muted" href="#">
+                                                {{$post->user->firstname . ' '. $post->user->lastname}}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-image">
+                                    <a class="link-muted" href="/detail/{{$post->id}}">
+                                        <img class="img-responsive" width="100%" height="50%" src="{{$post->photo->file}}">
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title fw-l">
+                                        <strong><a class="link-muted" href="/detail/{{$post->id}}">{{str_limit($post->title, 19)}}</a></strong>
+                                    </h4>
+                                    <small>{{str_limit($post->content, 29)}}</small>
+                                </div>
+                                <div class="card-footer">
+                                    <small>
+                                        <span class="icon icon-eye icon-lg icon-fw"></span>{{$post->view}} views
+                                        <span class="pull-right"><span class="icon icon-clock-o icon-lg icon-fw"></span>{{$post-> created_at->diffForHumans()}}</span>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
         </div>
     </div>
 

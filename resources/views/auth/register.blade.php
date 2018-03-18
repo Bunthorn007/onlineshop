@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="theme-color" content="#ffffff">
+    <title>Register</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
     <link rel="stylesheet" href="{{mix('css/libs.css')}}">
     <link rel="stylesheet" href="css/signup.min.css">

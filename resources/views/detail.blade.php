@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>detail</title>
     <link rel="stylesheet" href="{{mix('css/libs.css')}}">
-
-    @yield('header')
-
+    <link rel="stylesheet" href="{{asset('css/product.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/shopping-cart.min.css')}}">
 </head>
 <body class="layout layout-header-fixed">
 <div class="layout-header">
     <div class="navbar navbar-default">
         <div class="navbar-header">
-            <a class="navbar-brand navbar-brand-center" href="/">
+            <a class="navbar-brand navbar-brand-center" href="#">
                 <img class="navbar-brand-logo" src="{{ asset('img/logo-invers.png')}}">
             </a>
             <button class="navbar-toggler visible-xs-block collapsed" type="button" data-toggle="collapse" data-target="#sidenav">
                 <span class="sr-only">Toggle navigation</span>
-            <span class="bars">
+                <span class="bars">
               <span class="bar-line bar-line-1 out"></span>
               <span class="bar-line bar-line-2 out"></span>
               <span class="bar-line bar-line-3 out"></span>
             </span>
-            <span class="bars bars-x">
+                <span class="bars bars-x">
               <span class="bar-line bar-line-4"></span>
               <span class="bar-line bar-line-5"></span>
             </span>
@@ -31,12 +31,12 @@
             <button class="navbar-toggler visible-xs-block collapsed" type="button" data-toggle="collapse" data-target="#navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="arrow-up"></span>
-            <span class="ellipsis ellipsis-vertical">
+                <span class="ellipsis ellipsis-vertical">
                 @if(session()->has('image'))
-                    <img class="ellipsis-object" width="32" height="32" src="{{ asset(session('image'))}}">
-                @else
-                    <img class="ellipsis-object" width="32" height="32" src="{{ asset('images/profile.jpg')}}">
-                @endif
+                        <img class="ellipsis-object" width="32" height="32" src="{{ asset(session('image'))}}">
+                    @else
+                        <img class="ellipsis-object" width="32" height="32" src="{{ asset('images/profile.jpg')}}">
+                    @endif
             </span>
             </button>
         </div>
@@ -44,7 +44,7 @@
             <nav id="navbar" class="navbar-collapse collapse">
                 <button class="sidenav-toggler hidden-xs" title="Collapse sidenav ( [ )" aria-expanded="true" type="button">
                     <span class="sr-only">Toggle navigation</span>
-              <span class="bars">
+                    <span class="bars">
                 <span class="bar-line bar-line-1 out"></span>
                 <span class="bar-line bar-line-2 out"></span>
                 <span class="bar-line bar-line-3 out"></span>
@@ -71,7 +71,7 @@
                     <span class="icon icon-envelope-o icon-lg"></span>
                     <span class="badge badge-danger badge-above right">1</span>
                   </span>
-                  <span class="visible-xs-block">
+                            <span class="visible-xs-block">
                     <span class="icon icon-envelope icon-lg icon-fw"></span>
                     <span class="badge badge-danger pull-right">1</span>
                     Messages
@@ -171,6 +171,7 @@
         </div>
     </div>
 </div>
+
 <div class="layout-main">
     <div class="layout-sidebar">
         <div class="layout-sidebar-backdrop"></div>
@@ -237,26 +238,177 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="sidenav-item">
-                        <a href="/admin/category">
-                            <span class="sidenav-icon icon icon-tags"></span>
-                            <span class="sidenav-label">Category</span>
-                        </a>
-                    </li>
                 </ul>
             </nav>
         </div>
     </div>
-
     <div class="layout-content">
         <div class="layout-content-body">
+            <div class="product">
+                <div class="product-images">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            <li data-thumb="{{asset($post->photo->file)}}">
+                                <img src="{{asset($post->photo->file)}}">
+                            </li>
+                            <li data-thumb="{{asset($post->photo->file)}}">
+                                <img src="{{asset($post->photo->file)}}">
+                            </li>
+                        </ul>
+                    </div>
+                    @guest
+                        <div class="product-divider"></div>
+                        <div class="md-form-group md-label-floating">
+                            <input class="md-form-control" type="text" name="comment" placeholder="                 please login first..." readonly>
+                            <label class="md-control-label">Comment:</label>
+                        </div>
+                    @else
+                        <div class="product-divider"></div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="col-xs-0 col-md-1">
+                                    <div class="media-middle media-left" style="padding-top: 18px;">
+                                        <img class="media-object img-circle" width="32" height="32" src="{{$post->user->photo->file}}">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-11">
+                                    <form action="#">
+                                        <div class="md-form-group md-label-floating">
+                                            <input class="md-form-control" type="text" name="comment">
+                                            <label class="md-control-label">Comment</label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @endguest
 
-            @yield('content')
+                        <div class="post-footer">
+                            <div class="post-comments">
+                                <div class="post-comment-more">
+                                    <a class="link-muted" href="#">Show previous comments 167</a>
+                                </div>
+                                <div class="post-comment-list">
+                                    <ul class="media-list">
+                                        <li class="media">
+                                            <a class="media-left" href="#">
+                                                <img class="media-object" width="32" height="32" src="{{asset('img/1699893867.jpg')}}">
+                                            </a>
+                                            <div class="media-body">
+                                                <span class="media-link">
+                                                  <a href="#">Ruby Dixon</a>
+                                                </span>
+                                                <span class="media-content">Maecenas venenatis, enim quis volutpat ornare, risus mi elementum mi, sit amet tristique ligula massa vel diam.</span>
+                                                <div class="media-actions">
+                                                    <a href="#" title="Like this comment">Like</a>
+                                                    <span aria-hidden="true"> · </span>
+                                                    <a href="#" title="Reply on Ruby Dixon's comment">Reply</a>
+                                                    <span aria-hidden="true"> · </span>
+                                                    <a class="link-muted" href="#" data-container="body" data-trigger="hover" data-toggle="tooltip" data-original-title="Agatha Ford, John Miller, Daniel Taylor and 66 others like this.">
+                                                        <span class="icon icon-thumbs-o-up"></span>
+                                                        69
+                                                    </a>
+                                                    <span aria-hidden="true"> · </span>
+                                                    <a class="link-muted" href="#">47 mins</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="media">
+                                            <a class="media-left" href="#">
+                                                <img class="media-object" width="32" height="32" src="{{asset('img/1699893867.jpg')}}">
+                                            </a>
+                                            <div class="media-body">
+                                                <span class="media-link">
+                                                  <a href="#">Agatha Ford</a>
+                                                </span>
+                                                <span class="media-content">Cras consequat in enim ut efficitur. Nulla posuere elit quis auctor interdum praesent sit amet nulla vel enim amet. Donec convallis tellus neque, et imperdiet felis amet.</span>
+                                                <div class="media-actions">
+                                                    <a href="#" title="Like this comment">Like</a>
+                                                    <span aria-hidden="true"> · </span>
+                                                    <a href="#" title="Reply on Agatha Ford's comment">Reply</a>
+                                                    <span aria-hidden="true"> · </span>
+                                                    <a class="link-muted" href="#" data-container="body" data-trigger="hover" data-toggle="tooltip" data-original-title="Daniel Taylor, Sophia Evans, Ethan Walker and 118 others like this.">
+                                                        <span class="icon icon-thumbs-o-up"></span>
+                                                        121
+                                                    </a>
+                                                    <span aria-hidden="true"> · </span>
+                                                    <a class="link-muted" href="#">41 mins</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
 
+                </div>
+                <div class="product-details">
+                    <h1 class="product-name">{{$post->title}}</h1>
+                    <p style="padding-top: 15px;">
+                        <span class="icon icon-tags icon-lg icon-fw"></span>{{$post->category->name}}
+                        <span class="pull-right"><span class="icon icon-eye icon-lg icon-fw"></span>{{$post->view}} views</span>
+                    </p>
+                    <div class="product-divider"></div>
+                    <div class="product-price">
+                        <span class="product-price-current"><span class="label label-info label-pill">{{$post->price}}</span></span>
+                    </div>
+                    <div class="product-description" style="padding-top: 10px;">
+                        <?php echo $post->content ?>
+                    </div>
+
+                    <p style="padding-top: 15px;">
+                        <span class="icon icon-location-arrow icon-lg icon-fw"></span>{{$post->location}}
+                    </p>
+
+                    <div class="product-sku">
+                        <span><strong><span class="icon icon-user icon-lg icon-fw"></span> Posted By :  </strong>{{$post->user->firstname.' '.$post->user->lastname}}</span>
+                        <span class="pull-right"><span class="icon icon-clock-o icon-lg icon-fw"></span>{{$post->created_at->diffForHumans()}}</span>
+                    </div>
+                    <div class="product-share">
+                        <div class="social-list">
+                            <a class="social-list-item" href="#" data-toggle="tooltip" title="Share on Facebook">
+                                <span class="icon icon-facebook"></span>
+                            </a>
+                            <a class="social-list-item" href="#" data-toggle="tooltip" title="Share on Twitter">
+                                <span class="icon icon-twitter"></span>
+                            </a>
+                            <a class="social-list-item" href="#" data-toggle="tooltip" title="Pin on Pinterest">
+                                <span class="icon icon-pinterest"></span>
+                            </a>
+                            <a class="social-list-item" href="#" data-toggle="tooltip" title="Share on Google+">
+                                <span class="icon icon-google-plus"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <h4>Recommended</h4>
+                    <div class="cart">
+                        <ul class="cart-list">
+                            @foreach($posts as $rmpost)
+                            <li class="cart-list-item">
+                                <div class="cart-list-image">
+                                    <a href="/detail/{{$rmpost->id}}">
+                                        <img class="cart-list-thumbnail" src="{{$rmpost->photo->file}}">
+                                    </a>
+                                </div>
+                                <div class="cart-list-details" >
+                                    <h4 class="cart-list-name">
+                                        <a href="/detail/{{$rmpost->id}}">{{str_limit(title_case($rmpost->title), 43)}}</a>
+                                    </h4>
+                                    <p class="cart-list-description">
+                                        <small><span class="icon icon-user icon-lg icon-fw"></span> Posted By : {{$rmpost->user->firstname.' '. $rmpost->user->lastname}}</small>
+                                        <span class="pull-right"><span class="icon icon-eye icon-lg icon-fw"></span>{{$rmpost->view}} views</span>
+                                    </p>
+                                </div>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
-    @yield('modal')
-
     <div class="layout-footer">
         <div class="layout-footer-body">
             <small class="version">Developer : Bunthorn-KH</small>
@@ -264,18 +416,8 @@
         </div>
     </div>
 </div>
-
-@yield('footer')
-
 <script src="{{mix('js/libs.js')}}"></script>
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-83990101-1', 'auto');
-    ga('send', 'pageview');
-</script>
-
+<script src="{{asset('js/product.min.js')}}"></script>
 </body>
+
 </html>

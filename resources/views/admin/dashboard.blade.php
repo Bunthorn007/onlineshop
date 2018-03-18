@@ -6,19 +6,6 @@
 
 @endsection
 
-@section('logo')
-    <a class="navbar-brand navbar-brand-center" href="/admin/">
-        <img class="navbar-brand-logo" src="img/logo-inverse.svg" alt="Elephant">
-    </a>
-@endsection
-
-@section('user_icon')
-    <button class="navbar-account-btn" data-toggle="dropdown" aria-haspopup="true">
-        <img class="rounded" width="36" height="36" src="img/0180441436.jpg" alt="Teddy Wilson"> Teddy Wilson
-        <span class="caret"></span>
-    </button>
-@endsection
-
 @section('content')
     <div class="title-bar">
         <h1 class="title-bar-title">

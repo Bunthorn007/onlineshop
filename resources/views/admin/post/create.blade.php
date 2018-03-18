@@ -3,6 +3,7 @@
 @section('header')
     <title>Post Product</title>
     <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/dropzone.min.css')}}">
 @endsection
 
 @section('content')
@@ -15,7 +16,7 @@
         </div>
 
         <div class="signup-body">
-            <form id="demo-uploader" action="{{url('admin/post')}}" method="post" enctype="multipart/form-data" data-toggle="validator" data-groups='{"birthdate": "birth_month birth_day birth_year"}'>
+            <form id="demo-uploader" action="{{url('admin/post')}}" method="post" enctype="multipart/form-data" data-toggle="validator">
                 {{csrf_field()}}
                 <div class="title-bar">
                     <label for="first-name">Upload Images</label>
@@ -94,6 +95,7 @@
 @endsection
 
 @section('footer')
+    <script src="{{'js/dropzone.js'}}"></script>
     {{--<script id="template-upload" type="text/x-tmpl">--}}
         {{--{% for (var i=0, file; file=o.files[i]; i++) { %}--}}
             {{--<li class="file template-upload fade">--}}

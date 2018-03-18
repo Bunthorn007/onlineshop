@@ -257,7 +257,10 @@
                 </div>
                 <div class="product-details">
                     <h1 class="product-name">{{$post->title}}</h1>
-                    <span class="icon icon-eye icon-lg icon-fw"></span>{{$post->view}} Views
+                    <p style="padding-top: 15px;">
+                        <span class="icon icon-tags icon-lg icon-fw"></span>{{$post->category->name}}
+                        <span class="pull-right"><span class="icon icon-eye icon-lg icon-fw"></span>{{$post->view}} views</span>
+                    </p>
                     <div class="product-divider"></div>
                     <div class="product-price">
                         <span class="product-price-current"><span class="label label-info label-pill">{{$post->price}}</span></span>
@@ -266,7 +269,9 @@
                         <?php echo $post->content ?>
                     </div>
 
-                    <p style="padding-top: 15px;"><span class="icon icon-tags icon-lg icon-fw"></span>{{$post->category->name}}</p>
+                    <p style="padding-top: 15px;">
+                        <span class="icon icon-location-arrow icon-lg icon-fw"></span>{{$post->location}}
+                    </p>
 
                     <div class="product-sku">
                         <span><strong><span class="icon icon-user icon-lg icon-fw"></span> Posted By :  </strong>{{$post->user->firstname.' '.$post->user->lastname}}</span>
