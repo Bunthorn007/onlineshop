@@ -327,7 +327,12 @@
                                                     <span aria-hidden="true"> · </span>
                                                     <a href="#" title="Reply on Agatha Ford's comment">Reply</a>
                                                     <span aria-hidden="true"> · </span>
-                                                    <a class="link-muted" href="#" data-container="body" data-trigger="hover" data-toggle="tooltip" data-original-title="Daniel Taylor, Sophia Evans, Ethan Walker and 118 others like this.">
+                                                    <a class="link-mutedal line endings in your working directory.
+warning: LF will be replaced by CRLF in routes/web.php.
+The file will have its original line endings in your working directory.
+
+C:\xampp\htdocs\onbizz>git commit -m "18-03-2018-complete-some-interface
+                                                       href="#" data-container="body" data-trigger="hover" data-toggle="tooltip" data-original-title="Daniel Taylor, Sophia Evans, Ethan Walker and 118 others like this.">
                                                         <span class="icon icon-thumbs-o-up"></span>
                                                         121
                                                     </a>
