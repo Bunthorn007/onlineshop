@@ -12,7 +12,7 @@
 ;padding:10px;text-align:right
 }
 .cart-subtotal-amount{color:#d9831f}
-.cart-actions{padding:10px;text-align:right}
+.cart-actions{padding-bottom:15px;text-align:right}
 .confirmation{text-align:center}
 .confirmation-icon{color:#d9230f}
 .payment-card{background-color:#fff;border:1px solid #ddd;border-radius:0;margin-bottom:15px;padding:15px}

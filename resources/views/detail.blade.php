@@ -259,8 +259,8 @@
                     @guest
                         <div class="product-divider"></div>
                         <div class="md-form-group md-label-floating">
-                            <input class="md-form-control" type="text" name="comment" placeholder="                 please login first..." readonly>
-                            <label class="md-control-label">Comment:</label>
+                            <input class="md-form-control" type="text" name="comment"readonly>
+                            <label class="md-control-label">Please login first.</label>
                         </div>
                     @else
                         <div class="product-divider"></div>
@@ -272,75 +272,52 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-md-11">
-                                    <form action="#">
-                                        <div class="md-form-group md-label-floating">
-                                            <input class="md-form-control" type="text" name="comment">
+                                    {{--<form action="/comment" method="post" data-toggle="validator">--}}
+
+                                        <div class="md-form-group md-label-floating" style="margin-bottom: 0px;">
+                                            <input type="hidden" name="post_id" id="post_id" value="{{$post->id}}">
+                                            <input class="md-form-control" type="text" id="content" name="content" data-msg-required="Please enter your comment." required>
                                             <label class="md-control-label">Comment</label>
                                         </div>
-                                    </form>
+                                        <div class="cart-actions">
+                                            <button class="btn btn-primary" type="submit" id="add">Comment</button>
+                                        </div>
+                                    {{ csrf_field() }}
+                                    {{--</form>--}}
                                 </div>
                             </div>
                         </div>
                     @endguest
-
                         <div class="post-footer">
                             <div class="post-comments">
                                 <div class="post-comment-more">
-                                    <a class="link-muted" href="#">Show previous comments 167</a>
+                                    <a class="link-muted" href="#">{{count($comments)}} Comments </a>
                                 </div>
                                 <div class="post-comment-list">
-                                    <ul class="media-list">
-                                        <li class="media">
+                                    <ul class="media-list" id="commentlist">
+                                        @foreach($comments as $comment)
+                                        <li class="media comment{{$comment->id}}">
                                             <a class="media-left" href="#">
-                                                <img class="media-object" width="32" height="32" src="{{asset('img/1699893867.jpg')}}">
+                                                @if($comment->user->photo_id)
+                                                    <img class="rounded" width="36" height="36" src="{{ asset($comment->user->photo->file)}}">
+                                                @else
+                                                    <img class="rounded" width="36" height="36" src="{{ asset('images/profile.jpg')}}">
+                                                @endif
                                             </a>
                                             <div class="media-body">
                                                 <span class="media-link">
-                                                  <a href="#">Ruby Dixon</a>
+                                                  <a href="#">{{$comment->user->firstname. ' '. $comment->user->lastname.' '}}</a>
                                                 </span>
-                                                <span class="media-content">Maecenas venenatis, enim quis volutpat ornare, risus mi elementum mi, sit amet tristique ligula massa vel diam.</span>
+                                                <span class="media-content">{{$comment->content}}</span>
                                                 <div class="media-actions">
-                                                    <a href="#" title="Like this comment">Like</a>
-                                                    <span aria-hidden="true"> · </span>
-                                                    <a href="#" title="Reply on Ruby Dixon's comment">Reply</a>
-                                                    <span aria-hidden="true"> · </span>
-                                                    <a class="link-muted" href="#" data-container="body" data-trigger="hover" data-toggle="tooltip" data-original-title="Agatha Ford, John Miller, Daniel Taylor and 66 others like this.">
-                                                        <span class="icon icon-thumbs-o-up"></span>
-                                                        69
-                                                    </a>
-                                                    <span aria-hidden="true"> · </span>
-                                                    <a class="link-muted" href="#">47 mins</a>
+                                                    <span aria-hidden="true">{{$comment->created_at->diffForHumans()}} · </span>
+                                                    @if(Auth::id()==$comment->user_id)
+                                                        <a class="delete-modal" data-id="{{$comment->id}}" data-name="{{$comment->content}}">Delete</a>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="media">
-                                            <a class="media-left" href="#">
-                                                <img class="media-object" width="32" height="32" src="{{asset('img/1699893867.jpg')}}">
-                                            </a>
-                                            <div class="media-body">
-                                                <span class="media-link">
-                                                  <a href="#">Agatha Ford</a>
-                                                </span>
-                                                <span class="media-content">Cras consequat in enim ut efficitur. Nulla posuere elit quis auctor interdum praesent sit amet nulla vel enim amet. Donec convallis tellus neque, et imperdiet felis amet.</span>
-                                                <div class="media-actions">
-                                                    <a href="#" title="Like this comment">Like</a>
-                                                    <span aria-hidden="true"> · </span>
-                                                    <a href="#" title="Reply on Agatha Ford's comment">Reply</a>
-                                                    <span aria-hidden="true"> · </span>
-                                                    <a class="link-mutedal line endings in your working directory.
-warning: LF will be replaced by CRLF in routes/web.php.
-The file will have its original line endings in your working directory.
-
-C:\xampp\htdocs\onbizz>git commit -m "18-03-2018-complete-some-interface
-                                                       href="#" data-container="body" data-trigger="hover" data-toggle="tooltip" data-original-title="Daniel Taylor, Sophia Evans, Ethan Walker and 118 others like this.">
-                                                        <span class="icon icon-thumbs-o-up"></span>
-                                                        121
-                                                    </a>
-                                                    <span aria-hidden="true"> · </span>
-                                                    <a class="link-muted" href="#">41 mins</a>
-                                                </div>
-                                            </div>
-                                        </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -414,6 +391,31 @@ C:\xampp\htdocs\onbizz>git commit -m "18-03-2018-complete-some-interface
             </div>
         </div>
     </div>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="deleteContent">
+                        Are you Sure you want to delete this comment? <span
+                                class="hidden did"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn actionBtn" data-dismiss="modal">
+                            <span id="footer_action_button" class='glyphicon'> </span>
+                        </button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                            <span class='glyphicon glyphicon-remove'></span> Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="layout-footer">
         <div class="layout-footer-body">
             <small class="version">Developer : Bunthorn-KH</small>
@@ -423,6 +425,8 @@ C:\xampp\htdocs\onbizz>git commit -m "18-03-2018-complete-some-interface
 </div>
 <script src="{{mix('js/libs.js')}}"></script>
 <script src="{{asset('js/product.min.js')}}"></script>
+{{--<script src="{{ asset('js/app.js') }}"></script>--}}
+<script src="{{ asset('js/comment.js') }}"></script>
 </body>
 
 </html>

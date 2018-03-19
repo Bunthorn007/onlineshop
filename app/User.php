@@ -43,6 +43,10 @@ class User extends Authenticatable
         return $this->belongsTo('App\Photo');
     }
 
+    public function comments(){
+
+        return $this->hasMany('App\Comment');
+    }
     public function isAdmin(){
 
         if($this->role_id == 1){

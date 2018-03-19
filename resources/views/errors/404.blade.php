@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{mix('css/libs-sticky.css')}}">
-    <link rel="stylesheet" href="css/errors.min.css">
+    <link rel="stylesheet" href="{{asset('css/errors.min.css')}}">
 </head>
 <body>
 <div class="error">
