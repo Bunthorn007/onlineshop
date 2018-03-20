@@ -1,17 +1,11 @@
-@extends('layouts.sticky')
+@extends('layouts.app')
 
 @section('header')
 
     <title>index</title>
-    <link rel="stylesheet" href="css/store.min.css">
-    <link rel="stylesheet" href="css/messenger.min.css">
+    <link rel="stylesheet" href="{{asset('css/store.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/messenger.min.css')}}">
 
-@endsection
-
-@section('logo')
-    <a class="navbar-brand navbar-brand-center" href="/admin/">
-        <img class="navbar-brand-logo" src="img/logo-invers.png">
-    </a>
 @endsection
 
 @section('content')
@@ -104,12 +98,12 @@
                             <div class="card-header">
                                 <div class="media">
                                     <div class="media-middle media-left">
-                                        <a href="#">
+                                        <a href="/profile/{{$post->user_id}}">
                                             <img class="media-object img-circle" width="32" height="32" src="{{$post->user->photo->file}}">
                                         </a>
                                     </div>
                                     <div class="media-middle media-body">
-                                        <a class="link-muted" href="#">
+                                        <a class="link-muted" href="/profile/{{$post->user_id}}">
                                             {{$post->user->firstname . ' '. $post->user->lastname}}
                                         </a>
                                     </div>
@@ -147,12 +141,12 @@
                                 <div class="card-header">
                                     <div class="media">
                                         <div class="media-middle media-left">
-                                            <a href="#">
+                                            <a href="/profile/{{$post->user_id}}">
                                                 <img class="media-object img-circle" width="32" height="32" src="{{$post->user->photo->file}}">
                                             </a>
                                         </div>
                                         <div class="media-middle media-body">
-                                            <a class="link-muted" href="#">
+                                            <a class="link-muted" href="/profile/{{$post->user_id}}">
                                                 {{$post->user->firstname . ' '. $post->user->lastname}}
                                             </a>
                                         </div>
@@ -190,12 +184,12 @@
                                 <div class="card-header">
                                     <div class="media">
                                         <div class="media-middle media-left">
-                                            <a href="#">
+                                            <a href="/profile/{{$post->user_id}}">
                                                 <img class="media-object img-circle" width="32" height="32" src="{{$post->user->photo->file}}">
                                             </a>
                                         </div>
                                         <div class="media-middle media-body">
-                                            <a class="link-muted" href="#">
+                                            <a class="link-muted" href="/profile/{{$post->user_id}}">
                                                 {{$post->user->firstname . ' '. $post->user->lastname}}
                                             </a>
                                         </div>
@@ -230,5 +224,5 @@
 @endsection
 
 @section('footer')
-    <script src="js/messenger.min.js"></script>
+    <script src="{{asset('js/messenger.min.js')}}"></script>
 @endsection

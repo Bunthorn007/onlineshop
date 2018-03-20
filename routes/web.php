@@ -20,16 +20,20 @@ Route::get('/admin/post/test', function (){
 });
 
 
-
-
 Route::get('/', 'UserController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/detail/{id}', 'UserController@detail');
 
+Route::get('/profile/{id}', 'UserController@profile');
+
 
 Route::group(['middleware'=>'auth'], function (){
+
+    //Edit Profile
+    Route::get('/user/edit/{id}', 'UserController@edit');
+    Route::patch('/user/update/{id}', 'UserController@update');
 
     //Comment Route
     Route::post('addComment', 'CommentsController@addComment');
@@ -48,8 +52,16 @@ Route::group(['middleware'=>'auth'], function (){
     Route::get('/admin/post/{id}/delete', 'AdminPostsController@delete');
 
     //Category Route
-    Route::resource('admin/category', 'AdminCategoriesController');
-    Route::get('/admin/category/{id}/delete', 'AdminCategoriesController@delete');
+    Route::get('/admin/category', 'AdminCategoriesController@readCategories');
+    Route::post('addCategory', 'AdminCategoriesController@addCategory');
+    Route::post('editCategory', 'AdminCategoriesController@editCategory');
+    Route::post('deleteCategory', 'AdminCategoriesController@deleteCategory');
+
+    //Category Route
+    Route::get('/admin/role', 'AdminRolesController@readRoles');
+    Route::post('addRole', 'AdminRolesController@addRole');
+    Route::post('editRole', 'AdminRolesController@editRole');
+    Route::post('deleteRole', 'AdminRolesController@deleteRole');
 
 });
 

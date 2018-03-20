@@ -1,9 +1,9 @@
-@extends('./layouts/admin')
+@extends('./layouts/app')
 
 @section('header')
     <title>Create User</title>
-    <link rel="stylesheet" href="../../../css/signup-2.min.css">
-    <link rel="stylesheet" href="../../../css/contacts.min.css">
+    <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/contacts.min.css')}}">
 @endsection
 
 @section('content')
@@ -52,7 +52,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input id="email" class="form-control" type="email" name="email" value="{{$user->email}}" spellcheck="false" autocomplete="off" data-msg-required="Please enter your email address." required>
+                                    <input id="email" class="form-control" type="email" name="email" value="{{$user->email}}" spellcheck="false" autocomplete="off" readonly>
                                 </div>
                             </div>
                         </div>

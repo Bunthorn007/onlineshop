@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Month;
 use App\Photo;
+use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -70,7 +71,8 @@ class AdminUsersController extends Controller
     {
 
         $user = User::find($id);
-        return view('admin.user.profile', compact('user', $user));
+        $posts = Post::where('user_id', $user->id)->get();
+        return view('admin.user.profile', compact('user', 'posts'));
     }
 
     /**

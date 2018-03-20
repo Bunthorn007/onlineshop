@@ -27,12 +27,12 @@ $(document).ready(function() {
 
                 $('#commentlist').append("" +
                     "<li class='media comment"+data.commentId+"'>"+
-                        "<a class='media-left' href=''#'>"+
+                        "<a class='media-left' href='/profile/"+data.user_id+"'>"+
                             "<img class='media-object' width='32' height='32' src="+ data.image+ ">"+
                         "</a>"+
                         "<div class='media-body'>"+
                             "<span class='media-link'>"+
-                                "<a href='#'>"+data.username+' '+"</a>"+
+                                "<a href='/profile/"+data.user_id+"'>"+data.username+' '+"</a>"+
                             "</span>"+
                             "<span class='media-content'>"+ data.content +"</span>"+
                             "<div class='media-actions'>"+

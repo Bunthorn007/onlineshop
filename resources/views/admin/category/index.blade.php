@@ -1,7 +1,7 @@
-@extends('./layouts/admin')
+@extends('./layouts/app')
 
 @section('header')
-    <title>Post Product</title>
+    <title>category management</title>
     <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/product.min.css')}}">
 @endsection
@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="signup-body">
-                    <form id="demo-uploader" action="{{url('admin/category')}}" method="post" enctype="multipart/form-data" data-toggle="validator" data-groups='{"birthdate": "birth_month birth_day birth_year"}'>
+                    {{--<form id="demo-uploader" action="{{url('admin/category')}}" method="post" enctype="multipart/form-data" data-toggle="validator" data-groups='{"birthdate": "birth_month birth_day birth_year"}'>--}}
                         {{csrf_field()}}
                         <div class="signup-form">
                             <div class="row gutter-xs">
@@ -33,13 +33,13 @@
                             <div class="row gutter-xs">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-block"><span class="icon icon-save"></span>  Create Category</button>
+                                        <button type="submit" class="btn btn-primary btn-block" id="add"><span class="icon icon-save"></span>  Create Category</button>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-                    </form>
+                    {{--</form>--}}
                 </div>
             </div>
 
@@ -56,7 +56,7 @@
                     <div class="panel">
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-middle">
+                                <table class="table table-middle" id="table">
                                     <thead>
                                     <tr>
                                         <th>Category</th>
@@ -66,17 +66,17 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($categories as $category)
-                                    <tr>
+                                    @foreach($data as $category)
+                                    <tr class="category{{$category->id}}">
                                         <td class="nowrap">
                                             <strong>{{$category->name}}</strong>
                                         </td>
                                         <td>{{$category->created_at->diffForHumans()}}</td>
                                         <td data-order="1">
-                                            <a href="{{ route('category.edit', $category->id) }}" class="btn-xs btn-info btn-pill">Edit</a>
+                                            <a class="edit-modal btn-xs btn-info btn-pill" data-id="{{$category->id}}" data-name="{{$category->name}}">Edit</a>
                                         </td>
                                         <td>
-                                            <a href="category/{{$category->id}}/delete" class="btn-xs btn-primary btn-pill">Delete</a>
+                                            <a class="delete-modal btn-xs btn-primary btn-pill" data-id="{{$category->id}}" data-name="{{$category->name}}">Delete</a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -94,47 +94,11 @@
 @endsection
 
 @section('modal')
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"></h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" role="form">
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="id">ID:</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="fid" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="name">Name:</label>
-                            <div class="col-sm-10">
-                                <input type="name" class="form-control" id="n">
-                            </div>
-                        </div>
-                    </form>
-                    <div class="deleteContent">
-                        Are you Sure you want to delete <span class="dname"></span> ? <span
-                                class="hidden did"></span>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn actionBtn" data-dismiss="modal">
-                            <span id="footer_action_button" class='glyphicon'> </span>
-                        </button>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">
-                            <span class='glyphicon glyphicon-remove'></span> Close
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    @include('admin.category.modal')
+
 @endsection
 
 @section('footer')
-
+    <script src="{{ asset('js/ajax_category.js') }}"></script>
 @endsection
