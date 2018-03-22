@@ -119,6 +119,11 @@
                             <li class="divider"></li>
                             <li><a href="/user/edit/{{auth::id()}}"><span class="icon icon-edit icon-lg icon-fw"></span> Edit</a></li>
                             <li><a href="/profile/{{auth::id()}}"><span class="icon icon-user icon-lg icon-fw"></span> Profile</a></li>
+                            @if(session('shop')== '')
+                            <li><a href="/user/shop/create"><span class="icon icon-cart-plus icon-lg icon-fw"></span> My Shop</a></li>
+                            @else
+                                <li><a href="{{url('user/shop/'.session('shop'))}}"><span class="icon icon-cart-plus icon-lg icon-fw"></span> My Shop</a></li>
+                            @endif
                             <li>
                                 <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
@@ -135,22 +140,22 @@
                         </ul>
                     </li>
                     <li class="visible-xs-block">
-                        <a href="contacts.html">
-                            <span class="icon icon-users icon-lg icon-fw"></span>
-                            Contacts
-                        </a>
+                        <a href="/user/edit/{{auth::id()}}"><span class="icon icon-edit icon-lg icon-fw"></span> Edit</a>
                     </li>
                     <li class="visible-xs-block">
-                        <a href="profile.html">
-                            <span class="icon icon-user icon-lg icon-fw"></span>
-                            Profile
-                        </a>
+                        <a href="/profile/{{auth::id()}}"><span class="icon icon-user icon-lg icon-fw"></span> Profile</a>
                     </li>
                     <li class="visible-xs-block">
-                        <a href="login-1.html">
+                        <a href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                             <span class="icon icon-power-off icon-lg icon-fw"></span>
                             Sign out
                         </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     </li>
                     @endguest
             </ul>

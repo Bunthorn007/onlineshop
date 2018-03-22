@@ -47,6 +47,7 @@ class User extends Authenticatable
 
         return $this->hasMany('App\Comment');
     }
+
     public function isAdmin(){
 
         if($this->role->name == 'Admin'){
@@ -58,5 +59,10 @@ class User extends Authenticatable
     public function posts(){
 
         return $this->hasMany('App\Post');
+    }
+
+    public function shop(){
+
+        return $this->hasOne('App\Shop');
     }
 }

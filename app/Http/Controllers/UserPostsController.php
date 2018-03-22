@@ -26,10 +26,10 @@ class UserPostsController extends Controller
     public function index()
     {
         $userId = Auth::user()->id;
-
+        $categories = Category::all();
         $posts = Post::where('user_id', $userId)->get();
 
-        return view('user.post.index', compact('posts', $posts));
+        return view('user.post.index', compact('posts', 'categories'));
     }
 
     /**
@@ -74,13 +74,14 @@ class UserPostsController extends Controller
         $post = Post::find($id);
         $images = Image::where('post_id',$post->id)->get();
         $comments = Comment::where('post_id', $post->id)->get();
+        $categories = Category::all();
 
         //Increment view no.
         $view = $post->view + 1;
         $post->update(['view'=>$view]);
 
         $post->content = nl2br($post->content);
-        return view('user.post.detail', compact('post', 'images', 'comments'));
+        return view('user.post.detail', compact('post', 'images', 'comments', 'categories'));
     }
 
     /**
@@ -172,6 +173,8 @@ class UserPostsController extends Controller
     public function uploadImage($id){
 
         $pid = $id;
-        return view('user.post.uploadimage', compact('pid'));
+        $categories = Category::all();
+
+        return view('user.post.uploadimage', compact('pid', 'categories'));
     }
 }

@@ -48,16 +48,19 @@ class UserController extends Controller
 
         $user = User::find($id);
         $posts = Post::where('user_id', $user->id)->get();
+        $categories = Category::all();
 
-        return view('profile', compact('user', 'posts'));
+        return view('profile', compact('user', 'posts', 'categories'));
     }
 
     public function edit($id)
     {
         $user = User::find($id);
         $months = Month::all();
+        $categories = Category::all();
+
         $birthdate = explode("-", $user->birthdate);
-        return view('user.edit', compact('user', 'birthdate', 'months'));
+        return view('user.edit', compact('user', 'birthdate', 'months', 'categories'));
     }
 
     public function update(Request $request, $id)

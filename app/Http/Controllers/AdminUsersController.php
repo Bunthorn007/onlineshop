@@ -47,6 +47,7 @@ class AdminUsersController extends Controller
      */
     public function store(Request $request)
     {
+
         $input = $request->all();
         $birthdate = $input['birth_day'].'-'.$input['birth_month'].'-'.$input['birth_year'];
         $request->merge(['birthdate'=>$birthdate]);

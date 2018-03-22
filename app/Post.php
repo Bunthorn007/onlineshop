@@ -33,14 +33,4 @@ class Post extends Model
         return $this->hasMany('App\Comment');
     }
 
-    public function getThreadedComments(){
-        return $this->comments()->with('user')->get()->threaded();
-    }
-
-    public function addComment($attributes)
-    {
-        $comment = (new Comment())->forceFill($attributes);
-        $comment->user_id = auth()->id();
-        return $this->comments()->save($comment);
-    }
 }

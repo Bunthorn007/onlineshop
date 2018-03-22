@@ -83,7 +83,7 @@
         </div>
         <div class="store-content">
             <div class="row">
-                <div class="divider"><h3 class="pull-left" style="padding-left: 5px;">Most Views</h3></div>
+                <div class="divider"><h4 class="pull-left" style="padding-left: 5px;">Most Views</h4></div>
                 <div class="col-xs-12">
                     <ul class="products">
                     @foreach($rmposts as $post)
@@ -96,7 +96,7 @@
             </div>
 
             <div class="row">
-                <div class="divider"><h3 class="pull-left" style="padding-left: 5px;">Recently</h3></div>
+                <div class="divider"><h4 class="pull-left" style="padding-left: 5px;">Recently</h4></div>
                 <div class="col-xs-12">
                     <ul class="products">
                         @foreach($rcposts as $post)
@@ -109,7 +109,7 @@
             </div>
 
             <div class="row">
-                <div class="divider"><h3 class="pull-left" style="padding-left: 5px;">All Posts</h3></div>
+                <div class="divider"><h4 class="pull-left" style="padding-left: 5px;">All Posts</h4></div>
                 <div class="col-xs-12">
                     <ul class="products">
                         @foreach($posts as $post)

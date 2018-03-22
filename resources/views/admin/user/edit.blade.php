@@ -98,7 +98,7 @@
                                         @if($user->gender != 1)
                                             <option value="1">Male</option>
                                         @else
-                                        <option value="2">Female</option>
+                                            <option value="2">Female</option>
                                         @endif
                                     </select>
                                 </div>

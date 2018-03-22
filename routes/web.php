@@ -67,11 +67,20 @@ Route::group(['middleware'=>'auth'], function (){
     Route::post('editRole', 'AdminRolesController@editRole');
     Route::post('deleteRole', 'AdminRolesController@deleteRole');
 
-    //Admin Post Route List
+    //User Post Route List
     Route::resource('user/post', 'UserPostsController');
     Route::get('/user/post/{id}/delete', 'UserPostsController@delete');
     Route::get('/user/post/uploadimage/{id}', 'UserPostsController@uploadImage');
     Route::post('/user/post/doupload', 'UserPostsController@doImageUpload');
+
+    //User Post Route List
+    Route::resource('user/shop', 'UserShopsController');
+
+    //User Product Category Route
+    Route::get('/user/shop/{id}/category', 'UserShopsController@readProCategories');
+    Route::post('addProCategory', 'UserShopsController@addProCategory');
+    Route::post('editProCategory', 'UserShopsController@editProCategory');
+    Route::post('deleteProCategory', 'UserShopsController@deleteProCategory');
 
 });
 

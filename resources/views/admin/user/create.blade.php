@@ -2,8 +2,8 @@
 
 @section('header')
     <title>Create User</title>
-    <link rel="stylesheet" href="../../css/signup-2.min.css">
-    <link rel="stylesheet" href="../../css/contacts.min.css">
+    <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/contacts.min.css')}}">
 @endsection
 
 @section('content')
@@ -28,7 +28,7 @@
                         <span class="icon icon-camera"></span>
                         <input class="file-upload-input" type="file" name="photo_id">
                     </label>
-                    <img class="img-rounded" width="128" height="128" src="../../images/profile.jpg">
+                    <img class="img-rounded" width="128" height="128" src="{{asset('images/profile.jpg')}}">
                 </div>
                 <div class="signup-form">
                     <div class="row gutter-xs">
