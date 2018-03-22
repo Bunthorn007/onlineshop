@@ -1,7 +1,7 @@
 @extends('./layouts/app')
 
 @section('header')
-    <title>Post Product</title>
+    <title>create post</title>
     <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
 @endsection
 
@@ -15,7 +15,7 @@
         </div>
 
         <div class="signup-body">
-            <form id="demo-uploader" action="{{url('admin/post')}}" method="post" enctype="multipart/form-data" data-toggle="validator">
+            <form id="demo-uploader" action="{{url('user/post')}}" method="post" enctype="multipart/form-data" data-toggle="validator">
                 {{csrf_field()}}
 
                 <div class="signup-form">
@@ -74,40 +74,4 @@
             </form>
         </div>
     </div>
-@endsection
-
-@section('footer')
-    <script id="template-upload" type="text/x-tmpl">
-        {% for (var i=0, file; file=o.files[i]; i++) { %}
-            <li class="file template-upload fade">
-                <div class="file-thumbnail">
-                    <div class="spinner spinner-default spinner-sm"></div>
-                </div>
-                <div class="file-info">
-                    <span class="file-ext">{%= file.ext %}</span>
-                    <span class="file-name">{%= file.name %}</span>
-                </div>
-            </li>
-        {% } %}
-    </script>
-    <script id="template-download" type="text/x-tmpl">
-        {% for (var i=0, file; file=o.files[i]; i++) { %}
-            <li class="file template-download fade">
-                <a class="file-link" href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}">
-                    {% if (file.thumbnailUrl) { %}
-                        <div class="file-thumbnail" style="background-image: url({%=file.thumbnailUrl%});"></div>
-                    {% } else { %}
-                    <div class="file-thumbnail {%=file.thumbnail%}"></div>
-                    {% } %}
-                    <div class="file-info">
-                        <span class="file-ext">{%=file.extension%}</span>
-                        <span class="file-name">{%=file.filename%}.</span>
-                    </div>
-                </a>
-                <button class="file-delete-btn delete" title="Delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" type="button">
-                    <span class="icon icon-remove"></span>
-                </button>
-            </li>
-        {% } %}
-    </script>
 @endsection

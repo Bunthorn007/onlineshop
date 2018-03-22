@@ -4,8 +4,6 @@
 
     <title>index</title>
     <link rel="stylesheet" href="{{asset('css/store.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/messenger.min.css')}}">
-
 @endsection
 
 @section('content')
@@ -19,12 +17,6 @@
                 </button>
             </div>
         </div>
-        <h1 class="title-bar-title">
-            <span class="d-ib">Online Shop</span>
-        </h1>
-        <p class="title-bar-description">
-            <small>Improve your business performance with us!</small>
-        </p>
     </div>
     <div class="store">
         <div class="store-sidebar">
@@ -35,6 +27,7 @@
                             <div class="widget">
                                 <div class="widget-product-brands">
                                     <div class="product-brands">
+                                        <div class="divider"><h4 class="pull-left">All Shops</h4></div>
                                         <div class="product-brands-search">
                                             <div class="form-group form-group-sm">
                                                 <div class="input-with-icon">
@@ -46,6 +39,7 @@
                                         <div class="product-brands-results">
                                             <div class="custom-scrollbar">
                                                 <div class="custom-controls-stacked">
+
                                                     <ul class="messenger-list">
                                                         <li class="messenger-list-item">
                                                             <a class="messenger-list-link" href="#0601274412" data-toggle="tab">
@@ -88,133 +82,42 @@
             </div>
         </div>
         <div class="store-content">
-
             <div class="row">
-                <div class="divider"><h4 class="pull-left" style="padding-left: 30px;">Recommended</h4></div>
+                <div class="divider"><h3 class="pull-left" style="padding-left: 5px;">Most Views</h3></div>
                 <div class="col-xs-12">
+                    <ul class="products">
                     @foreach($rmposts as $post)
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="media">
-                                    <div class="media-middle media-left">
-                                        <a href="/profile/{{$post->user_id}}">
-                                            <img class="media-object img-circle" width="32" height="32" src="{{$post->user->photo->file}}">
-                                        </a>
-                                    </div>
-                                    <div class="media-middle media-body">
-                                        <a class="link-muted" href="/profile/{{$post->user_id}}">
-                                            {{$post->user->firstname . ' '. $post->user->lastname}}
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-image">
-                                <a class="link-muted" href="/detail/{{$post->id}}">
-                                    <img class="img-responsive" width="100%" height="50%" src="{{$post->photo->file}}">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title fw-l">
-                                    <strong><a class="link-muted" href="/detail/{{$post->id}}">{{str_limit($post->title, 19)}}</a></strong>
-                                </h4>
-                                <small>{{str_limit($post->content, 29)}}</small>
-                            </div>
-                            <div class="card-footer">
-                                <small>
-                                    <span class="icon icon-eye icon-lg icon-fw"></span>{{$post->view}} views
-                                    <span class="pull-right"><span class="icon icon-clock-o icon-lg icon-fw"></span>{{$post-> created_at->diffForHumans()}}</span>
-                                </small>
-                            </div>
-                        </div>
-                    </div>
+                        <li>
+                            @include('components.postlist')
+                        </li>
                     @endforeach
+                    </ul>
                 </div>
             </div>
 
             <div class="row">
-                <div class="divider"><h4 class="pull-left" style="padding-left: 30px;">Recently</h4></div>
+                <div class="divider"><h3 class="pull-left" style="padding-left: 5px;">Recently</h3></div>
                 <div class="col-xs-12">
-                    @foreach($rcposts as $post)
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="media">
-                                        <div class="media-middle media-left">
-                                            <a href="/profile/{{$post->user_id}}">
-                                                <img class="media-object img-circle" width="32" height="32" src="{{$post->user->photo->file}}">
-                                            </a>
-                                        </div>
-                                        <div class="media-middle media-body">
-                                            <a class="link-muted" href="/profile/{{$post->user_id}}">
-                                                {{$post->user->firstname . ' '. $post->user->lastname}}
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-image">
-                                    <a class="link-muted" href="/detail/{{$post->id}}">
-                                        <img class="img-responsive" width="100%" height="50%" src="{{$post->photo->file}}">
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="card-title fw-l">
-                                        <strong><a class="link-muted" href="/detail/{{$post->id}}">{{str_limit($post->title, 19)}}</a></strong>
-                                    </h4>
-                                    <small>{{str_limit($post->content, 29)}}</small>
-                                </div>
-                                <div class="card-footer">
-                                    <small>
-                                        <span class="icon icon-eye icon-lg icon-fw"></span>{{$post->view}} views
-                                        <span class="pull-right"><span class="icon icon-clock-o icon-lg icon-fw"></span>{{$post-> created_at->diffForHumans()}}</span>
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+                    <ul class="products">
+                        @foreach($rcposts as $post)
+                            <li>
+                                @include('components.postlist')
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
 
             <div class="row">
-                <div class="divider"><h4 class="pull-left" style="padding-left: 30px;">All Posts</h4></div>
+                <div class="divider"><h3 class="pull-left" style="padding-left: 5px;">All Posts</h3></div>
                 <div class="col-xs-12">
-                    @foreach($posts as $post)
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="media">
-                                        <div class="media-middle media-left">
-                                            <a href="/profile/{{$post->user_id}}">
-                                                <img class="media-object img-circle" width="32" height="32" src="{{$post->user->photo->file}}">
-                                            </a>
-                                        </div>
-                                        <div class="media-middle media-body">
-                                            <a class="link-muted" href="/profile/{{$post->user_id}}">
-                                                {{$post->user->firstname . ' '. $post->user->lastname}}
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-image">
-                                    <a class="link-muted" href="/detail/{{$post->id}}">
-                                        <img class="img-responsive" width="100%" height="50%" src="{{$post->photo->file}}">
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="card-title fw-l">
-                                        <strong><a class="link-muted" href="/detail/{{$post->id}}">{{str_limit($post->title, 19)}}</a></strong>
-                                    </h4>
-                                    <small>{{str_limit($post->content, 29)}}</small>
-                                </div>
-                                <div class="card-footer">
-                                    <small>
-                                        <span class="icon icon-eye icon-lg icon-fw"></span>{{$post->view}} views
-                                        <span class="pull-right"><span class="icon icon-clock-o icon-lg icon-fw"></span>{{$post-> created_at->diffForHumans()}}</span>
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+                    <ul class="products">
+                        @foreach($posts as $post)
+                            <li>
+                                @include('components.postlist')
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
 

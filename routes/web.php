@@ -12,17 +12,19 @@
 */
 
 use App\Post;
+use Illuminate\Http\Request;
 
 
-Route::get('/admin/post/test', function (){
+Route::get('/welcome', function (){
 
-    return view('admin.post.test');
+
 });
 
+Route::post('/upload', 'UserController@doImageUpload');
 
 Route::get('/', 'UserController@index');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'UserController@index');
 
 Route::get('/detail/{id}', 'UserController@detail');
 
@@ -50,18 +52,26 @@ Route::group(['middleware'=>'auth'], function (){
     //Admin Post Route List
     Route::resource('admin/post', 'AdminPostsController');
     Route::get('/admin/post/{id}/delete', 'AdminPostsController@delete');
+    Route::get('/admin/post/uploadimage/{id}', 'AdminPostsController@uploadImage');
+    Route::post('/admin/post/doupload', 'AdminPostsController@doImageUpload');
 
-    //Category Route
+    //Admin Category Route
     Route::get('/admin/category', 'AdminCategoriesController@readCategories');
     Route::post('addCategory', 'AdminCategoriesController@addCategory');
     Route::post('editCategory', 'AdminCategoriesController@editCategory');
     Route::post('deleteCategory', 'AdminCategoriesController@deleteCategory');
 
-    //Category Route
+    //Admin Category Route
     Route::get('/admin/role', 'AdminRolesController@readRoles');
     Route::post('addRole', 'AdminRolesController@addRole');
     Route::post('editRole', 'AdminRolesController@editRole');
     Route::post('deleteRole', 'AdminRolesController@deleteRole');
+
+    //Admin Post Route List
+    Route::resource('user/post', 'UserPostsController');
+    Route::get('/user/post/{id}/delete', 'UserPostsController@delete');
+    Route::get('/user/post/uploadimage/{id}', 'UserPostsController@uploadImage');
+    Route::post('/user/post/doupload', 'UserPostsController@doImageUpload');
 
 });
 

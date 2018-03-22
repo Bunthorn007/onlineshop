@@ -17,9 +17,9 @@ class Post extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function photo(){
+    public function images(){
 
-        return $this->belongsTo('App\Photo');
+        return $this->hasMany('App\Image');
     }
 
     public function category(){

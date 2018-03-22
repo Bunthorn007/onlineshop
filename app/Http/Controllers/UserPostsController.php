@@ -6,17 +6,16 @@ use App\Category;
 use App\Comment;
 use App\Image;
 use App\Post;
+use Illuminate\Support\Facades\Storage;
 use ResizeImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
-class AdminPostsController extends Controller
+class UserPostsController extends Controller
 {
-
     public function __construct()
     {
-        $this->middleware('isAdmin');
+        $this->middleware('auth');
     }
 
     /**
@@ -26,9 +25,11 @@ class AdminPostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $userId = Auth::user()->id;
 
-        return view('admin.post.index', compact('posts', $posts));
+        $posts = Post::where('user_id', $userId)->get();
+
+        return view('user.post.index', compact('posts', $posts));
     }
 
     /**
@@ -41,7 +42,7 @@ class AdminPostsController extends Controller
 
         $categories = Category::all();
 
-        return view('admin.post.create', compact('categories'));
+        return view('user.post.create', compact('categories'));
     }
 
     /**
@@ -59,7 +60,7 @@ class AdminPostsController extends Controller
 
         $id = $user->posts()->create($data)->id;
 
-        return redirect('/admin/post/uploadimage/'.$id);
+        return redirect('/user/post/uploadimage/'.$id);
     }
 
     /**
@@ -79,7 +80,7 @@ class AdminPostsController extends Controller
         $post->update(['view'=>$view]);
 
         $post->content = nl2br($post->content);
-        return view('admin.post.detail', compact('post', 'images', 'comments'));
+        return view('user.post.detail', compact('post', 'images', 'comments'));
     }
 
     /**
@@ -93,7 +94,7 @@ class AdminPostsController extends Controller
         $post = Post::find($id);
         $categories = Category::all();
 
-        return view('admin.post.edit', compact('post', 'categories'));
+        return view('user.post.edit', compact('post', 'categories'));
     }
 
     /**
@@ -107,9 +108,10 @@ class AdminPostsController extends Controller
     {
         $post = Post::find($id);
 
-        $post->update($request->all());
 
-        return redirect('/admin/post');
+        $post->update($request);
+
+        return redirect('/user/post');
     }
 
     /**
@@ -130,7 +132,7 @@ class AdminPostsController extends Controller
             }
         }
         $post->delete();
-        return redirect('admin/post');
+        return redirect('user/post');
     }
 
     public function delete($id)
@@ -138,20 +140,8 @@ class AdminPostsController extends Controller
         $post = Post::find($id);
         $categories = Category::all();
 
-        return view('admin.post.delete', compact('post', 'categories'));
+        return view('user.post.delete', compact('post', 'categories'));
     }
-
-//    public function doImageUpload(Request $request){
-//
-//        $file = $request->file('file');
-//        $post_id = $request->input('post_id');
-//
-//        $filename = time().$file->getClientOriginalName();
-//
-//        $file->move('images', $filename);
-//
-//        Image::create(['post_id'=>$post_id, 'file' => $filename]);
-//    }
 
     public function doImageUpload(Request $request){
         $file = $request->file('file');
@@ -182,6 +172,6 @@ class AdminPostsController extends Controller
     public function uploadImage($id){
 
         $pid = $id;
-        return view('admin.post.uploadimage', compact('pid'));
+        return view('user.post.uploadimage', compact('pid'));
     }
 }

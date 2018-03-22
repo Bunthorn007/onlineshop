@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class AdminRolesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('isAdmin');
+    }
+
     public function addRole(Request $request)
     {
 

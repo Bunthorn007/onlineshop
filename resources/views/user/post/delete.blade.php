@@ -1,7 +1,7 @@
 @extends('./layouts/app')
 
 @section('header')
-    <title>Post Product</title>
+    <title>delete post</title>
     <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/drive.min.css')}}">
 @endsection
@@ -90,7 +90,7 @@
                     <p>Do you want to delete this post?</p>
 
                 </div>
-                <form method="POST" action="/admin/post/{{$post->id}}">
+                <form method="POST" action="/user/post/{{$post->id}}">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                     <div class="modal-footer">

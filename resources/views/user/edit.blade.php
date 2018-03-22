@@ -106,7 +106,7 @@
                         <div class="col-xs-3">
                             <div class="form-group">
                                 <label for="gender">Role</label>
-                                <select id="gender" class="custom-select" name="role_id" data-msg-required="Please assign role to user." required>
+                                <select id="gender" class="custom-select" name="role_id" data-msg-required="Please assign role to user." disabled>
                                     <option value="{{$user->role_id}}" selected="selected">{{$user->role_id==1?'Admin':'Guest'}}</option>
                                     @if($user->role_id != 1)
                                         <option value="1">Admin</option>
@@ -119,7 +119,7 @@
                         <div class="col-xs-3">
                             <div class="form-group">
                                 <label for="gender">Status</label>
-                                <select id="gender" class="custom-select" name="status" data-msg-required="Please indicate user status." required>
+                                <select id="gender" class="custom-select" name="status" data-msg-required="Please indicate user status." disabled>
                                     <option value="{{$user->status}}" selected="selected">{{$user->status==1?'Active':'Not active'}}</option>
                                     @if($user->status != 1)
                                         <option value="1">Active</option>

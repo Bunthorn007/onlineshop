@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>detail</title>
+    <title>post detail</title>
     <link rel="stylesheet" href="{{mix('css/libs.css')}}">
     <link rel="stylesheet" href="{{asset('css/product.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/shopping-cart.min.css')}}">
@@ -35,11 +35,11 @@
                         </ul>
                     </div>
                     @guest
-                        <div class="product-divider"></div>
-                        <div class="md-form-group md-label-floating">
-                            <input class="md-form-control" type="text" name="comment"readonly>
-                            <label class="md-control-label">Please login first.</label>
-                        </div>
+                    <div class="product-divider"></div>
+                    <div class="md-form-group md-label-floating">
+                        <input class="md-form-control" type="text" name="comment"readonly>
+                        <label class="md-control-label">Please login first.</label>
+                    </div>
                     @else
                         <div class="product-divider"></div>
                         <div class="row">
@@ -52,20 +52,20 @@
                                 <div class="col-xs-12 col-md-11">
                                     {{--<form action="/comment" method="post" data-toggle="validator">--}}
 
-                                        <div class="md-form-group md-label-floating" style="margin-bottom: 0px;">
-                                            <input type="hidden" name="post_id" id="post_id" value="{{$post->id}}">
-                                            <input class="md-form-control" type="text" id="content" name="content" data-msg-required="Please enter your comment." required>
-                                            <label class="md-control-label">Comment</label>
-                                        </div>
-                                        <div class="cart-actions">
-                                            <button class="btn btn-primary" type="submit" id="add">Comment</button>
-                                        </div>
+                                    <div class="md-form-group md-label-floating" style="margin-bottom: 0px;">
+                                        <input type="hidden" name="post_id" id="post_id" value="{{$post->id}}">
+                                        <input class="md-form-control" type="text" id="content" name="content" data-msg-required="Please enter your comment." required>
+                                        <label class="md-control-label">Comment</label>
+                                    </div>
+                                    <div class="cart-actions">
+                                        <button class="btn btn-primary" type="submit" id="add">Comment</button>
+                                    </div>
                                     {{ csrf_field() }}
                                     {{--</form>--}}
                                 </div>
                             </div>
                         </div>
-                    @endguest
+                        @endguest
                         <div class="post-footer">
                             <div class="post-comments">
                                 <div class="post-comment-more">
@@ -74,27 +74,27 @@
                                 <div class="post-comment-list">
                                     <ul class="media-list" id="commentlist">
                                         @foreach($comments as $comment)
-                                        <li class="media comment{{$comment->id}}">
-                                            <a class="media-left" href="/profile/{{$comment->user_id}}">
-                                                @if($comment->user->photo_id)
-                                                    <img class="rounded" width="36" height="36" src="{{ asset($comment->user->photo->file)}}">
-                                                @else
-                                                    <img class="rounded" width="36" height="36" src="{{ asset('images/profile.jpg')}}">
-                                                @endif
-                                            </a>
-                                            <div class="media-body">
+                                            <li class="media comment{{$comment->id}}">
+                                                <a class="media-left" href="/profile/{{$comment->user_id}}">
+                                                    @if($comment->user->photo_id)
+                                                        <img class="rounded" width="36" height="36" src="{{ asset($comment->user->photo->file)}}">
+                                                    @else
+                                                        <img class="rounded" width="36" height="36" src="{{ asset('images/profile.jpg')}}">
+                                                    @endif
+                                                </a>
+                                                <div class="media-body">
                                                 <span class="media-link">
                                                   <a href="/profile/{{$comment->user_id}}">{{$comment->user->firstname. ' '. $comment->user->lastname.' '}}</a>
                                                 </span>
-                                                <span class="media-content">{{$comment->content}}</span>
-                                                <div class="media-actions">
-                                                    <span aria-hidden="true">{{$comment->created_at->diffForHumans()}} · </span>
-                                                    @if(Auth::id()==$comment->user_id)
-                                                        <a class="delete-modal" data-id="{{$comment->id}}" data-name="{{$comment->content}}">Delete</a>
-                                                    @endif
+                                                    <span class="media-content">{{$comment->content}}</span>
+                                                    <div class="media-actions">
+                                                        <span aria-hidden="true">{{$comment->created_at->diffForHumans()}} · </span>
+                                                        @if(Auth::id()==$comment->user_id)
+                                                            <a class="delete-modal" data-id="{{$comment->id}}" data-name="{{$comment->content}}">Delete</a>
+                                                        @endif
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -121,7 +121,7 @@
                     </p>
 
                     <div class="product-sku">
-                        <span><strong><span class="icon icon-user icon-lg icon-fw"></span> Posted By :  </strong><a href="/profile/{{$post->user_id}}">{{$post->user->firstname.' '.$post->user->lastname}}</a></span>
+                        <span><strong><span class="icon icon-user icon-lg icon-fw"></span> Posted By :  </strong>{{$post->user->firstname.' '.$post->user->lastname}}</span>
                         <span class="pull-right"><span class="icon icon-clock-o icon-lg icon-fw"></span>{{$post->created_at->diffForHumans()}}</span>
                     </div>
                     <div class="product-share">
@@ -139,30 +139,6 @@
                                 <span class="icon icon-google-plus"></span>
                             </a>
                         </div>
-                    </div>
-
-                    <h4>Recommended</h4>
-                    <div class="cart">
-                        <ul class="cart-list">
-                            @foreach($posts as $rmpost)
-                            <li class="cart-list-item">
-                                <div class="cart-list-image">
-                                    <a href="/detail/{{$rmpost->id}}">
-                                        <img class="cart-list-thumbnail" src="{{asset($rmpost->images->first()->file)}}">
-                                    </a>
-                                </div>
-                                <div class="cart-list-details" >
-                                    <h4 class="cart-list-name">
-                                        <a href="/detail/{{$rmpost->id}}">{{str_limit(title_case($rmpost->title), 43)}}</a>
-                                    </h4>
-                                    <p class="cart-list-description">
-                                        <small><span class="icon icon-user icon-lg icon-fw"></span> Posted By : {{$rmpost->user->firstname.' '. $rmpost->user->lastname}}</small>
-                                        <span class="pull-right"><span class="icon icon-eye icon-lg icon-fw"></span>{{$rmpost->view}} views</span>
-                                    </p>
-                                </div>
-                            </li>
-                            @endforeach
-                        </ul>
                     </div>
 
                 </div>

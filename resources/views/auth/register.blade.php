@@ -130,7 +130,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="md-form-group md-label-floating">
-                            <input class="md-form-control" type="text" name="phone" spellcheck="false" autocomplete="off" data-msg-required="Please enter your phone number." required>
+                            <input class="md-form-control" type="text" name="phone" spellcheck="false" data-msg-required="Please enter your phone number." required>
                             <label class="md-control-label">Phone Number</label>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="md-form-group md-label-floating">
-                            <input class="md-form-control" type="text" name="address" spellcheck="false" autocomplete="off" data-msg-required="Please enter your address." required>
+                            <input class="md-form-control" type="text" name="address" spellcheck="false" data-msg-required="Please enter your address." required>
                             <label class="md-control-label">Address</label>
                         </div>
                     </div>

@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>upload images</title>
+    <title>edit post</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
     <link rel="stylesheet" href="{{mix('css/libs.css')}}">
     <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="signup-body">
-                    <form id="demo-uploader" action="{{url('admin/post/'.$post->id)}}" method="post" enctype="multipart/form-data" data-toggle="validator" data-groups='{"birthdate": "birth_month birth_day birth_year"}'>
+                    <form id="demo-uploader" action="{{url('user/post/'.$post->id)}}" method="post" enctype="multipart/form-data" data-toggle="validator" data-groups='{"birthdate": "birth_month birth_day birth_year"}'>
                         {{csrf_field()}}
                         <input name="_method" type="hidden" value="PUT">
 
@@ -112,7 +112,7 @@
                     <h4 class="modal-title"><span class="icon icon-image"></span> Upload Images</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="addImages" action="{{url('/admin/post/doupload')}}" method="post" enctype="multipart/form-data" class="dropzone">
+                    <form id="addImages" action="{{url('/user/post/doupload')}}" method="post" enctype="multipart/form-data" class="dropzone">
                         {{csrf_field()}}
 
                         <input type="hidden" value="{{$post->id}}" name="post_id">

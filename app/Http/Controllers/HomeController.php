@@ -24,11 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        $rcposts = Post::all()->sortBy('created_at');
-        $rmposts = Post::all()->sortByDesc('view');;
 
-        return view('home', compact('posts', 'rcposts', 'rmposts'));
     }
 
 }
