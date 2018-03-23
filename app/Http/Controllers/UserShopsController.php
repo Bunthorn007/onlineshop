@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Photo;
+use App\Product;
 use App\ProductCategory;
+use App\ProductImage;
 use App\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +18,7 @@ class UserShopsController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,8 +29,9 @@ class UserShopsController extends Controller
         $shop = Shop::find(Auth::user()->shop->id);
         $categories = Category::all();
         $procategories = ProductCategory::where('shop_id', Auth::user()->shop->id)->get();
+        $products = Product::where('shop_id', $shop->id)->get();
 
-        return view('user.shop.index', compact('categories', 'shop', 'procategories'));
+        return view('user.shop.index', compact('categories', 'shop', 'procategories', 'products'));
     }
 
     /**
@@ -74,11 +78,13 @@ class UserShopsController extends Controller
      */
     public function show($id)
     {
+
         $shop = Shop::find($id);
         $categories = Category::all();
         $procategories = ProductCategory::where('shop_id', Auth::user()->shop->id)->get();
+        $products = Product::where('shop_id', Auth::user()->shop->id)->get();
 
-        return view('user.shop.index', compact('categories', 'shop', 'procategories'));
+        return view('user.shop.index', compact('categories', 'shop', 'procategories', 'products'));
     }
 
     /**

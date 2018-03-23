@@ -139,12 +139,12 @@
                             <ul class="sidenav-subnav collapse">
                                 <li class="sidenav-subheading">Shop Control</li>
                                 <li>
-                                    <a href="{{url('user/post/create')}}">
+                                    <a href="{{url('user/product/create')}}">
                                         <span class="sidenav-icon icon icon-pencil-square-o"></span>Create Product
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{url('user/post')}}">
+                                    <a href="{{url('user/product')}}">
                                         <span class="sidenav-icon icon icon-th-large"></span>All Products
                                     </a>
                                 </li>

@@ -4,7 +4,6 @@
     <title>category management</title>
     <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/product.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/drive.min.css')}}">
 @endsection
 
 @section('content')

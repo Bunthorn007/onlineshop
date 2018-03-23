@@ -10,35 +10,34 @@
     <div class="signup">
         <div class="title-bar">
             <h1 class="title-bar-title">
-                <span class="icon icon-trash" style="color:#d9230f"></span>
-                <span class="d-ib">Delete Post</span>
+                <span class="icon icon-pencil-square-o" style="color:#d9230f"></span>
+                <span class="d-ib">Delete Product</span>
             </h1>
         </div>
-
         <div class="signup-body">
 
                 <div class="signup-form">
                     <div class="row gutter-xs">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="first-name">Title</label>
-                                <input id="first-name" value="{{$post->title}}" class="form-control" type="text" name="title" readonly>
+                                <label for="name">Product Name</label>
+                                <input id="name" value="{{$product->name}}" class="form-control" type="text" readonly>
                             </div>
                         </div>
                     </div>
                     <div class="row gutter-xs">
                         <div class="col-xs-4">
                             <div class="form-group">
-                                <label for="price">Price</label>
-                                <input id="price" value="{{$post->price}}" class="form-control" type="text" name="price" readonly>
+                                <label for="price">Price ($)</label>
+                                <input id="price" value="{{$product->price}}" class="form-control" type="text" readonly>
                             </div>
                         </div>
                         <div class="col-xs-8">
                             <div class="form-group">
                                 <label for="category">Category</label>
-                                <select id="category" class="custom-select" name="category_id" disabled>
-                                    @foreach($categories as $category)
-                                        @if($category->id == $post->category_id)
+                                <select id="category" class="custom-select" name="product_category_id" disabled>
+                                    @foreach($proCategories as $category)
+                                        @if($category->id == $product->product_category_id)
                                             <option value="{{$category->id}}" selected="selected">{{$category->name}}</option>
                                         @else
                                             <option value="{{$category->id}}">{{$category->name}}</option>
@@ -51,16 +50,8 @@
                     <div class="row gutter-xs">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="location">Location</label>
-                                <input id="location" value="{{$post->location}}" class="form-control" type="text" name="location" readonly>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row gutter-xs">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="content">Content</label>
-                                <textarea id="content" rows="6" class="form-control" name="content" readonly>{{$post->content}}</textarea>
+                                <label for="detail">Product Detail</label>
+                                <textarea id="detail" rows="8" class="form-control" name="detail" readonly>{{$product->detail}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -72,6 +63,7 @@
                         </div>
                     </div>
                 </div>
+
         </div>
     </div>
 @endsection
@@ -89,7 +81,7 @@
                     <p>Do you want to delete this post?</p>
 
                 </div>
-                <form method="POST" action="/admin/post/{{$post->id}}">
+                <form method="POST" action="/user/product/{{$product->id}}">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                     <div class="modal-footer">
@@ -100,8 +92,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('footer')
-
 @endsection

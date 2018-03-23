@@ -35,10 +35,10 @@
                     <div class="row gutter-xs">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <form id="addImages" action="{{url('/user/post/doupload')}}" method="post" enctype="multipart/form-data" class="dropzone">
+                                <form id="addImages" action="{{url('/user/product/doupload')}}" method="post" enctype="multipart/form-data" class="dropzone">
                                     {{csrf_field()}}
 
-                                    <input type="hidden" value="{{$pid}}" name="post_id">
+                                    <input type="hidden" value="{{$pid}}" name="product_id">
                                 </form>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
                     <div class="row gutter-xs">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <a  href="{{url('user/post', $pid)}}" class="btn btn-primary btn-block"><span class="icon icon-check-square-o"></span>  Finish</a>
+                                <a  href="{{url('/user/product', $pid)}}" class="btn btn-primary btn-block"><span class="icon icon-check-square-o"></span>  Finish</a>
                             </div>
                         </div>
                     </div>

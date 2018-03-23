@@ -82,6 +82,13 @@ Route::group(['middleware'=>'auth'], function (){
     Route::post('editProCategory', 'UserShopsController@editProCategory');
     Route::post('deleteProCategory', 'UserShopsController@deleteProCategory');
 
+    //User Product Controller Route
+    Route::resource('user/product', 'UserProductsController');
+    Route::get('/user/product/{id}/delete', 'UserProductsController@delete');
+    Route::get('/user/product/uploadimage/{id}', 'UserProductsController@uploadImage');
+    Route::post('/user/product/doupload', 'UserProductsController@doImageUpload');
+
+
 });
 
 Auth::routes();

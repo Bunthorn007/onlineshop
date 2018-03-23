@@ -64,11 +64,12 @@
             <div class="row">
                 <div class="col-xs-12">
                     <ul class="products">
+                        @foreach($products as $product)
                         <li class="product">
                             <div class="product-image">
-                                <a class="overlay" href="product.html">
+                                <a class="overlay" href="{{url('/user/product/'.$product->id)}}">
                                     <div class="overlay-image">
-                                        <img class="img-responsive" src="{{asset('img/5615854990.jpg')}}">
+                                        <img class="img-responsive" src="{{asset($product->productImages->first()->file)}}">
                                     </div>
                                     <div class="overlay-content overlay-top">
                                         <span class="label label-success pull-right">SALE!</span>
@@ -77,7 +78,7 @@
                             </div>
                             <div class="product-details">
                                 <h5 class="product-name">
-                                    <a class="link-muted" href="product.html">Raja Elephant T-shirt Women's S-XL #4398</a>
+                                    <a class="link-muted" href="product.html">{{$product->name}}</a>
                                 </h5>
                                 <span class="product-rating">
                                     <span class="divider">
@@ -89,95 +90,11 @@
                                     </span>
                                 </span>
                                 <span class="product-price">
-                                    <span class="product-price-current">$33.00</span>
-                                    <span class="product-price-old">$46.00</span>
+                                    <span class="product-price-current"> $ {{$product->price}}</span>
                                 </span>
                             </div>
                         </li>
-                        <li class="product">
-                            <div class="product-image">
-                                <a class="overlay" href="product.html">
-                                    <div class="overlay-image">
-                                        <img class="img-responsive" src="{{asset('img/5615854990.jpg')}}">
-                                    </div>
-                                    <div class="overlay-content overlay-top">
-                                        <span class="label label-success pull-right">SALE!</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="product-details">
-                                <h5 class="product-name">
-                                    <a class="link-muted" href="product.html">Raja Elephant T-shirt Women's S-XL #4398</a>
-                                </h5>
-                                <span class="product-rating">
-                                    <span class="divider">
-                                        <span class="divider-content">
-                                            <span class="icon icon-star active"></span>
-                                        </span>
-                                    </span>
-                                </span>
-                                <span class="product-price">
-                                    <span class="product-price-current">$33.00</span>
-                                    <span class="product-price-old">$46.00</span>
-                                </span>
-                            </div>
-                        </li>
-                        <li class="product">
-                            <div class="product-image">
-                                <a class="overlay" href="product.html">
-                                    <div class="overlay-image">
-                                        <img class="img-responsive" src="{{asset('img/5615854990.jpg')}}">
-                                    </div>
-                                    <div class="overlay-content overlay-top">
-                                        <span class="label label-success pull-right">SALE!</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="product-details">
-                                <h5 class="product-name">
-                                    <a class="link-muted" href="product.html">Raja Elephant T-shirt Women's S-XL #4398</a>
-                                </h5>
-                                <span class="product-rating">
-                                    <span class="divider">
-                                        <span class="divider-content">
-                                            <span class="icon icon-star active"></span>
-                                        </span>
-                                    </span>
-                                </span>
-                                <span class="product-price">
-                                    <span class="product-price-current">$33.00</span>
-                                    <span class="product-price-old">$46.00</span>
-                                </span>
-                            </div>
-                        </li>
-                        <li class="product">
-                            <div class="product-image">
-                                <a class="overlay" href="product.html">
-                                    <div class="overlay-image">
-                                        <img class="img-responsive" src="{{asset('img/5615854990.jpg')}}">
-                                    </div>
-                                    <div class="overlay-content overlay-top">
-                                        <span class="label label-success pull-right">SALE!</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="product-details">
-                                <h5 class="product-name">
-                                    <a class="link-muted" href="product.html">Raja Elephant T-shirt Women's S-XL #4398</a>
-                                </h5>
-                                <span class="product-rating">
-                                    <span class="divider">
-                                        <span class="divider-content">
-                                            <span class="icon icon-star active"></span>
-                                        </span>
-                                    </span>
-                                </span>
-                                <span class="product-price">
-                                    <span class="product-price-current">$33.00</span>
-                                    <span class="product-price-old">$46.00</span>
-                                </span>
-                            </div>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

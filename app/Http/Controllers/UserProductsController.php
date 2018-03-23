@@ -3,21 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Comment;
-use App\Image;
-use App\Post;
-use Illuminate\Support\Facades\Storage;
+use App\Product;
+use App\ProductImage;
 use ResizeImage;
+use App\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
-class UserPostsController extends Controller
+class UserProductsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -25,11 +20,11 @@ class UserPostsController extends Controller
      */
     public function index()
     {
-        $userId = Auth::user()->id;
+        $products = Product::where('shop_id', Auth::user()->shop->id)->get();
         $categories = Category::all();
-        $posts = Post::where('user_id', $userId)->get();
+        $proCategories = ProductCategory::where('shop_id', Auth::user()->shop->id)->get();
 
-        return view('user.post.index', compact('posts', 'categories'));
+        return view('user.product.index', compact('categories', 'proCategories', 'products'));
     }
 
     /**
@@ -39,10 +34,10 @@ class UserPostsController extends Controller
      */
     public function create()
     {
-
         $categories = Category::all();
+        $proCategories = ProductCategory::where('shop_id', Auth::user()->shop->id)->get();
 
-        return view('user.post.create', compact('categories'));
+        return view('user.product.create', compact('categories', 'proCategories'));
     }
 
     /**
@@ -53,14 +48,12 @@ class UserPostsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge(['shop_id'=>Auth::user()->shop->id]);
 
-        $data = $request->all();
+        $product = Product::create($request->all());
+        $id = $product->id;
 
-        $user = Auth::user();
-
-        $id = $user->posts()->create($data)->id;
-
-        return redirect('/user/post/uploadimage/'.$id);
+        return redirect('/user/product/uploadimage/'.$id);
     }
 
     /**
@@ -71,17 +64,16 @@ class UserPostsController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
-        $images = Image::where('post_id',$post->id)->get();
-        $comments = Comment::where('post_id', $post->id)->get();
+        $product = Product::find($id);
+        $images = ProductImage::where('product_id',$product->id)->get();
         $categories = Category::all();
 
         //Increment view no.
-        $view = $post->view + 1;
-        $post->update(['view'=>$view]);
+        $view = $product->view + 1;
+        $product->update(['view'=>$view]);
 
-        $post->content = nl2br($post->content);
-        return view('user.post.detail', compact('post', 'images', 'comments', 'categories'));
+        $product->detail = nl2br($product->detail);
+        return view('user.product.detail', compact('product', 'images', 'categories'));
     }
 
     /**
@@ -92,10 +84,11 @@ class UserPostsController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::find($id);
+        $product = Product::find($id);
         $categories = Category::all();
+        $proCategories = ProductCategory::where('shop_id', Auth::user()->shop->id)->get();
 
-        return view('user.post.edit', compact('post', 'categories'));
+        return view('user.product.edit', compact('categories', 'proCategories', 'product'));
     }
 
     /**
@@ -107,12 +100,13 @@ class UserPostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post = Post::find($id);
+
+        $product = Product::find($id);
 
 
-        $post->update($request->all());
+        $product->update($request->all());
 
-        return redirect('/user/post');
+        return redirect('/user/product');
     }
 
     /**
@@ -124,29 +118,30 @@ class UserPostsController extends Controller
     public function destroy($id)
     {
 
-        $post = Post::findOrFail($id);
+        $product = Product::findOrFail($id);
 
-        if($post->images->has(0)){
-            foreach ($post->images as $file){
+        if($product->productImages->has(0)){
+            foreach ($product->productImages as $file){
                 unlink($file->file);
-                Image::where('post_id',$post->id)->delete();
+                ProductImage::where('product_id',$product->id)->delete();
             }
         }
-        $post->delete();
-        return redirect('user/post');
+        $product->delete();
+        return redirect('user/product');
     }
 
     public function delete($id)
     {
-        $post = Post::find($id);
+        $product = Product::find($id);
         $categories = Category::all();
+        $proCategories = ProductCategory::where('shop_id', Auth::user()->shop->id)->get();
 
-        return view('user.post.delete', compact('post', 'categories'));
+        return view('user.product.delete', compact('product', 'categories', 'proCategories'));
     }
 
     public function doImageUpload(Request $request){
         $file = $request->file('file');
-        $post_id = $request->input('post_id');
+        $product_id = $request->input('product_id');
 
         //get filename with extension
         $filenamewithextension = $file->getClientOriginalName();
@@ -160,14 +155,14 @@ class UserPostsController extends Controller
         $filenametostore = $filename.'_'.uniqid().'.'.$extension;
 
         //Storage::put('public/images/'. $filenametostore, fopen($file, 'r+'));
-        Storage::put('public/images/thumbnail/'. $filenametostore, fopen($file, 'r+'));
+        Storage::put('public/images/product/'. $filenametostore, fopen($file, 'r+'));
 
         //Resize image here
-        $thumbnailpath = public_path('storage/images/thumbnail/'.$filenametostore);
+        $thumbnailpath = public_path('storage/images/product/'.$filenametostore);
 
-        $img = ResizeImage::make($thumbnailpath)->resize(500, 400)->save($thumbnailpath);
+        $img = ResizeImage::make($thumbnailpath)->resize(510, 600)->save($thumbnailpath);
 
-        Image::create(['post_id'=>$post_id, 'file' => $filenametostore]);
+        ProductImage::create(['product_id'=>$product_id, 'file' => $filenametostore]);
     }
 
     public function uploadImage($id){
@@ -175,6 +170,6 @@ class UserPostsController extends Controller
         $pid = $id;
         $categories = Category::all();
 
-        return view('user.post.uploadimage', compact('pid', 'categories'));
+        return view('user.product.uploadimage', compact('pid', 'categories'));
     }
 }
