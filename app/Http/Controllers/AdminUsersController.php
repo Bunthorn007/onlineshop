@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Month;
 use App\Photo;
 use App\Post;
+use App\Shop;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -77,7 +78,7 @@ class AdminUsersController extends Controller
     {
 
         $user = User::find($id);
-        $posts = Post::where('user_id', $user->id)->get();
+        $posts = Post::where('user_id', $user->id)->orderBy('created_at','DESC')->limit(8)->get();
         return view('admin.user.profile', compact('user', 'posts'));
     }
 
@@ -161,7 +162,11 @@ class AdminUsersController extends Controller
 
     public function dashboard(){
 
-        return view('admin.dashboard');
+        $users = User::count();
+        $posts = Post::count();
+        $shops = Shop::count();
+
+        return view('admin.dashboard', compact('users', 'posts', 'shops'));
 
     }
 

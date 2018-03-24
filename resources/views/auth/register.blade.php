@@ -17,12 +17,6 @@
         <p class="signup-heading">
             <em>Please improve your business performance with us!</em>
         </p>
-        <p class="signup-twitter">
-            <a class="btn btn-block bg-facebook" href="#">
-                <span class="icon icon-facebook icon-lg icon-fw"></span>
-                Log in with Facebook
-            </a>
-        </p>
         <h3 class="signup-heading">Sign up</h3>
         <div class="signup-form">
             <form method="POST" action="{{ route('register') }}" data-toggle="md-validator" data-groups='{"birthdate": "birth_month birth_day birth_year"}'>
@@ -60,7 +54,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="md-form-group md-label-floating">
-                            <input id="password-confirm" class="md-form-control" type="password" name="password_confirmation" minlength="6" data-msg-minlength="Password must be 6 characters or more." data-msg-required="Please confirm your password." required>
+                            <input id="password-confirm" class="md-form-control" type="password" name="confirm_password" minlength="6" data-msg-minlength="Password must be 6 characters or more." data-msg-required="Please confirm your password." required>
                             <label class="md-control-label">Confirm Password</label>
                         </div>
                     </div>

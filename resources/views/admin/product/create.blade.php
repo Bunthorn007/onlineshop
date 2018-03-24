@@ -15,28 +15,36 @@
         </div>
 
         <div class="signup-body">
-            <form id="demo-uploader" action="{{url('user/product')}}" method="post" enctype="multipart/form-data" data-toggle="validator">
+            <form id="demo-uploader" action="{{url('admin/product')}}" method="post" enctype="multipart/form-data" data-toggle="validator">
                 {{csrf_field()}}
 
                 <div class="signup-form">
                     <div class="row gutter-xs">
-                        <div class="col-sm-12">
+                        <div class="col-xs-6">
                             <div class="form-group">
-                                <label for="first-name">Product Name</label>
-                                <input id="first-name" class="form-control" type="text" name="name" spellcheck="false" data-msg-required="Please enter product title." required>
+                                <label for="shop_id">Shop Name:</label>
+                                <select id="shop_id" class="custom-select" name="shop_id" data-msg-required="Please select shop name." required>
+                                    <option value="" disabled="disabled" selected="selected">Select...</option>
+                                    @foreach($shops as $shop)
+                                        <option value="{{$shop->id}}">{{$shop->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label for="product_category_id">Product Category</label>
+                                <select id="product_category_id" class="custom-select" name="product_category_id" data-msg-required="Please choose product category." required>
+                                    <option value="" disabled="disabled" selected="selected">Select...</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="row gutter-xs">
-                        <div class="col-xs-6">
+                        <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="category">Category</label>
-                                <select id="category" class="custom-select" name="product_category_id" data-msg-required="Please select category." required>
-                                    <option value="" disabled="disabled" selected="selected">Select...</option>
-                                    @foreach($proCategories as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
-                                    @endforeach
-                                </select>
+                                <label for="name">Product Name</label>
+                                <input id="name" class="form-control" type="text" name="name" spellcheck="false" data-msg-required="Please enter product title." required>
                             </div>
                         </div>
                         <div class="col-xs-3">
@@ -77,3 +85,25 @@
         </div>
     </div>
 @endsection
+
+@section('footer')
+    <script>
+        jQuery(document).ready(function($){
+            $('#shop_id').change(function(){
+                $.get("{{ url('/categorieslist')}}",
+                    { option: $(this).val() },
+                    function(data) {
+
+                        var item = $('#product_category_id');
+                        item.empty();
+
+                        $.each(data, function(key, value) {
+                            item.append("<option value='"+ key +"'>" + value + "</option>");
+                        });
+
+                    });
+            });
+        });
+    </script>
+
+    @endsection

@@ -11,10 +11,6 @@
 |
 */
 
-use App\Post;
-use Illuminate\Http\Request;
-
-
 Route::get('/welcome', function (){
 
 
@@ -23,6 +19,9 @@ Route::get('/welcome', function (){
 Route::post('/upload', 'UserController@doImageUpload');
 
 Route::get('/', 'UserController@index');
+Route::post('/loaddata','UserController@loadDataAjax' );
+Route::post('/loadlistdata','UserController@loadListDataAjax' );
+Route::post('/vuesearch','UserController@getVueSearch');
 
 Route::get('/home', 'UserController@index');
 
@@ -35,6 +34,7 @@ Route::group(['middleware'=>'auth'], function (){
 
     //Edit Profile
     Route::get('/user/edit/{id}', 'UserController@edit');
+    Route::get('/user/myprofile', 'UserController@myProfile');
     Route::patch('/user/update/{id}', 'UserController@update');
 
     //Comment Route
@@ -44,7 +44,7 @@ Route::group(['middleware'=>'auth'], function (){
     //Admin user Route
     Route::resource('admin/user', 'AdminUsersController');
     Route::get('/admin','AdminUsersController@dashboard');
-    Route::get('/admin/user/trash', 'AdminUsersController@trash');
+    Route::get('/admin/usertrash', 'AdminUsersController@trash');
     Route::get('/admin/user/{id}/delete', 'AdminUsersController@delete');
     Route::get('/admin/user/restore/{id}', 'AdminUsersController@restore');
     Route::get('/admin/user/forcedelete/{id}', 'AdminUsersController@deleteTrashed');
@@ -61,11 +61,22 @@ Route::group(['middleware'=>'auth'], function (){
     Route::post('editCategory', 'AdminCategoriesController@editCategory');
     Route::post('deleteCategory', 'AdminCategoriesController@deleteCategory');
 
-    //Admin Category Route
+    //Admin Role Route
     Route::get('/admin/role', 'AdminRolesController@readRoles');
     Route::post('addRole', 'AdminRolesController@addRole');
     Route::post('editRole', 'AdminRolesController@editRole');
     Route::post('deleteRole', 'AdminRolesController@deleteRole');
+
+    //Admin Shop Route
+    Route::resource('admin/shop', 'AdminShopsController');
+    Route::get('/admin/shop/{id}/delete', 'AdminShopsController@delete');
+
+    //Admin Product Route
+    Route::resource('admin/product', 'AdminProductsController');
+    Route::get('/admin/product/{id}/delete', 'AdminProductsController@delete');
+    Route::get('/categorieslist', 'AdminProductsController@categorieslist');
+    Route::get('/admin/product/uploadimage/{id}', 'AdminProductsController@uploadImage');
+    Route::post('/admin/product/doupload', 'AdminProductsController@doImageUpload');
 
     //User Post Route List
     Route::resource('user/post', 'UserPostsController');

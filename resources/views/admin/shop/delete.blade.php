@@ -1,8 +1,9 @@
 @extends('./layouts/app')
 
 @section('header')
-    <title>delete post</title>
+    <title>Post Product</title>
     <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/contacts.min.css')}}">
 @endsection
 
 @section('content')
@@ -10,56 +11,67 @@
         <div class="title-bar">
             <h1 class="title-bar-title">
                 <span class="icon icon-trash" style="color:#d9230f"></span>
-                <span class="d-ib">Delete Post</span>
+                <span class="d-ib">Delete Shop</span>
             </h1>
         </div>
 
         <div class="signup-body">
+            <div class="signup-divider">
+                <div class="divider">
+                    <div class="divider-content">Upload Logo (420 X 90)</div>
+                </div>
+            </div>
 
+                <div class="contact-avatar">
+                    <label class="contact-avatar-btn">
+                        <span class="icon icon-camera"></span>
+                        <input class="file-upload-input" type="file" name="photo_id" disabled>
+                    </label>
+                    <img class="img-rounded" width="128" height="70" src="{{$shop->photo ?$shop->photo->file : '/images/profile.jpg'}}">
+                </div>
                 <div class="signup-form">
                     <div class="row gutter-xs">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="first-name">Title</label>
-                                <input id="first-name" value="{{$post->title}}" class="form-control" type="text" name="title" readonly>
+                                <label for="name">Shop Name :</label>
+                                <input id="name" class="form-control" type="text" name="name" value="{{$shop->name}}" readonly>
                             </div>
                         </div>
                     </div>
                     <div class="row gutter-xs">
-                        <div class="col-xs-4">
+                        <div class="col-xs-6">
                             <div class="form-group">
-                                <label for="price">Price</label>
-                                <input id="price" value="{{$post->price}}" class="form-control" type="text" name="price" readonly>
+                                <label for="user_id">User Name</label>
+                                <select id="user_id" class="custom-select" name="user_id" disabled>
+                                    <option value="{{$shop->user_id}}">{{$shop->user->firstname.' '.$shop->user->lastname}}</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="col-xs-8">
+                        <div class="col-xs-6">
                             <div class="form-group">
-                                <label for="category">Category</label>
-                                <select id="category" class="custom-select" name="category_id" disabled>
-                                    @foreach($categories as $category)
-                                        @if($category->id == $post->category_id)
-                                            <option value="{{$category->id}}" selected="selected">{{$category->name}}</option>
-                                        @else
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
-                                        @endif
-                                    @endforeach
+                                <label for="status">Status</label>
+                                <select id="status" class="custom-select" name="status" disabled>
+                                    <option value="{{$shop->status}}" selected="selected">{{$shop->status==1?'Active':'Not active'}}</option>
+                                    @if($shop->status != 1)
+                                        <option value="1">Active</option>
+                                    @else
+                                        <option value="2">Not Active</option>
+                                    @endif
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="row gutter-xs">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="location">Location</label>
-                                <input id="location" value="{{$post->location}}" class="form-control" type="text" name="location" readonly>
+                                <label for="address">Address</label>
+                                <textarea id="content" rows="5" class="form-control" name="address" readonly>{{$shop->address}}</textarea>
                             </div>
                         </div>
-                    </div>
-                    <div class="row gutter-xs">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="content">Content</label>
-                                <textarea id="content" rows="6" class="form-control" name="content" readonly>{{$post->content}}</textarea>
+                                <label for="message">Message</label>
+                                <textarea id="content" rows="5" class="form-control" name="message" readonly>{{$shop->message}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -70,7 +82,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
         </div>
     </div>
@@ -89,7 +100,7 @@
                     <p>Do you want to delete this post?</p>
 
                 </div>
-                <form method="POST" action="/user/post/{{$post->id}}">
+                <form method="POST" action="/admin/shop/{{$shop->id}}">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                     <div class="modal-footer">
@@ -100,8 +111,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('footer')
-
 @endsection

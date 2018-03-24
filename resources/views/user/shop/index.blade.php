@@ -45,7 +45,6 @@
                                                 <div class="custom-controls-stacked">
                                                     @foreach($procategories as $category)
                                                     <h5 class="product-name">
-                                                        <span class="sidenav-icon icon icon-minus-circle"></span>
                                                         <a class="link-muted" href="#">{{$category->name}}</a>
                                                     </h5>
                                                     @endforeach

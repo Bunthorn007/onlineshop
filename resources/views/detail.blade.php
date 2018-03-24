@@ -140,9 +140,9 @@
                         </div>
                     </div>
 
-                    <h4>Recommended</h4>
+                    <h4>Recently</h4>
                     <div class="cart">
-                        <ul class="cart-list">
+                        <ul class="cart-list" id="load-data">
                             @foreach($posts as $rmpost)
                             <li class="cart-list-item">
                                 <div class="cart-list-image">
@@ -152,7 +152,7 @@
                                 </div>
                                 <div class="cart-list-details" >
                                     <h4 class="cart-list-name">
-                                        <a href="/detail/{{$rmpost->id}}">{{str_limit(title_case($rmpost->title), 43)}}</a>
+                                        <a href="/detail/{{$rmpost->id}}">{{str_limit(title_case($rmpost->title), 44)}}</a>
                                     </h4>
                                     <p class="cart-list-description">
                                         <small><span class="icon icon-user icon-lg icon-fw"></span> Posted By : {{$rmpost->user->firstname.' '. $rmpost->user->lastname}}</small>
@@ -162,6 +162,9 @@
                             </li>
                             @endforeach
                         </ul>
+                    </div>
+                    <div id="remove-row" style="padding-left: 5px; padding-right: 5px;">
+                        <button id="btn-more" data-id="{{ $rmpost->id }}" class="nounderline btn-block mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn btn-primary"> Load More </button>
                     </div>
 
                 </div>
@@ -203,6 +206,32 @@
 <script src="{{mix('js/libs.js')}}"></script>
 <script src="{{asset('js/product.min.js')}}"></script>
 <script src="{{ asset('js/ajax_comment.js') }}"></script>
+<script>
+    $(document).ready(function(){
+        $(document).on('click','#btn-more',function(){
+            var id = $(this).data('id');
+            $("#btn-more").html("Loading....");
+            $.ajax({
+                url : '{{ url("/loadlistdata") }}',
+                method : "POST",
+                data : {id:id, _token:"{{csrf_token()}}"},
+                dataType : "text",
+                success : function (data)
+                {
+                    if(data != '')
+                    {
+                        $('#remove-row').remove();
+                        $('#load-data').append(data);
+                    }
+                    else
+                    {
+                        $('#btn-more').html("No Data");
+                    }
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 </html>

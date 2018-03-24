@@ -185,50 +185,55 @@
                 </div>
             </div>
             <div id="post" class="tab-pane fade in active">
+
                 <div class="row">
-                    <div class="divider"><h4 class="pull-left" style="padding-left: 30px; margin: 0px;">All Posts</h4></div>
+                    <div class="divider"><h4 class="pull-left" style="padding-left: 20px; margin: 0px;">All Posts</h4></div>
                     <div class="col-xs-12">
-                        @foreach($posts as $post)
-                            <div class="col-md-3">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <div class="media">
-                                            <div class="media-middle media-left">
-                                                <a href="#">
-                                                    <img class="media-object img-circle" width="32" height="32" src="{{$post->user->photo->file}}">
-                                                </a>
-                                            </div>
-                                            <div class="media-middle media-body">
-                                                <a class="link-muted" href="#">
-                                                    {{$post->user->firstname . ' '. $post->user->lastname}}
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-image">
-                                        <a class="link-muted" href="/detail/{{$post->id}}">
-                                            <img class="img-responsive" width="100%" height="50%" src="{{$post->photo->file}}">
-                                        </a>
-                                    </div>
-                                    <div class="card-body">
-                                        <h4 class="card-title fw-l">
-                                            <strong><a class="link-muted" href="/detail/{{$post->id}}">{{str_limit($post->title, 19)}}</a></strong>
-                                        </h4>
-                                        <small>{{str_limit($post->content, 29)}}</small>
-                                    </div>
-                                    <div class="card-footer">
-                                        <small>
-                                            <span class="icon icon-eye icon-lg icon-fw"></span>{{$post->view}} views
-                                            <span class="pull-right"><span class="icon icon-clock-o icon-lg icon-fw"></span>{{$post-> created_at->diffForHumans()}}</span>
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+                        <div id="load-data">
+                            @foreach($posts as $post)
+
+                                @include('components.postlist')
+
+                            @endforeach
+                        </div>
+                        @if($posts->has(0))
+                        <div id="remove-row" style="padding-left: 5px; padding-right: 5px;">
+                            <button id="btn-more" data-id="{{$post->id }}" class="nounderline btn-block mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn btn-primary"> Load More </button>
+                        </div>
+                        @endif
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
+@endsection
+
+@section('footer')
+    <script>
+        $(document).ready(function(){
+            $(document).on('click','#btn-more',function(){
+                var id = $(this).data('id');
+                $("#btn-more").html("Loading....");
+                $.ajax({
+                    url : '{{ url("/loaddata") }}',
+                    method : "POST",
+                    data : {id:id, _token:"{{csrf_token()}}"},
+                    dataType : "text",
+                    success : function (data)
+                    {
+                        if(data != '')
+                        {
+                            $('#remove-row').remove();
+                            $('#load-data').append(data);
+                        }
+                        else
+                        {
+                            $('#btn-more').html("No Data");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

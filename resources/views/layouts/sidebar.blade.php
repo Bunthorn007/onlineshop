@@ -30,19 +30,13 @@
                             <ul class="sidenav-subnav collapse">
                                 <li class="sidenav-subheading">User Control</li>
                                 <li>
-                                    <a href="/admin/user/create">
-                                        <span class="sidenav-icon icon icon-pencil-square-o"></span>Create
-                                    </a>
+                                    <a href="/admin/user/create">Create User</a>
                                 </li>
                                 <li>
-                                    <a href="/admin/user/">
-                                        <span class="sidenav-icon icon icon-th-large"></span>Manage
-                                    </a>
+                                    <a href="/admin/user/">Manage User</a>
                                 </li>
                                 <li>
-                                    <a href="/admin/user/trash">
-                                        <span class="sidenav-icon icon icon-trash-o"></span>Trash
-                                    </a>
+                                    <a href="/admin/usertrash">User Trash</a>
                                 </li>
                             </ul>
                         </li>
@@ -54,14 +48,40 @@
                             <ul class="sidenav-subnav collapse">
                                 <li class="sidenav-subheading">Post Control</li>
                                 <li>
-                                    <a href="{{url('admin/post/create')}}">
-                                        <span class="sidenav-icon icon icon-pencil-square-o"></span>Create
-                                    </a>
+                                    <a href="{{url('admin/post/create')}}">Create Post</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('admin/post')}}">
-                                        <span class="sidenav-icon icon icon-th-large"></span>All Posts
-                                    </a>
+                                    <a href="{{url('admin/post')}}">Manage Posts</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidenav-item has-subnav">
+                            <a href="#" aria-haspopup="true">
+                                <span class="sidenav-icon icon icon-shopping-bag"></span>
+                                <span class="sidenav-label">Shop Control</span>
+                            </a>
+                            <ul class="sidenav-subnav collapse">
+                                <li class="sidenav-subheading">Shop Control</li>
+                                <li>
+                                    <a href="{{url('admin/shop/create')}}">Create Shop</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('admin/shop/')}}">Manage Shops</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidenav-item has-subnav">
+                            <a href="#" aria-haspopup="true">
+                                <span class="sidenav-icon icon icon-cart-plus"></span>
+                                <span class="sidenav-label">Product Control</span>
+                            </a>
+                            <ul class="sidenav-subnav collapse">
+                                <li class="sidenav-subheading">Product Control</li>
+                                <li>
+                                    <a href="{{url('admin/product/create')}}">Create Product</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('admin/product/')}}">Manage Products</a>
                                 </li>
                             </ul>
                         </li>
@@ -76,6 +96,19 @@
                                 <span class="sidenav-icon icon icon-registered"></span>
                                 <span class="sidenav-label">Role Control</span>
                             </a>
+                        </li>
+                        <li class="sidenav-item">
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                <span class="sidenav-icon icon icon-power-off"></span>
+                                <span class="sidenav-label">Sign out</span>
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+
                         </li>
                     </ul>
                 @else
@@ -103,10 +136,10 @@
                                 <span class="sidenav-label">Categories</span>
                             </a>
                             <ul class="sidenav-subnav collapse">
+                                <li class="sidenav-subheading">Categories</li>
                                 @foreach($categories as $category)
                                     <li>
-                                        <a href="{{url('admin/post')}}"><span class="sidenav-icon icon icon-minus-circle"></span> {{$category->name}}
-                                        </a>
+                                        <a href="{{url('admin/post')}}"> {{$category->name}}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -119,48 +152,58 @@
                             <ul class="sidenav-subnav collapse">
                                 <li class="sidenav-subheading">Post Control</li>
                                 <li>
-                                    <a href="{{url('user/post/create')}}">
-                                        <span class="sidenav-icon icon icon-pencil-square-o"></span>Create
-                                    </a>
+                                    <a href="{{url('user/post/create')}}">Create Post</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('user/post')}}">
-                                        <span class="sidenav-icon icon icon-th-large"></span>All Posts
-                                    </a>
+                                    <a href="{{url('user/post')}}">Manage Posts</a>
                                 </li>
                             </ul>
                         </li>
                         @if(session('shop') != '')
                         <li class="sidenav-item has-subnav">
                             <a href="#" aria-haspopup="true">
-                                <span class="sidenav-icon icon icon-cart-plus"></span>
+                                <span class="sidenav-icon icon icon-shopping-bag"></span>
                                 <span class="sidenav-label">Shop Control</span>
                             </a>
                             <ul class="sidenav-subnav collapse">
                                 <li class="sidenav-subheading">Shop Control</li>
                                 <li>
-                                    <a href="{{url('user/product/create')}}">
-                                        <span class="sidenav-icon icon icon-pencil-square-o"></span>Create Product
-                                    </a>
+                                    <a href="{{url('user/shop/'.session('shop'))}}">My Shop</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('user/product')}}">
-                                        <span class="sidenav-icon icon icon-th-large"></span>All Products
-                                    </a>
+                                    <a href="{{url('user/shop/'.session('shop').'/edit')}}">Edit Shop</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('user/shop/'.session('shop').'/category')}}">
-                                        <span class="sidenav-icon icon icon-bars"></span>Categories
-                                    </a>
+                                    <a href="{{url('user/shop/'.session('shop').'/category')}}">Categories</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('user/shop/'.session('shop').'/edit')}}">
-                                        <span class="sidenav-icon icon icon-edit"></span>Edit Shop
-                                    </a>
+                                    <a href="{{url('user/product/create')}}">Create Product</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('user/product')}}">Manage Products</a>
                                 </li>
                             </ul>
                         </li>
                         @endif
+                        <li class="sidenav-item">
+                            <a href="/user/myprofile">
+                                <span class="sidenav-icon icon icon-user"></span>
+                                <span class="sidenav-label">Profile</span>
+                            </a>
+                        </li>
+                        <li class="sidenav-item">
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                <span class="sidenav-icon icon icon-power-off"></span>
+                                <span class="sidenav-label">Sign out</span>
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+
+                        </li>
                     </ul>
                 @endif
             @else
@@ -190,7 +233,7 @@
                     <ul class="sidenav-subnav collapse">
                         @foreach($categories as $category)
                         <li>
-                            <a href="{{url('admin/post')}}"><span class="sidenav-icon icon icon-minus-circle"></span> {{$category->name}}
+                            <a href="{{url('admin/post')}}">{{$category->name}}
                             </a>
                         </li>
                         @endforeach

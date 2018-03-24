@@ -18,12 +18,12 @@ class UserController extends Controller
     public function index()
     {
 
-        $posts = Post::orderByRaw('RAND()')->take(8)->get();
+//        $posts = Post::orderByRaw('RAND()')->take(8)->get();
+        $posts = Post::orderBy('created_at','DESC')->limit(4)->get();
         $categories = Category::all();
-        $rcposts = Post::all()->sortByDesc('created_at')->take(8);
         $rmposts = Post::all()->sortByDesc('view')->take(8);
 
-        return view('home', compact('posts', 'rcposts', 'rmposts', 'categories'));
+        return view('home', compact('posts', 'rmposts', 'categories'));
     }
 
     public function detail($id)
@@ -31,7 +31,7 @@ class UserController extends Controller
 
         $post = Post::find($id);
         $images = Image::where('post_id',$post->id)->get();
-        $posts = Post::all()->sortByDesc('view');
+        $posts = Post::orderBy('created_at','DESC')->limit(4)->get();
         $comments = Comment::where('post_id', $post->id)->get();
         $categories = Category::all();
 
@@ -47,7 +47,7 @@ class UserController extends Controller
     {
 
         $user = User::find($id);
-        $posts = Post::where('user_id', $user->id)->get();
+        $posts = Post::orderBy('created_at','DESC')->limit(8)->get();
         $categories = Category::all();
 
         return view('profile', compact('user', 'posts', 'categories'));
@@ -107,6 +107,134 @@ class UserController extends Controller
         $file->move('images', $filename);
 
         Image::create(['file' => $filename]);
+    }
+
+    public function loadDataAjax(Request $request)
+    {
+        $output = '';
+        $id = $request->id;
+
+        $posts = Post::where('id','<',$id)->orderBy('created_at','DESC')->limit(4)->get();
+
+        if(!$posts->isEmpty())
+        {
+            foreach($posts as $post)
+            {
+
+                $output.= '<div class="col-md-3" style="padding-left: 5px; padding-right: 5px;">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="media">
+                                            <div class="media-middle media-left">
+                                                <a href="/profile/'.$post->user_id.'">
+                                                    <img class="media-object img-circle" width="32" height="32" src="'.$post->user->photo->file.'">
+                                                </a>
+                                            </div>
+                                            <div class="media-middle media-body">
+                                                <a class="link-muted" href="/profile/'.$post->user_id.'">
+                                                    '.$post->user->firstname . ' '. $post->user->lastname.'
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-image">
+                                        <a class="link-muted" href="/detail/'.$post->id.'">
+                                            <img class="img-responsive" width="100%" height="50%" src="'.asset($post->images->first()->file).'">
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="card-title fw-l">
+                                            <strong><a class="link-muted" href="/detail/'.$post->id.'">'.str_limit($post->title, 16).'</a></strong>
+                                        </h4>
+                                        <small>'.str_limit($post->content, 25).'</small>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small>
+                                            <span class="icon icon-eye icon-lg icon-fw"></span>'.$post->view.' views
+                                            <span class="pull-right"><span class="icon icon-clock-o icon-lg icon-fw"></span>'.$post-> created_at->diffForHumans().'</span>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>';
+
+            }
+
+            $output .= '<div id="remove-row" style="padding-left: 5px; padding-right: 5px;">
+                            <button id="btn-more" data-id="'.$post->id.'" class="nounderline btn-block mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn btn-primary"> Load More </button>
+                        </div>';
+
+            echo $output;
+        }
+    }
+
+    public function loadListDataAjax(Request $request)
+    {
+        $output = '';
+        $id = $request->id;
+
+        $posts = Post::where('id','<',$id)->orderBy('created_at','DESC')->limit(4)->get();
+
+        if(!$posts->isEmpty())
+        {
+            foreach($posts as $post)
+            {
+
+                $output.= '<li class="cart-list-item">
+                                <div class="cart-list-image">
+                                    <a href="/detail/'.$post->id.'">
+                                        <img class="cart-list-thumbnail" src="'.asset($post->images->first()->file).'">
+                                    </a>
+                                </div>
+                                <div class="cart-list-details" >
+                                    <h4 class="cart-list-name">
+                                        <a href="/detail/'.$post->id.'">'.str_limit(title_case($post->title), 44).'</a>
+                                    </h4>
+                                    <p class="cart-list-description">
+                                        <small><span class="icon icon-user icon-lg icon-fw"></span> Posted By :'.$post->user->firstname.' '. $post->user->lastname.'</small>
+                                        <span class="pull-right"><span class="icon icon-eye icon-lg icon-fw"></span>'.$post->view.' views</span>
+                                    </p>
+                                </div>
+                            </li>';
+
+            }
+
+            $output .= '<div id="remove-row" style="padding-left: 5px; padding-right: 5px;">
+                            <button id="btn-more" data-id="'.$post->id.'" class="nounderline btn-block mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn btn-primary"> Load More </button>
+                        </div>';
+
+            echo $output;
+        }
+    }
+
+    public function getVueSearch(Request $request)
+    {
+        $search =  $request->search;
+
+        $posts = '';
+
+        if (trim($request->search)) {
+            $posts = Post::where('title','LIKE',"%{$search}%")->orderBy('created_at','DESC')->limit(5)->get();
+
+            $posts = $posts->map(function ($post, $key) {
+                return [
+                    'title' => $post['title'],
+                    'url'  => url('/detail/'.$post['id']),
+                    'image' => 'images/profile.jpg',
+                ];
+            });
+        }
+
+        return $posts;
+    }
+
+    public function myProfile()
+    {
+
+        $user = User::find(Auth::user()->id);
+        $posts = Post::where('user_id', Auth::user()->id)->orderBy('created_at','DESC')->limit(8)->get();
+        $categories = Category::all();
+
+        return view('user.myprofile', compact('user', 'posts', 'categories'));
     }
 
 }

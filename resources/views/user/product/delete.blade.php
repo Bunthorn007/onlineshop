@@ -3,7 +3,6 @@
 @section('header')
     <title>Post Product</title>
     <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/drive.min.css')}}">
 @endsection
 
 @section('content')
@@ -26,13 +25,7 @@
                         </div>
                     </div>
                     <div class="row gutter-xs">
-                        <div class="col-xs-4">
-                            <div class="form-group">
-                                <label for="price">Price ($)</label>
-                                <input id="price" value="{{$product->price}}" class="form-control" type="text" readonly>
-                            </div>
-                        </div>
-                        <div class="col-xs-8">
+                        <div class="col-xs-6">
                             <div class="form-group">
                                 <label for="category">Category</label>
                                 <select id="category" class="custom-select" name="product_category_id" disabled>
@@ -43,6 +36,25 @@
                                             <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endif
                                     @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="form-group">
+                                <label for="price">Price ($)</label>
+                                <input id="price" value="{{$product->price}}" class="form-control" type="text" readonly>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="form-group">
+                                <label for="gender">Status</label>
+                                <select id="gender" class="custom-select" name="status" data-msg-required="Please indicate user status." disabled>
+                                    <option value="{{$product->status}}" selected="selected">{{$product->status==1?'Active':'Not active'}}</option>
+                                    @if($product->status != 1)
+                                        <option value="1">Active</option>
+                                    @else
+                                        <option value="2">Not Active</option>
+                                    @endif
                                 </select>
                             </div>
                         </div>

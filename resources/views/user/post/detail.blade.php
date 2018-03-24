@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{{mix('css/libs.css')}}">
     <link rel="stylesheet" href="{{asset('css/product.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/shopping-cart.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/drive.min.css')}}">
 </head>
 <body class="layout layout-header-fixed">
 <div class="layout-header">
