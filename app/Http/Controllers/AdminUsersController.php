@@ -17,6 +17,16 @@ class AdminUsersController extends Controller
     {
         $this->middleware('isAdmin');
     }
+
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,6 +58,8 @@ class AdminUsersController extends Controller
      */
     public function store(Request $request)
     {
+
+        //$this->validator($request->all())->validate();
 
         $input = $request->all();
         $birthdate = $input['birth_day'].'-'.$input['birth_month'].'-'.$input['birth_year'];

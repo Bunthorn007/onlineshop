@@ -26,10 +26,20 @@
                 <div class="md-form-group md-label-floating">
                     <input class="md-form-control" type="email" name="email" spellcheck="false" autocomplete="off" data-msg-required="Please enter your email address." required>
                     <label class="md-control-label">Email</label>
+                    @if ($errors->has('email'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
                 </div>
                 <div class="md-form-group md-label-floating">
                     <input class="md-form-control" type="password" name="password" minlength="6" data-msg-minlength="Password must be 6 characters or more." data-msg-required="Please enter your password." required>
                     <label class="md-control-label">Password</label>
+                    @if ($errors->has('password'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
                 </div>
                 <div class="md-form-group md-custom-controls">
                     <label class="custom-control custom-control-primary custom-checkbox">
@@ -37,8 +47,8 @@
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-label">Keep me signed in</span>
                     </label>
-                    <span aria-hidden="true"> · </span>
-                    <a href="{{ route('password.request') }}">Forgot password?</a>
+                    {{--<span aria-hidden="true"> · </span>--}}
+                    {{--<a href="{{ route('password.request') }}">Forgot password?</a>--}}
                 </div>
                 <button class="btn btn-primary btn-block" type="submit">Sign in</button>
             </form>

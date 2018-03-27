@@ -8,6 +8,10 @@ use App\Image;
 use App\Month;
 use App\Photo;
 use App\Post;
+use App\Product;
+use App\ProductCategory;
+use App\ProductImage;
+use App\Shop;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,9 +25,10 @@ class UserController extends Controller
 //        $posts = Post::orderByRaw('RAND()')->take(8)->get();
         $posts = Post::orderBy('created_at','DESC')->limit(4)->get();
         $categories = Category::all();
+        $shops = Shop::all();
         $rmposts = Post::all()->sortByDesc('view')->take(8);
 
-        return view('home', compact('posts', 'rmposts', 'categories'));
+        return view('home', compact('posts', 'rmposts', 'categories', 'shops'));
     }
 
     public function detail($id)
@@ -209,22 +214,22 @@ class UserController extends Controller
     public function getVueSearch(Request $request)
     {
         $search =  $request->search;
-
-        $posts = '';
+        $shops = '';
 
         if (trim($request->search)) {
-            $posts = Post::where('title','LIKE',"%{$search}%")->orderBy('created_at','DESC')->limit(5)->get();
+            $shops = Shop::where('name','LIKE',"%{$search}%")->orderBy('created_at','DESC')->limit(8)->get();
 
-            $posts = $posts->map(function ($post, $key) {
+            $shops = $shops->map(function ($shop, $key) {
                 return [
-                    'title' => $post['title'],
-                    'url'  => url('/detail/'.$post['id']),
-                    'image' => 'images/profile.jpg',
+                    'name' => $shop['name'],
+                    'url'  => url('/shop/'.$shop['id']),
+                    'image' => $shop->photo->file,
+                    'user' => $shop->user->firstname.' '.$shop->user->lastname,
                 ];
             });
         }
 
-        return $posts;
+        return $shops;
     }
 
     public function myProfile()
@@ -235,6 +240,63 @@ class UserController extends Controller
         $categories = Category::all();
 
         return view('user.myprofile', compact('user', 'posts', 'categories'));
+    }
+
+    public function search(){
+
+        $categories = Category::all();
+        return view('search', compact('categories'));
+    }
+
+    public function searchbycategory($id){
+
+        $categories = Category::all();
+        $category =Category::find($id);
+        $posts = Post::where('category_id','=',$id)->orderBy('created_at','DESC')->limit(16)->get();
+        $shops = Shop::all();
+        $count = Post::where('category_id','=',$id)->count();
+
+
+        return view('searchby', compact('categories', 'posts', 'shops', 'category', 'count'));
+    }
+
+    public function loadListDataAjaxByCategory(Request $request)
+    {
+        $output = '';
+        $id = $request->id;
+
+        $posts = Post::where('id','<',$id)->orderBy('created_at','DESC')->limit(4)->get();
+
+        if(!$posts->isEmpty())
+        {
+            foreach($posts as $post)
+            {
+
+                $output.= '<li class="cart-list-item">
+                                <div class="cart-list-image">
+                                    <a href="/detail/'.$post->id.'">
+                                        <img class="cart-list-thumbnail" src="'.asset($post->images->first()->file).'">
+                                    </a>
+                                </div>
+                                <div class="cart-list-details" >
+                                    <h4 class="cart-list-name">
+                                        <a href="/detail/'.$post->id.'">'.str_limit(title_case($post->title), 44).'</a>
+                                    </h4>
+                                    <p class="cart-list-description">
+                                        <small><span class="icon icon-user icon-lg icon-fw"></span> Posted By :'.$post->user->firstname.' '. $post->user->lastname.'</small>
+                                        <span class="pull-right"><span class="icon icon-eye icon-lg icon-fw"></span>'.$post->view.' views</span>
+                                    </p>
+                                </div>
+                            </li>';
+
+            }
+
+            $output .= '<div id="remove-row" style="padding-left: 5px; padding-right: 5px;">
+                            <button id="btn-more" data-id="'.$post->id.'" class="nounderline btn-block mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn btn-primary"> Load More </button>
+                        </div>';
+
+            echo $output;
+        }
     }
 
 }

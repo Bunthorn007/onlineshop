@@ -41,57 +41,18 @@
               </span>
             </button>
             <ul class="nav navbar-nav navbar-right">
-                <li class="hidden-xs hidden-sm">
-                    <form class="navbar-search navbar-search-collapsed">
-                        <div class="navbar-search-group">
-                            <input class="navbar-search-input" type="text" placeholder="Search for people, companies, and more&hellip;">
-                            <button class="navbar-search-toggler" title="Expand search form ( S )" aria-expanded="false" type="submit">
-                                <span class="icon icon-search icon-lg"></span>
-                            </button>
-                            <button class="navbar-search-adv-btn" type="button">Advanced</button>
-                        </div>
-                    </form>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true">
-                  <span class="icon-with-child hidden-xs">
-                    <span class="icon icon-envelope-o icon-lg"></span>
-                    <span class="badge badge-danger badge-above right">1</span>
-                  </span>
+                <li>
+                    <a class="dropdown-toggle" href="/search" role="button">
+                        <span class="icon-with-child hidden-xs">
+                            <span class="icon icon-search icon-lg"></span>
+                        </span>
                         <span class="visible-xs-block">
-                    <span class="icon icon-envelope icon-lg icon-fw"></span>
-                    <span class="badge badge-danger pull-right">1</span>
-                    Messages
-                  </span>
+                            <span class="icon icon-search icon-lg icon-fw"></span>
+                             Search
+                        </span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg">
-                        <div class="dropdown-header">
-                            <a class="dropdown-link" href="compose.html">New Message</a>
-                            <h5 class="dropdown-heading">Recent messages</h5>
-                        </div>
-                        <div class="dropdown-body">
-                            <div class="list-group list-group-divided custom-scrollbar">
-                                <a class="list-group-item" href="#">
-                                    <div class="notification">
-                                        <div class="notification-media">
-                                            <img class="rounded" width="40" height="40" src="img/0299419341.jpg" alt="Harry Jones">
-                                        </div>
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp">16 min</small>
-                                            <h5 class="notification-heading">Ly Bopha</h5>
-                                            <p class="notification-text">
-                                                <small class="truncate">Hi Teddy, Just wanted to let you know we got the project! We should be starting the planning next week. Harry</small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="dropdown-footer">
-                            <a class="dropdown-btn" href="#">See All</a>
-                        </div>
-                    </div>
                 </li>
+
                 @guest
                 <li>
                     <a href="/login">
@@ -120,7 +81,7 @@
                             <li><a href="/user/edit/{{auth::id()}}"><span class="icon icon-edit icon-lg icon-fw"></span> Edit</a></li>
                             <li><a href="/profile/{{auth::id()}}"><span class="icon icon-user icon-lg icon-fw"></span> Profile</a></li>
                             @if(session('shop')== '')
-                            <li><a href="/user/shop/create"><span class="icon icon-cart-plus icon-lg icon-fw"></span> My Shop</a></li>
+                                <li><a href="/user/shop/create"><span class="icon icon-cart-plus icon-lg icon-fw"></span> My Shop</a></li>
                             @else
                                 <li><a href="{{url('user/shop/'.session('shop'))}}"><span class="icon icon-cart-plus icon-lg icon-fw"></span> My Shop</a></li>
                             @endif
@@ -145,6 +106,11 @@
                     <li class="visible-xs-block">
                         <a href="/profile/{{auth::id()}}"><span class="icon icon-user icon-lg icon-fw"></span> Profile</a>
                     </li>
+                    @if(session('shop')== '')
+                        <li class="visible-xs-block"><a href="/user/shop/create"><span class="icon icon-cart-plus icon-lg icon-fw"></span> My Shop</a></li>
+                    @else
+                        <li class="visible-xs-block"><a href="{{url('user/shop/'.session('shop'))}}"><span class="icon icon-cart-plus icon-lg icon-fw"></span> My Shop</a></li>
+                    @endif
                     <li class="visible-xs-block">
                         <a href="{{ route('logout') }}"
                            onclick="event.preventDefault();

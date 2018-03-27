@@ -40,6 +40,11 @@
                         <div class="md-form-group md-label-floating">
                             <input class="md-form-control" type="email" name="email" spellcheck="false" autocomplete="off" data-msg-required="Please enter your email address." required>
                             <label class="md-control-label">Email</label>
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -48,13 +53,18 @@
                         <div class="md-form-group md-label-floating">
                             <input class="md-form-control" type="password" name="password" minlength="6" data-msg-minlength="Password must be 6 characters or more." data-msg-required="Please enter your password." required>
                             <label class="md-control-label">Password</label>
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                            @endif
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="md-form-group md-label-floating">
-                            <input id="password-confirm" class="md-form-control" type="password" name="confirm_password" minlength="6" data-msg-minlength="Password must be 6 characters or more." data-msg-required="Please confirm your password." required>
+                            <input id="password-confirm" class="md-form-control" type="password" name="password_confirmation" minlength="6" data-msg-minlength="Password must be 6 characters or more." data-msg-required="Please confirm your password." required>
                             <label class="md-control-label">Confirm Password</label>
                         </div>
                     </div>

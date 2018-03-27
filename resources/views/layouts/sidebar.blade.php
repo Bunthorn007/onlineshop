@@ -5,16 +5,7 @@
             @if(Auth::check())
                 @if(Auth::user()->role_id == 1)
                     <ul class="sidenav">
-                        <li class="sidenav-search hidden-md hidden-lg">
-                            <form class="sidenav-form" action="http://demo.naksoid.com/">
-                                <div class="form-group form-group-sm">
-                                    <div class="input-with-icon">
-                                        <input class="form-control" type="text" placeholder="Search…">
-                                        <span class="icon icon-search input-icon"></span>
-                                    </div>
-                                </div>
-                            </form>
-                        </li>
+
                         <li class="sidenav-heading">Navigation</li>
                         <li class="sidenav-item">
                             <a href="/admin/">
@@ -73,7 +64,7 @@
                         <li class="sidenav-item has-subnav">
                             <a href="#" aria-haspopup="true">
                                 <span class="sidenav-icon icon icon-cart-plus"></span>
-                                <span class="sidenav-label">Product Control</span>
+                                <span class="sidenav-label">Product</span>
                             </a>
                             <ul class="sidenav-subnav collapse">
                                 <li class="sidenav-subheading">Product Control</li>
@@ -94,7 +85,13 @@
                         <li class="sidenav-item">
                             <a href="/admin/role">
                                 <span class="sidenav-icon icon icon-registered"></span>
-                                <span class="sidenav-label">Role Control</span>
+                                <span class="sidenav-label">Roles </span>
+                            </a>
+                        </li>
+                        <li class="sidenav-item">
+                            <a href="/search">
+                                <span class="sidenav-icon icon icon-search"></span>
+                                <span class="sidenav-label">Search</span>
                             </a>
                         </li>
                         <li class="sidenav-item">
@@ -113,16 +110,6 @@
                     </ul>
                 @else
                     <ul class="sidenav">
-                        <li class="sidenav-search hidden-md hidden-lg">
-                            <form class="sidenav-form" action="http://demo.naksoid.com/">
-                                <div class="form-group form-group-sm">
-                                    <div class="input-with-icon">
-                                        <input class="form-control" type="text" placeholder="Search…">
-                                        <span class="icon icon-search input-icon"></span>
-                                    </div>
-                                </div>
-                            </form>
-                        </li>
                         <li class="sidenav-heading">Navigation</li>
                         <li class="sidenav-item">
                             <a href="/">
@@ -192,6 +179,12 @@
                             </a>
                         </li>
                         <li class="sidenav-item">
+                            <a href="/search">
+                                <span class="sidenav-icon icon icon-search"></span>
+                                <span class="sidenav-label">Search</span>
+                            </a>
+                        </li>
+                        <li class="sidenav-item">
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -208,16 +201,6 @@
                 @endif
             @else
             <ul class="sidenav">
-                <li class="sidenav-search hidden-md hidden-lg">
-                    <form class="sidenav-form" action="http://demo.naksoid.com/">
-                        <div class="form-group form-group-sm">
-                            <div class="input-with-icon">
-                                <input class="form-control" type="text" placeholder="Search…">
-                                <span class="icon icon-search input-icon"></span>
-                            </div>
-                        </div>
-                    </form>
-                </li>
                 <li class="sidenav-heading">Navigation</li>
                 <li class="sidenav-item">
                     <a href="/">
@@ -233,11 +216,17 @@
                     <ul class="sidenav-subnav collapse">
                         @foreach($categories as $category)
                         <li>
-                            <a href="{{url('admin/post')}}">{{$category->name}}
+                            <a href="{{url('search/'.$category->id)}}">{{$category->name}}
                             </a>
                         </li>
                         @endforeach
                     </ul>
+                </li>
+                <li class="sidenav-item">
+                    <a href="/search">
+                        <span class="sidenav-icon icon icon-search"></span>
+                        <span class="sidenav-label">Searching</span>
+                    </a>
                 </li>
                 <li class="sidenav-item">
                     <a href="/register" aria-haspopup="true">

@@ -9,4 +9,9 @@ class ProductCategory extends Model
 
     protected $fillable = ['shop_id', 'name'];
 
+    public function shop(){
+
+        return $this->belongsTo('App\Shop');
+    }
+
 }

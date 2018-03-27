@@ -11,23 +11,28 @@
 |
 */
 
-Route::get('/welcome', function (){
-
-
-});
+Route::get('/search', 'UserController@search');
+Route::get('/search/{id}', 'UserController@searchbycategory');
 
 Route::post('/upload', 'UserController@doImageUpload');
 
 Route::get('/', 'UserController@index');
+Route::post('/','UserController@getVueSearch');
 Route::post('/loaddata','UserController@loadDataAjax' );
+Route::post('/loaddatabycategory','UserController@loadListDataAjaxByCategory' );
 Route::post('/loadlistdata','UserController@loadListDataAjax' );
-Route::post('/vuesearch','UserController@getVueSearch');
+
 
 Route::get('/home', 'UserController@index');
 
 Route::get('/detail/{id}', 'UserController@detail');
 
 Route::get('/profile/{id}', 'UserController@profile');
+
+Route::get('/shop/{id}', 'ShopsController@index');
+Route::get('/shop/product/{id}', 'ShopsController@productDetail');
+Route::get('/shop/search/{id}', 'ShopsController@searchByCategory');
+Route::post('/loadsearchdata','ShopsController@loadDataAjax' );
 
 
 Route::group(['middleware'=>'auth'], function (){

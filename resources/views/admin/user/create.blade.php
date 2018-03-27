@@ -50,6 +50,11 @@
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input id="email" class="form-control" type="email" name="email" spellcheck="false" autocomplete="off" data-msg-required="Please enter your email address." required>
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -58,14 +63,17 @@
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input id="password" class="form-control" type="password" name="password" minlength="6" data-msg-minlength="Password must be 6 characters or more." data-msg-required="Please enter your password." required>
-                                <small class="help-block">6-character minimum; case sensitive.</small>
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="password">Confirm Password</label>
-                                <input id="confirm_password" class="form-control" type="password" name="confirm_password" minlength="6" data-msg-minlength="Password must be 6 characters or more." data-msg-required="Confirm your password." required>
-                                <small class="help-block">6-character minimum; case sensitive.</small>
+                                <input id="password-confirm" class="form-control" type="password" name="password_confirmation" minlength="6" data-msg-minlength="Password must be 6 characters or more." data-msg-required="Confirm your password." required>
                             </div>
                         </div>
                     </div>

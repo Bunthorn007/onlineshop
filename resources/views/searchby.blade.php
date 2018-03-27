@@ -2,7 +2,7 @@
 
 @section('header')
 
-    <title>index</title>
+    <title>searching by category</title>
     <link rel="stylesheet" href="{{asset('css/store.min.css')}}">
 
 @endsection
@@ -97,20 +97,7 @@
 
         <div class="store-content">
             <div class="row">
-                <div class="divider"><h4 class="pull-left" style="padding-left: 5px;">Most Views</h4></div>
-                <div class="col-xs-12">
-                    <ul class="products">
-                    @foreach($rmposts as $post)
-                        <li>
-                            @include('components.postlist')
-                        </li>
-                    @endforeach
-                    </ul>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="divider"><h4 class="pull-left" style="padding-left: 5px;">Recently</h4></div>
+                <div class="divider"><h4 class="pull-left" style="padding-left: 5px;">Results of {{$category->name. ' ('.$count.')' }} </h4></div>
                 <div class="col-xs-12">
                     <ul class="products" id="load-data">
                         @foreach($posts as $post)
@@ -121,9 +108,13 @@
                     </ul>
 
                 </div>
-                <div id="remove-row" style="padding-left: 5px; padding-right: 5px;">
-                    <button id="btn-more" data-id="{{ $post->id }}" class="nounderline btn-block mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn btn-primary"> Load More </button>
-                </div>
+
+                {{--@if($posts->has(0) && $count>=4)--}}
+                {{--<div id="remove-row" style="padding-left: 5px; padding-right: 5px;">--}}
+                    {{--<button id="btn-more" data-id="{{ $post->id }}" class="nounderline btn-block mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn btn-primary"> Load More </button>--}}
+                {{--</div>--}}
+                {{--@endif--}}
+
             </div>
 
         </div>
@@ -141,7 +132,7 @@
                 var id = $(this).data('id');
                 $("#btn-more").html("Loading....");
                 $.ajax({
-                    url : '{{ url("/loaddata") }}',
+                    url : '{{ url("/loaddatabycategory") }}',
                     method : "POST",
                     data : {id:id, _token:"{{csrf_token()}}"},
                     dataType : "text",
