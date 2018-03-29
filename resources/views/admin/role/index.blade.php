@@ -1,7 +1,7 @@
 @extends('./layouts/app')
 
 @section('header')
-    <title>role management</title>
+    <title>Admin Manage Role - Onlineshop</title>
     <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/product.min.css')}}">
 @endsection

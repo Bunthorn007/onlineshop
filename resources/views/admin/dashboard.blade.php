@@ -2,7 +2,7 @@
 
 @section('header')
 
-    <title>Dashboard</title>
+    <title>Admin Dashboard - Onlineshop</title>
 
 @endsection
 

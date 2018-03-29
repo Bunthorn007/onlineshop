@@ -3,8 +3,9 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>upload images</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
+    <title>Admin Edit Post - Onlineshop</title>
+    <link rel="icon" type="image/png" href="{{asset('images/favicon.png')}}" sizes="16x16">
+    <link rel="icon" type="image/x-icon" href="{{asset('images/favicon.png')}}" >
     <link rel="stylesheet" href="{{mix('css/libs.css')}}">
     <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/dropzone.min.css')}}">

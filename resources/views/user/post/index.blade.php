@@ -1,7 +1,7 @@
 @extends('./layouts/app')
 
 @section('header')
-    <title>all posts</title>
+    <title>User Manage Post - Onlineshop</title>
 @endsection
 
 @section('content')

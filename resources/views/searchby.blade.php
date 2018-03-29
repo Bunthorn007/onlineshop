@@ -2,7 +2,7 @@
 
 @section('header')
 
-    <title>searching by category</title>
+    <title>Search - Onlineshop</title>
     <link rel="stylesheet" href="{{asset('css/store.min.css')}}">
 
 @endsection

@@ -33,6 +33,9 @@ Route::get('/shop/{id}', 'ShopsController@index');
 Route::get('/shop/product/{id}', 'ShopsController@productDetail');
 Route::get('/shop/search/{id}', 'ShopsController@searchByCategory');
 Route::post('/loadsearchdata','ShopsController@loadDataAjax' );
+Route::get('/shop/contact/{id}', 'ShopsController@contact');
+Route::post('/sendemail', 'ShopsController@sendEmail');
+Route::post('/loadlistproduct','ShopsController@loadListDataAjax' );
 
 
 Route::group(['middleware'=>'auth'], function (){

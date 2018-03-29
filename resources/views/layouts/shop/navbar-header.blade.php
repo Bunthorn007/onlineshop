@@ -54,7 +54,7 @@
                 </li>
                 <li>
                     <a href="/">
-                        <span class="icon icon-sign-in icon-lg icon-fw"></span>
+                        <span class="icon icon-shopping-cart icon-lg icon-fw"></span>
                         Online Shop
                     </a>
                 </li>

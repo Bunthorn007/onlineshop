@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>post detail</title>
+    <title>Product Detail - Onlineshop</title>
+    <link rel="icon" type="image/png" href="{{asset('images/favicon.png')}}" sizes="16x16">
+    <link rel="icon" type="image/x-icon" href="{{asset('images/favicon.png')}}" >
     <link rel="stylesheet" href="{{mix('css/libs.css')}}">
     <link rel="stylesheet" href="{{asset('css/product.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/shopping-cart.min.css')}}">
@@ -81,6 +83,29 @@
                         </div>
                     </div>
 
+                    <h4>Recently</h4>
+                    <div class="cart">
+                        <ul class="cart-list" id="load-data">
+                            @foreach($products as $product)
+                                <li class="cart-list-item">
+                                    <div class="cart-list-image">
+                                        <a href="{{asset('shop/product/'.$product->id)}}">
+                                            <img class="cart-list-thumbnail" src="{{asset($product->productImages->first()->file)}}">
+                                        </a>
+                                    </div>
+                                    <div class="cart-list-details" >
+                                        <h4 class="cart-list-name">
+                                            <a href="{{asset('shop/product/'.$product->id)}}">{{str_limit(title_case($product->name), 74)}}</a>
+                                        </h4>
+                                        <p class="cart-list-description">
+                                            <small><span class="icon icon-user icon-lg icon-fw"></span> Posted By : {{$product->shop->user->firstname.' '. $product->shop->user->lastname}}</small>
+                                            <span class="pull-right"><span class="icon icon-eye icon-lg icon-fw"></span>{{$product->view}} views</span>
+                                        </p>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

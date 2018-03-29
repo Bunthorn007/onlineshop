@@ -1,7 +1,7 @@
 @extends('./layouts/app')
 
 @section('header')
-    <title>Create User</title>
+    <title>Admin Delete User - Onlineshop</title>
     <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/contacts.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/drive.min.css')}}">

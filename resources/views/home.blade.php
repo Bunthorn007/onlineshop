@@ -2,7 +2,7 @@
 
 @section('header')
 
-    <title>index</title>
+    <title>Index - Onlineshop</title>
     <link rel="stylesheet" href="{{asset('css/store.min.css')}}">
 
 @endsection

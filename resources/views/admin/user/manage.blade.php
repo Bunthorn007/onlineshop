@@ -1,7 +1,7 @@
 @extends('./layouts/app')
 
 @section('header')
-    <title>User Info</title>
+    <title>Admin Manage User - Onlineshop</title>
     <link rel="stylesheet" href="../css/drive.min.css">
 @endsection
 

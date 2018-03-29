@@ -1,7 +1,7 @@
 @extends('./layouts/app')
 
 @section('header')
-    <title>shop store</title>
+    <title>Admin Manage Shop - Onlineshop</title>
     <link rel="stylesheet" href="{{asset('css/store.min.css')}}">
 @endsection
 

@@ -1,7 +1,7 @@
 @extends('./layouts/app')
 
 @section('header')
-    <title>delete post</title>
+    <title>User Delete Post - Onlineshop</title>
     <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
 @endsection
 

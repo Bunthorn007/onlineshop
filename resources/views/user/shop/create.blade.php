@@ -1,7 +1,7 @@
 @extends('./layouts/app')
 
 @section('header')
-    <title>create shop</title>
+    <title>User Create Shop - Onlineshop</title>
     <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/contacts.min.css')}}">
 @endsection

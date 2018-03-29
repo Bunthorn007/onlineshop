@@ -1,7 +1,7 @@
 @extends('layouts/app')
 
 @section('header')
-    <title>Create User</title>
+    <title>Admin User Trashed - Onlineshop</title>
 @endsection
 
 @section('content')

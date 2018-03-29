@@ -8,7 +8,7 @@
                 <li class="sidenav-item">
                     <a href="/shop/{{$shop->id}}">
                         <span class="sidenav-icon icon icon-home"></span>
-                        <span class="sidenav-label">Home</span>
+                        <span class="sidenav-label">Shop Home</span>
                     </a>
                 </li>
                 <li class="sidenav-item has-subnav">
@@ -17,6 +17,7 @@
                         <span class="sidenav-label">Categories</span>
                     </a>
                     <ul class="sidenav-subnav collapse">
+                        <li class="sidenav-subheading">Product Categories</li>
                         @foreach($categories as $category)
                         <li>
                             <a href="{{url('shop/search/'.$category->id)}}">{{$category->name}}
@@ -38,7 +39,7 @@
                     </a>
                 </li>
                 <li class="sidenav-item">
-                    <a href="/login" aria-haspopup="true">
+                    <a href="/shop/contact/{{$shop->id}}" aria-haspopup="true">
                         <span class="sidenav-icon icon icon-group"></span>
                         <span class="sidenav-label">Contact</span>
                     </a>

@@ -126,7 +126,7 @@
                                 <li class="sidenav-subheading">Categories</li>
                                 @foreach($categories as $category)
                                     <li>
-                                        <a href="{{url('admin/post')}}"> {{$category->name}}</a>
+                                        <a href="{{url('search/'.$category->id)}}">{{$category->name}}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -216,8 +216,7 @@
                     <ul class="sidenav-subnav collapse">
                         @foreach($categories as $category)
                         <li>
-                            <a href="{{url('search/'.$category->id)}}">{{$category->name}}
-                            </a>
+                            <a href="{{url('search/'.$category->id)}}">{{$category->name}}</a>
                         </li>
                         @endforeach
                     </ul>

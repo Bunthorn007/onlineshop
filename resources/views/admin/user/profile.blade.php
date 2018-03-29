@@ -1,7 +1,7 @@
 @extends('./layouts/app')
 
 @section('header')
-    <title>profile</title>
+    <title>Admin Show User Profile - Onlineshop</title>
     <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/profile.min.css')}}">
 @endsection

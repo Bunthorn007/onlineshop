@@ -1,7 +1,7 @@
 @extends('./layouts/app')
 
 @section('header')
-    <title>Products List</title>
+    <title>User Manage Product - Onlineshop</title>
 @endsection
 
 @section('content')
