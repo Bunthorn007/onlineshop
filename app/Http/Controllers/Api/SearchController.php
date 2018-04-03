@@ -30,6 +30,7 @@ class SearchController extends Controller
                     'view' => $post->view,
                     'time' => $post-> created_at->diffForHumans(),
                     'user' => $post->user->firstname.' '.$post->user->lastname,
+                    'user_id' => $post->user_id,
                 ];
             });
             // If there are results return them, if none, return the error message.

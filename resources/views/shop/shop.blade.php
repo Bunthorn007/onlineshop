@@ -33,7 +33,7 @@
                             </div>
                             <div class="product-details">
                                 <h5 class="product-name">
-                                    <a class="link-muted" href="{{url('/shop/product/'.$product->id)}}">{{$product->name}}</a>
+                                    <a class="link-muted" href="{{url('/shop/product/'.$product->id)}}">{{ str_limit($product->name, 30)}}</a>
                                 </h5>
                                 <span class="product-rating">
                                     <span class="divider">

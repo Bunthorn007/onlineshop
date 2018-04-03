@@ -8,14 +8,6 @@
 @section('content')
 
     <div class="title-bar">
-        <div class="title-bar-actions">
-            <div class="btn-group">
-                <button class="btn btn-default btn-sm hidden-md hidden-lg" data-toggle="modal" data-target="#filters" type="button">
-                    <span class="icon icon-filter icon-lg icon-fw"></span>
-                    Filter
-                </button>
-            </div>
-        </div>
         <h1 class="title-bar-title">
             <span class="d-ib">{{$shop->name}}</span>
         </h1>
@@ -23,50 +15,14 @@
             <small>{{$shop->message}}</small>
         </p>
     </div>
-    <div class="store">
-        <div class="store-sidebar">
-            <div id="filters" class="modal" role="dialog" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="widget">
-                                <div class="widget-product-brands">
-                                    <div class="product-brands">
-                                        <div class="product-brands-search">
-                                            <div class="form-group form-group-sm">
-                                                <div class="input-with-icon">
-                                                    <input class="form-control thick" type="text" placeholder="Search available brands&hellip;">
-                                                    <span class="icon icon-search input-icon"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-brands-results">
-                                            <div class="custom-scrollbar">
-                                                <div class="custom-controls-stacked">
-                                                    @foreach($procategories as $category)
-                                                    <h5 class="product-name">
-                                                        <a class="link-muted" href="#">{{$category->name}}</a>
-                                                    </h5>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="store-content">
-            <div class="row">
-                <div class="col-xs-12">
-                    <ul class="products">
-                        @foreach($products as $product)
+    <div class="store" id="load-data">
+        <div class="row" id="remove-row">
+            <div class="col-xs-12">
+                <ul class="products">
+                    @foreach($products as $product)
                         <li class="product">
                             <div class="product-image">
-                                <a class="overlay" href="{{url('/user/product/'.$product->id)}}">
+                                <a class="overlay" href="{{url('/shop/product/'.$product->id)}}">
                                     <div class="overlay-image">
                                         <img class="img-responsive" src="{{asset($product->productImages->first()->file)}}">
                                     </div>
@@ -77,7 +33,7 @@
                             </div>
                             <div class="product-details">
                                 <h5 class="product-name">
-                                    <a class="link-muted" href="product.html">{{$product->name}}</a>
+                                    <a class="link-muted" href="{{url('/shop/product/'.$product->id)}}">{{ str_limit($product->name, 30)}}</a>
                                 </h5>
                                 <span class="product-rating">
                                     <span class="divider">
@@ -93,11 +49,12 @@
                                 </span>
                             </div>
                         </li>
-                        @endforeach
-                    </ul>
-                </div>
+                    @endforeach
+                </ul>
+
             </div>
         </div>
     </div>
 
 @endsection
+

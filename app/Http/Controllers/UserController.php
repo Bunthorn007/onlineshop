@@ -24,7 +24,7 @@ class UserController extends Controller
 
 //        $posts = Post::orderByRaw('RAND()')->take(8)->get();
         $posts = Post::orderBy('created_at','DESC')->limit(4)->get();
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
         $shops = Shop::all();
         $rmposts = Post::all()->sortByDesc('view')->take(8);
 
@@ -38,7 +38,7 @@ class UserController extends Controller
         $images = Image::where('post_id',$post->id)->get();
         $posts = Post::orderBy('created_at','DESC')->limit(4)->get();
         $comments = Comment::where('post_id', $post->id)->get();
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
 
         //Increment view no.
         $view = $post->view + 1;
@@ -52,17 +52,19 @@ class UserController extends Controller
     {
 
         $user = User::find($id);
-        $posts = Post::orderBy('created_at','DESC')->limit(8)->get();
-        $categories = Category::all();
+        $posts = Post::where('user_id','=', $user->id);
+        $count = $posts->count();
+        $posts = $posts->orderBy('created_at','DESC')->limit(4)->get();
+        $categories = Category::all()->sortBy('name');
 
-        return view('profile', compact('user', 'posts', 'categories'));
+        return view('profile', compact('user', 'posts', 'categories', 'count'));
     }
 
     public function edit($id)
     {
         $user = User::find($id);
         $months = Month::all();
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
 
         $birthdate = explode("-", $user->birthdate);
         return view('user.edit', compact('user', 'birthdate', 'months', 'categories'));
@@ -149,7 +151,66 @@ class UserController extends Controller
                                     </div>
                                     <div class="card-body">
                                         <h4 class="card-title fw-l">
-                                            <strong><a class="link-muted" href="/detail/'.$post->id.'">'.str_limit($post->title, 16).'</a></strong>
+                                            <strong><a class="link-muted" href="/detail/'.$post->id.'">'.str_limit($post->title, 14).'</a></strong>
+                                        </h4>
+                                        <small>'.str_limit($post->content, 25).'</small>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small>
+                                            <span class="icon icon-eye icon-lg icon-fw"></span>'.$post->view.' views
+                                            <span class="pull-right"><span class="icon icon-clock-o icon-lg icon-fw"></span>'.$post-> created_at->diffForHumans().'</span>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>';
+
+            }
+
+            $output .= '<div id="remove-row" style="padding-left: 5px; padding-right: 5px;">
+                            <button id="btn-more" data-id="'.$post->id.'" class="nounderline btn-block mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn btn-primary"> Load More </button>
+                        </div>';
+
+            echo $output;
+        }
+    }
+
+    public function loadProfileDataAjax(Request $request)
+    {
+        $output = '';
+        $id = $request->id;
+        $post = Post::find($id);
+        $posts = Post::where('user_id', $post->user->id);
+        $posts = $posts->where('id','<',$id)->orderBy('created_at','DESC')->limit(4)->get();
+
+        if(!$posts->isEmpty())
+        {
+            foreach($posts as $post)
+            {
+
+                $output.= '<div class="col-md-3" style="padding-left: 5px; padding-right: 5px;">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="media">
+                                            <div class="media-middle media-left">
+                                                <a href="/profile/'.$post->user_id.'">
+                                                    <img class="media-object img-circle" width="32" height="32" src="'.$post->user->photo->file.'">
+                                                </a>
+                                            </div>
+                                            <div class="media-middle media-body">
+                                                <a class="link-muted" href="/profile/'.$post->user_id.'">
+                                                    '.$post->user->firstname . ' '. $post->user->lastname.'
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-image">
+                                        <a class="link-muted" href="/detail/'.$post->id.'">
+                                            <img class="img-responsive" width="100%" height="50%" src="'.asset($post->images->first()->file).'">
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="card-title fw-l">
+                                            <strong><a class="link-muted" href="/detail/'.$post->id.'">'.str_limit($post->title, 14).'</a></strong>
                                         </h4>
                                         <small>'.str_limit($post->content, 25).'</small>
                                     </div>
@@ -237,7 +298,7 @@ class UserController extends Controller
 
         $user = User::find(Auth::user()->id);
         $posts = Post::where('user_id', Auth::user()->id)->orderBy('created_at','DESC')->limit(8)->get();
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
 
         return view('user.myprofile', compact('user', 'posts', 'categories'));
     }
@@ -250,7 +311,7 @@ class UserController extends Controller
 
     public function searchbycategory($id){
 
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
         $category =Category::find($id);
         $posts = Post::where('category_id','=',$id)->orderBy('created_at','DESC')->limit(16)->get();
         $shops = Shop::all();

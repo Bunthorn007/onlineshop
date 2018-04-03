@@ -21,7 +21,7 @@ class UserProductsController extends Controller
     public function index()
     {
         $products = Product::where('shop_id', Auth::user()->shop->id)->get();
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
         $proCategories = ProductCategory::where('shop_id', Auth::user()->shop->id)->get();
 
         return view('user.product.index', compact('categories', 'proCategories', 'products'));
@@ -34,7 +34,7 @@ class UserProductsController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
         $proCategories = ProductCategory::where('shop_id', Auth::user()->shop->id)->get();
 
         return view('user.product.create', compact('categories', 'proCategories'));
@@ -66,7 +66,7 @@ class UserProductsController extends Controller
     {
         $product = Product::find($id);
         $images = ProductImage::where('product_id',$product->id)->get();
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
 
         //Increment view no.
         $view = $product->view + 1;
@@ -85,7 +85,7 @@ class UserProductsController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
         $proCategories = ProductCategory::where('shop_id', Auth::user()->shop->id)->get();
 
         return view('user.product.edit', compact('categories', 'proCategories', 'product'));
@@ -133,7 +133,7 @@ class UserProductsController extends Controller
     public function delete($id)
     {
         $product = Product::find($id);
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
         $proCategories = ProductCategory::where('shop_id', Auth::user()->shop->id)->get();
 
         return view('user.product.delete', compact('product', 'categories', 'proCategories'));
@@ -168,7 +168,7 @@ class UserProductsController extends Controller
     public function uploadImage($id){
 
         $pid = $id;
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
 
         return view('user.product.uploadimage', compact('pid', 'categories'));
     }

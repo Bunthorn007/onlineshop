@@ -21,7 +21,7 @@
         </div>
         <div class="card-body">
             <h4 class="card-title fw-l">
-                <strong><a class="link-muted" href="/detail/{{$post->id}}">{{str_limit($post->title, 16)}}</a></strong>
+                <strong><a class="link-muted" href="/detail/{{$post->id}}">{{str_limit($post->title, 14)}}</a></strong>
             </h4>
             <small>{{str_limit($post->content, 25)}}</small>
         </div>

@@ -17,7 +17,7 @@
                         </div>
                         <div class="profile-overview">
                             <h1 class="profile-name">{{$user->firstname.' '. $user->lastname}}</h1>
-                            <button class="profile-follow-btn" type="button" >Follow</button>
+                            <button class="profile-follow-btn btn-primary" type="button" >Follow</button>
                             <p>Let's get starting!</p>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
             <div id="contact" class="tab-pane fade">
                 <div class="profile-body">
                     <div class="row gutter-xs">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="card bg-primary">
                                 <div class="card-body">
                                     <div class="media">
@@ -48,7 +48,7 @@
                                         </div>
                                         <div class="media-middle media-body">
                                             <h2 class="media-heading">
-                                                <span class="fw-l">1,000</span>
+                                                <span class="fw-l">{{$count}}</span>
                                                 <span class="fw-b fz-sm">POSTS</span>
                                             </h2>
                                         </div>
@@ -56,8 +56,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card bg-info">
+                        <div class="col-md-6">
+                            <div class="card bg-danger">
                                 <div class="card-body">
                                     <div class="media">
                                         <div class="media-middle media-left">
@@ -67,27 +67,8 @@
                                         </div>
                                         <div class="media-middle media-body">
                                             <h2 class="media-heading">
-                                                <span class="fw-l">1,000</span>
+                                                <span class="fw-l">0</span>
                                                 <span class="fw-b fz-sm">FOLLOWERS</span>
-                                            </h2>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card bg-danger">
-                                <div class="card-body">
-                                    <div class="media">
-                                        <div class="media-middle media-left">
-                                      <span class="bg-primary-inverse circle sq-64">
-                                        <span class="icon icon-search"></span>
-                                      </span>
-                                        </div>
-                                        <div class="media-middle media-body">
-                                            <h2 class="media-heading">
-                                                <span class="fw-l">1,000</span>
-                                                <span class="fw-b fz-sm">FOLLOWING</span>
                                             </h2>
                                         </div>
                                     </div>
@@ -216,7 +197,7 @@
                 var id = $(this).data('id');
                 $("#btn-more").html("Loading....");
                 $.ajax({
-                    url : '{{ url("/loaddata") }}',
+                    url : '{{ url("/loadprofiledata") }}',
                     method : "POST",
                     data : {id:id, _token:"{{csrf_token()}}"},
                     dataType : "text",

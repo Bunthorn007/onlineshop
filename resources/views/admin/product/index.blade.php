@@ -49,10 +49,10 @@
                                                 <img class="circle" width="36" height="36" src="{{asset($product->productImages->first()->file?$product->productImages->first()->file : '/images/profile.jpg')}}">
                                                 <span class="icon-child bg-facebook circle sq-8"></span>
                                             </span>
-                                            <strong>{{str_limit($product->name, 25)}}</strong>
+                                            <strong>{{str_limit($product->name, 20)}}</strong>
                                         </td>
                                         <td class="maw-320">
-                                            <span class="truncate">{{str_limit($product->detail, 40)}}</span>
+                                            <span class="truncate">{{str_limit($product->detail, 35)}}</span>
                                         </td>
                                         <td>{{$product->price}}</td>
                                         <td>{{$product->shop->name}}</td>

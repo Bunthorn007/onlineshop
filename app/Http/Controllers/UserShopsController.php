@@ -27,7 +27,7 @@ class UserShopsController extends Controller
     public function index()
     {
         $shop = Shop::find(Auth::user()->shop->id);
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
         $procategories = ProductCategory::where('shop_id', Auth::user()->shop->id)->get();
         $products = Product::where('shop_id', $shop->id)->get();
 
@@ -41,7 +41,7 @@ class UserShopsController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
 
         return view('user.shop.create', compact('categories'));
     }
@@ -80,7 +80,7 @@ class UserShopsController extends Controller
     {
 
         $shop = Shop::find($id);
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
         $procategories = ProductCategory::where('shop_id', Auth::user()->shop->id)->get();
         $products = Product::where('shop_id', Auth::user()->shop->id)->get();
 
@@ -96,7 +96,7 @@ class UserShopsController extends Controller
     public function edit($id)
     {
         $shop = Shop::find($id);
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
 
         return view('user.shop.edit', compact('categories', 'shop'));
     }

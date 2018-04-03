@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Photo;
+use App\Product;
+use App\ProductCategory;
 use App\Shop;
 use App\User;
 use Illuminate\Http\Request;
@@ -76,7 +79,12 @@ class AdminShopsController extends Controller
      */
     public function show($id)
     {
+        $shop = Shop::find($id);
+        $categories = Category::all()->sortBy('name');
+        $procategories = ProductCategory::where('shop_id', $shop->id)->get();
+        $products = Product::where('shop_id', $shop->id)->get();
 
+        return view('admin.shop.detail', compact('categories', 'shop', 'procategories', 'products'));
     }
 
     /**

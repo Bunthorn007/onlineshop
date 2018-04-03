@@ -26,7 +26,7 @@ class UserPostsController extends Controller
     public function index()
     {
         $userId = Auth::user()->id;
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
         $posts = Post::where('user_id', $userId)->get();
 
         return view('user.post.index', compact('posts', 'categories'));
@@ -40,7 +40,7 @@ class UserPostsController extends Controller
     public function create()
     {
 
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
 
         return view('user.post.create', compact('categories'));
     }
@@ -74,7 +74,7 @@ class UserPostsController extends Controller
         $post = Post::find($id);
         $images = Image::where('post_id',$post->id)->get();
         $comments = Comment::where('post_id', $post->id)->get();
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
 
         //Increment view no.
         $view = $post->view + 1;
@@ -93,7 +93,7 @@ class UserPostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
 
         return view('user.post.edit', compact('post', 'categories'));
     }
@@ -139,7 +139,7 @@ class UserPostsController extends Controller
     public function delete($id)
     {
         $post = Post::find($id);
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
 
         return view('user.post.delete', compact('post', 'categories'));
     }
@@ -173,7 +173,7 @@ class UserPostsController extends Controller
     public function uploadImage($id){
 
         $pid = $id;
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
 
         return view('user.post.uploadimage', compact('pid', 'categories'));
     }

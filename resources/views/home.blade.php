@@ -121,9 +121,11 @@
                     </ul>
 
                 </div>
+                @if($posts->has(0))
                 <div id="remove-row" style="padding-left: 5px; padding-right: 5px;">
                     <button id="btn-more" data-id="{{ $post->id }}" class="nounderline btn-block mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn btn-primary"> Load More </button>
                 </div>
+                @endif
             </div>
 
         </div>

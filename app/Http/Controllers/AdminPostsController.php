@@ -39,7 +39,7 @@ class AdminPostsController extends Controller
     public function create()
     {
 
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
 
         return view('admin.post.create', compact('categories'));
     }
@@ -91,7 +91,7 @@ class AdminPostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
 
         return view('admin.post.edit', compact('post', 'categories'));
     }
@@ -136,7 +136,7 @@ class AdminPostsController extends Controller
     public function delete($id)
     {
         $post = Post::find($id);
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
 
         return view('admin.post.delete', compact('post', 'categories'));
     }

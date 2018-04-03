@@ -16,7 +16,7 @@
     text-shadow:0 0 3px rgba(0,0,0,.5)
 }
 .profile-cover{
-    background-image:url(../img/cover.jpg);
+    background-image:url(../images/cover.jpg);
     background-position:center;
     -repeat:no-repeat;
     -webkit-background-size:cover;

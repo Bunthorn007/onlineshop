@@ -12,8 +12,8 @@
 <body>
 <div class="login">
     <div class="login-body">
-        <a class="login-brand" href="index-2.html">
-            <img class="img-responsive" src="img/logo.png" alt="Elephant">
+        <a class="login-brand" href="/">
+            <img class="img-responsive" src="images/logo.png">
         </a>
         <p class="signup-heading">
             <em>Please improve your business performance with us!</em>
@@ -58,13 +58,5 @@
     </div>
 </div>
 <script src="{{mix('js/libs-sticky.js')}}"></script>
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-83990101-1', 'auto');
-    ga('send', 'pageview');
-</script>
 </body>
 </html>
