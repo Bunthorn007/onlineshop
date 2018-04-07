@@ -54,9 +54,9 @@
                                             <strong>{{str_limit($shop->name, 25)}}</strong>
                                         </td>
                                         <td class="maw-320">
-                                            <span class="truncate">{{str_limit($shop->address, 45)}}</span>
+                                            <span class="truncate">{{str_limit($shop->address, 35)}}</span>
                                         </td>
-                                        <td>{{$shop->message}}</td>
+                                        <td>{{str_limit($shop->message, 35)}}</td>
                                         <td>{{$shop->user->firstname.' '.$shop->user->lastname}}</td>
                                         <td data-order="1">{{$shop->status==1?'Active':'Not Active'}}</td>
                                         <td data-order="1">{{$shop->created_at->diffForHumans()}}</td>

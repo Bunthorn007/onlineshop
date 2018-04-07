@@ -14,7 +14,7 @@
                 <li class="sidenav-item has-subnav">
                     <a href="#" aria-haspopup="true">
                         <span class="sidenav-icon icon icon-navicon"></span>
-                        <span class="sidenav-label">Categories</span>
+                        <span class="sidenav-label">Shop Category</span>
                     </a>
                     <ul class="sidenav-subnav collapse">
                         <li class="sidenav-subheading">Product Categories</li>
@@ -32,10 +32,10 @@
                         <span class="sidenav-label">Shop Owner</span>
                     </a>
                 </li>
-                <li class="sidenav-item">
+                <li class="sidenav-item hidden-xs hidden-sm">
                     <a href='#btnsearch' onclick='document.getElementById("btnsearch").click();'>
                         <span class="sidenav-icon icon icon-search"></span>
-                        <span class="sidenav-label">Searching</span>
+                        <span class="sidenav-label">Search</span>
                     </a>
                 </li>
                 <li class="sidenav-item">

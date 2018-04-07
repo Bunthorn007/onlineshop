@@ -141,17 +141,6 @@ class AdminPostsController extends Controller
         return view('admin.post.delete', compact('post', 'categories'));
     }
 
-//    public function doImageUpload(Request $request){
-//
-//        $file = $request->file('file');
-//        $post_id = $request->input('post_id');
-//
-//        $filename = time().$file->getClientOriginalName();
-//
-//        $file->move('images', $filename);
-//
-//        Image::create(['post_id'=>$post_id, 'file' => $filename]);
-//    }
 
     public function doImageUpload(Request $request){
         $file = $request->file('file');

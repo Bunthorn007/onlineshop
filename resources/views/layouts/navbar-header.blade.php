@@ -29,7 +29,7 @@
     </div>
     <div class="navbar-toggleable">
         <nav id="navbar" class="navbar-collapse collapse">
-            <button class="sidenav-toggler hidden-xs" title="Collapse sidenav ( [ )" aria-expanded="true" type="button">
+            <button class="sidenav-toggler hidden-xs" title="Collapse Menu" aria-expanded="true" type="button">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="bars">
                 <span class="bar-line bar-line-1 out"></span>
@@ -56,7 +56,7 @@
                 @guest
                 <li>
                     <a href="/login">
-                        <span class="icon icon-sign-in icon-lg icon-fw"></span>
+                        <span class="icon icon-sign-in icon-lg icon-fw" style="color:#d9230f"></span>
                         Sign in
                     </a>
                 </li>

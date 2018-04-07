@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="{{mix('css/libs.css')}}">
     <link rel="stylesheet" href="{{asset('css/product.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/shopping-cart.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/drive.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/sidebar.min.css')}}">
+
 </head>
 <body class="layout layout-header-fixed">
 <div class="layout-header">
@@ -39,7 +40,7 @@
                     @guest
                     <div class="product-divider"></div>
                     <div class="md-form-group md-label-floating">
-                        <input class="md-form-control" type="text" name="comment"readonly>
+                        <input class="md-form-control" type="text" name="comment" readonly>
                         <label class="md-control-label">Please login first.</label>
                     </div>
                     @else
@@ -48,11 +49,10 @@
                             <div class="col-xs-12">
                                 <div class="col-xs-0 col-md-1">
                                     <div class="media-middle media-left" style="padding-top: 18px;">
-                                        <img class="media-object img-circle" width="32" height="32" src="{{$post->user->photo->file}}">
+                                        <img class="media-object img-circle" width="32" height="32" src="{{asset(session('image'))}}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-md-11">
-                                    {{--<form action="/comment" method="post" data-toggle="validator">--}}
 
                                     <div class="md-form-group md-label-floating" style="margin-bottom: 0px;">
                                         <input type="hidden" name="post_id" id="post_id" value="{{$post->id}}">
@@ -63,11 +63,11 @@
                                         <button class="btn btn-primary" type="submit" id="add">Comment</button>
                                     </div>
                                     {{ csrf_field() }}
-                                    {{--</form>--}}
+
                                 </div>
                             </div>
                         </div>
-                        @endguest
+                    @endguest
                         <div class="post-footer">
                             <div class="post-comments">
                                 <div class="post-comment-more">
@@ -112,18 +112,19 @@
                     </p>
                     <div class="product-divider"></div>
                     <div class="product-price">
-                        <span class="product-price-current"><span class="label label-info label-pill">{{$post->price}}</span></span>
+                        <span class="product-price-current"><span class="label label-primary label-pill">$ {{$post->price}}</span></span>
                     </div>
                     <div class="product-description" style="padding-top: 10px;">
                         <?php echo $post->content ?>
                     </div>
 
                     <p style="padding-top: 15px;">
-                        <span class="icon icon-location-arrow icon-lg icon-fw"></span>{{$post->location}}
+                        <span class="label label-outline-primary label-pill"><strong><span class="icon icon-phone icon-lg icon-fw"></span>Phone: </strong>{{$post->user->phone}}</span>
+                        <span class="pull-right"><span class="icon icon-location-arrow icon-lg icon-fw"></span>{{$post->location}}</span>
                     </p>
 
                     <div class="product-sku">
-                        <span><strong><span class="icon icon-user icon-lg icon-fw"></span> Posted By :  </strong>{{$post->user->firstname.' '.$post->user->lastname}}</span>
+                        <span><strong><span class="icon icon-user icon-lg icon-fw"></span> Posted By :  </strong><a href="/profile/{{$post->user_id}}">{{$post->user->firstname.' '.$post->user->lastname}}</a></span>
                         <span class="pull-right"><span class="icon icon-clock-o icon-lg icon-fw"></span>{{$post->created_at->diffForHumans()}}</span>
                     </div>
                     <div class="product-share">

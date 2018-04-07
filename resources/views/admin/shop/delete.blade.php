@@ -97,7 +97,7 @@
                     <h4 class="modal-title">Confirmation</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Do you want to delete this post?</p>
+                    <p>Do you want to delete this shop?</p>
 
                 </div>
                 <form method="POST" action="/admin/shop/{{$shop->id}}">

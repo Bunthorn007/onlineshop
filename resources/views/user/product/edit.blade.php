@@ -4,10 +4,12 @@
 
     <meta charset="UTF-8">
     <title>User Edit Product - Onlineshop</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
+    <link rel="icon" type="image/png" href="{{asset('images/favicon.png')}}" sizes="16x16">
+    <link rel="icon" type="image/x-icon" href="{{asset('images/favicon.png')}}" >
     <link rel="stylesheet" href="{{mix('css/libs.css')}}">
     <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/dropzone.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/sidebar.min.css')}}">
 
 </head>
 <body class="layout layout-header-fixed">
@@ -45,7 +47,7 @@
                                     </div>
                                 </div>
                                 <div class="row gutter-xs">
-                                    <div class="col-xs-6">
+                                    <div class="col-xs-4">
                                         <div class="form-group">
                                             <label for="category">Category</label>
                                             <select id="category" class="custom-select" name="product_category_id" data-msg-required="Please select category." required>
@@ -59,13 +61,18 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-xs-3">
+                                    <div class="col-xs-4">
                                         <div class="form-group">
-                                            <label for="price">Price ($)</label>
-                                            <input id="price" value="{{$product->price}}" class="form-control" type="text" name="price" data-msg-required="Please enter product price ($)." required>
+                                            <label for="price">Price</label>
+                                            <div class="col-xs-12 col-sm-12" style="padding: 0px;">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">$</span>
+                                                    <input id="price" class="form-control" type="number" value="{{$product->price}}" min="0" step="1" data-bind="value:price" name="price" data-msg-required="Please enter price." required>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-3">
+                                    <div class="col-xs-4">
                                         <div class="form-group">
                                             <label for="status">Status</label>
                                             <select id="status" class="custom-select" name="status" data-msg-required="Please indicate user status.">

@@ -31,7 +31,12 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="price">Price</label>
-                                <input id="price" class="form-control" type="text" name="price" data-msg-required="Please enter price or just put Not specify" required>
+                                <div class="col-xs-12 col-sm-12" style="padding: 0px;">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">$</span>
+                                        <input id="price" class="form-control" type="number" min="0" step="1" data-bind="value:price" name="price" data-msg-required="Please enter price." required>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xs-8">

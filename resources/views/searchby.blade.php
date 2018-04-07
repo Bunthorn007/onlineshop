@@ -108,15 +108,7 @@
                     </ul>
 
                 </div>
-
-                {{--@if($posts->has(0) && $count>=4)--}}
-                {{--<div id="remove-row" style="padding-left: 5px; padding-right: 5px;">--}}
-                    {{--<button id="btn-more" data-id="{{ $post->id }}" class="nounderline btn-block mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn btn-primary"> Load More </button>--}}
-                {{--</div>--}}
-                {{--@endif--}}
-
             </div>
-
         </div>
     </div>
 @endsection
@@ -125,33 +117,6 @@
     <script src="{{asset('js/vue.js')}}"></script>
     <script src="{{asset('js/axios.min.js')}}"></script>
     <script src="{{asset('js/lodash.min.js')}}"></script>
-
-    <script>
-        $(document).ready(function(){
-            $(document).on('click','#btn-more',function(){
-                var id = $(this).data('id');
-                $("#btn-more").html("Loading....");
-                $.ajax({
-                    url : '{{ url("/loaddatabycategory") }}',
-                    method : "POST",
-                    data : {id:id, _token:"{{csrf_token()}}"},
-                    dataType : "text",
-                    success : function (data)
-                    {
-                        if(data != '')
-                        {
-                            $('#remove-row').remove();
-                            $('#load-data').append(data);
-                        }
-                        else
-                        {
-                            $('#btn-more').html("No Data");
-                        }
-                    }
-                });
-            });
-        });
-    </script>
 
     <script type="text/javascript">
 

@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="{{mix('css/libs.css')}}">
     <link rel="stylesheet" href="{{asset('css/product.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/shopping-cart.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/sidebar.min.css')}}">
 </head>
-<body class="layout layout-header-fixed">
+<body class="layout layout-header-fixed layout-sidebar-fixed">
 <div class="layout-header">
 
     @include('layouts.shop.navbar-header')
@@ -40,7 +41,7 @@
                     <h1 class="product-name">{{$product->name}}</h1>
                     <div>
                         <span>
-                            <span class="product-price-current"><span class="label label-info label-pill" style="font-size: 18px;">$ {{$product->price}}</span></span>
+                            <span class="product-price-current"><span class="label label-primary label-pill" style="font-size: 18px;">$ {{$product->price}}</span></span>
                             <span class="pull-right"><span class="icon icon-eye icon-lg icon-fw"></span>{{$product->view}} views</span>
 
                         </span>
@@ -52,15 +53,9 @@
                         <?php echo $product->detail ?>
                     </div>
 
-                    <div class="product-add">
-                        <button class="btn btn-primary btn-labeled" type="button">
-                          <span class="btn-label">
-                            <span class="icon icon-shopping-cart icon-lg icon-fw"></span>
-                          </span>
-                            {{$product->shop->name}}
-                        </button>
-                    </div>
-
+                    <p style="padding-top: 25px;">
+                        <span class="label label-outline-primary label-pill"><strong><span class="icon icon-phone icon-lg icon-fw"></span>Phone: </strong>{{$product->shop->user->phone}}</span>
+                    </p>
 
                     <div class="product-sku">
                         <span class="icon icon-tags icon-lg icon-fw"></span>{{$product->productCategory->name}}
@@ -83,7 +78,7 @@
                         </div>
                     </div>
 
-                    <h4>Recently</h4>
+                    <h4>Related</h4>
                     <div class="cart">
                         <ul class="cart-list" id="load-data">
                             @foreach($products as $product)

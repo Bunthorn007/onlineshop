@@ -5,10 +5,11 @@
     <link rel="icon" type="image/png" href="{{asset('images/favicon.png')}}" sizes="16x16">
     <link rel="icon" type="image/x-icon" href="{{asset('images/favicon.png')}}" >
     <link rel="stylesheet" href="{{mix('css/libs.css')}}">
+    <link rel="stylesheet" href="{{asset('css/sidebar.min.css')}}">
     @yield('header')
 
 </head>
-<body class="layout layout-header-fixed">
+<body class="layout layout-header-fixed layout-sidebar-fixed">
 <div class="layout-header">
 
     @include('layouts.navbar-header')
@@ -35,9 +36,7 @@
     </div>
 </div>
 
-
 <script src="{{mix('js/libs.js')}}"></script>
-
 @yield('footer')
 
 </body>

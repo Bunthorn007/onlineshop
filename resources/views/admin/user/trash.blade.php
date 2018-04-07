@@ -64,7 +64,7 @@
                                     <td>
                                         <a href="{{ url('admin/user/forcedelete', $user->id) }}" class="btn-xs btn-primary btn-pill">Delete</a>
                                     </td>
-                                </tr>z
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>

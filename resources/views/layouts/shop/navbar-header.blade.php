@@ -41,7 +41,7 @@
               </span>
             </button>
             <ul class="nav navbar-nav navbar-right">
-                <li class="hidden-xs hidden-sm">
+                <li>
                     <form class="navbar-search navbar-search-collapsed">
                         <div class="navbar-search-group">
                             <input class="navbar-search-input" id="name" name="name" type="text" placeholder="Search for products name...">
@@ -54,7 +54,7 @@
                 </li>
                 <li>
                     <a href="/">
-                        <span class="icon icon-shopping-cart icon-lg icon-fw"></span>
+                        <span class="icon icon-home icon-lg icon-fw" style="color:#d9230f"></span>
                         Online Shop
                     </a>
                 </li>

@@ -46,7 +46,7 @@
                                         </td>
                                         <td data-order="{{$post->title}}">
                                             <span class="icon-with-child m-r">
-                                                <img class="circle" width="36" height="36" src="{{$post->user->photo->file ?$post->user->photo->file : '/images/profile.jpg'}}">
+                                                <img class="circle" width="36" height="36" src="{{asset($post->images->has(0) ?$post->images->first()->file : '/images/profile.jpg')}}">
                                                 <span class="icon-child bg-facebook circle sq-8"></span>
                                             </span>
                                             <strong>{{str_limit($post->title, 25)}}</strong>

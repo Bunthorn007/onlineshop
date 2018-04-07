@@ -15,7 +15,7 @@
             <img class="img-responsive" src="images/logo.png" alt="Online Shop">
         </a>
         <p class="signup-heading">
-            <em>Please improve your business performance with us!</em>
+            <em>Let's improve your business marketing with us!</em>
         </p>
         <h3 class="signup-heading">Sign up</h3>
         <div class="signup-form">

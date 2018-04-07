@@ -9,13 +9,13 @@
                         <li class="sidenav-heading">Navigation</li>
                         <li class="sidenav-item">
                             <a href="/admin/">
-                                <span class="sidenav-icon icon icon-dashboard"></span>
+                                <span class="sidenav-icon icon icon-dashboard" style="color:#d9230f"></span>
                                 <span class="sidenav-label">Dashboards</span>
                             </a>
                         </li>
                         <li class="sidenav-item has-subnav">
                             <a href="#" aria-haspopup="true">
-                                <span class="sidenav-icon icon icon-group"></span>
+                                <span class="sidenav-icon icon icon-group" style="color:#d9230f"></span>
                                 <span class="sidenav-label">User Control</span>
                             </a>
                             <ul class="sidenav-subnav collapse">
@@ -33,7 +33,7 @@
                         </li>
                         <li class="sidenav-item has-subnav">
                             <a href="#" aria-haspopup="true">
-                                <span class="sidenav-icon icon icon-share-alt"></span>
+                                <span class="sidenav-icon icon icon-share-alt" style="color:#d9230f"></span>
                                 <span class="sidenav-label">Post Control</span>
                             </a>
                             <ul class="sidenav-subnav collapse">
@@ -48,7 +48,7 @@
                         </li>
                         <li class="sidenav-item has-subnav">
                             <a href="#" aria-haspopup="true">
-                                <span class="sidenav-icon icon icon-shopping-bag"></span>
+                                <span class="sidenav-icon icon icon-shopping-bag" style="color:#d9230f"></span>
                                 <span class="sidenav-label">Shop Control</span>
                             </a>
                             <ul class="sidenav-subnav collapse">
@@ -63,7 +63,7 @@
                         </li>
                         <li class="sidenav-item has-subnav">
                             <a href="#" aria-haspopup="true">
-                                <span class="sidenav-icon icon icon-cart-plus"></span>
+                                <span class="sidenav-icon icon icon-cart-plus" style="color:#d9230f"></span>
                                 <span class="sidenav-label">Product</span>
                             </a>
                             <ul class="sidenav-subnav collapse">
@@ -78,19 +78,19 @@
                         </li>
                         <li class="sidenav-item">
                             <a href="/admin/category">
-                                <span class="sidenav-icon icon icon-tags"></span>
+                                <span class="sidenav-icon icon icon-tags" style="color:#d9230f"></span>
                                 <span class="sidenav-label">Category</span>
                             </a>
                         </li>
                         <li class="sidenav-item">
                             <a href="/admin/role">
-                                <span class="sidenav-icon icon icon-registered"></span>
+                                <span class="sidenav-icon icon icon-registered" style="color:#d9230f"></span>
                                 <span class="sidenav-label">Roles </span>
                             </a>
                         </li>
                         <li class="sidenav-item">
                             <a href="/search">
-                                <span class="sidenav-icon icon icon-search"></span>
+                                <span class="sidenav-icon icon icon-search" style="color:#d9230f"></span>
                                 <span class="sidenav-label">Search</span>
                             </a>
                         </li>
@@ -98,7 +98,7 @@
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                <span class="sidenav-icon icon icon-power-off"></span>
+                                <span class="sidenav-icon icon icon-power-off" style="color:#d9230f"></span>
                                 <span class="sidenav-label">Sign out</span>
                             </a>
 
@@ -113,14 +113,14 @@
                         <li class="sidenav-heading">Navigation</li>
                         <li class="sidenav-item">
                             <a href="/">
-                                <span class="sidenav-icon icon icon-home"></span>
+                                <span class="sidenav-icon icon icon-home" style="color:#d9230f"></span>
                                 <span class="sidenav-label">Home</span>
                             </a>
                         </li>
                         <li class="sidenav-item has-subnav">
                             <a href="#" aria-haspopup="true">
-                                <span class="sidenav-icon icon icon-navicon"></span>
-                                <span class="sidenav-label">Categories</span>
+                                <span class="sidenav-icon icon icon-navicon" style="color:#d9230f"></span>
+                                <span class="sidenav-label">Category</span>
                             </a>
                             <ul class="sidenav-subnav collapse">
                                 <li class="sidenav-subheading">Categories</li>
@@ -133,7 +133,7 @@
                         </li>
                         <li class="sidenav-item has-subnav">
                             <a href="#" aria-haspopup="true">
-                                <span class="sidenav-icon icon icon-share-alt"></span>
+                                <span class="sidenav-icon icon icon-share-alt" style="color:#d9230f"></span>
                                 <span class="sidenav-label">Post Control</span>
                             </a>
                             <ul class="sidenav-subnav collapse">
@@ -149,7 +149,7 @@
                         @if(session('shop') != '')
                         <li class="sidenav-item has-subnav">
                             <a href="#" aria-haspopup="true">
-                                <span class="sidenav-icon icon icon-shopping-bag"></span>
+                                <span class="sidenav-icon icon icon-shopping-bag" style="color:#d9230f"></span>
                                 <span class="sidenav-label">Shop Control</span>
                             </a>
                             <ul class="sidenav-subnav collapse">
@@ -174,13 +174,13 @@
                         @endif
                         <li class="sidenav-item">
                             <a href="/user/myprofile">
-                                <span class="sidenav-icon icon icon-user"></span>
+                                <span class="sidenav-icon icon icon-user" style="color:#d9230f"></span>
                                 <span class="sidenav-label">Profile</span>
                             </a>
                         </li>
                         <li class="sidenav-item">
                             <a href="/search">
-                                <span class="sidenav-icon icon icon-search"></span>
+                                <span class="sidenav-icon icon icon-search" style="color:#d9230f"></span>
                                 <span class="sidenav-label">Search</span>
                             </a>
                         </li>
@@ -188,7 +188,7 @@
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                <span class="sidenav-icon icon icon-power-off"></span>
+                                <span class="sidenav-icon icon icon-power-off" style="color:#d9230f"></span>
                                 <span class="sidenav-label">Sign out</span>
                             </a>
 
@@ -204,14 +204,14 @@
                 <li class="sidenav-heading">Navigation</li>
                 <li class="sidenav-item">
                     <a href="/">
-                        <span class="sidenav-icon icon icon-home"></span>
+                        <span class="sidenav-icon icon icon-home" style="color:#d9230f"></span>
                         <span class="sidenav-label">Home</span>
                     </a>
                 </li>
                 <li class="sidenav-item has-subnav">
                     <a href="#" aria-haspopup="true">
-                        <span class="sidenav-icon icon icon-navicon"></span>
-                        <span class="sidenav-label">Categories</span>
+                        <span class="sidenav-icon icon icon-navicon" style="color:#d9230f"></span>
+                        <span class="sidenav-label">Category</span>
                     </a>
                     <ul class="sidenav-subnav collapse">
                         @foreach($categories as $category)
@@ -222,20 +222,20 @@
                     </ul>
                 </li>
                 <li class="sidenav-item">
-                    <a href="/search">
-                        <span class="sidenav-icon icon icon-search"></span>
-                        <span class="sidenav-label">Searching</span>
-                    </a>
-                </li>
-                <li class="sidenav-item">
                     <a href="/register" aria-haspopup="true">
-                        <span class="sidenav-icon icon icon-registered"></span>
+                        <span class="sidenav-icon icon icon-registered" style="color:#d9230f"></span>
                         <span class="sidenav-label">Register</span>
                     </a>
                 </li>
                 <li class="sidenav-item">
+                    <a href="/search">
+                        <span class="sidenav-icon icon icon-search" style="color:#d9230f"></span>
+                        <span class="sidenav-label">Search</span>
+                    </a>
+                </li>
+                <li class="sidenav-item">
                     <a href="/login" aria-haspopup="true">
-                        <span class="sidenav-icon icon icon-sign-in"></span>
+                        <span class="sidenav-icon icon icon-sign-in" style="color:#d9230f"></span>
                         <span class="sidenav-label">Sign in</span>
                     </a>
                 </li>

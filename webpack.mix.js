@@ -32,18 +32,3 @@ mix.scripts([
 
 ], 'public/js/libs.js');
 
-mix.styles([
-
-    'resources/assets/css/libs/vendor.min.css',
-    'resources/assets/css/libs/elephant.min.css',
-    'resources/assets/css/libs/application.min.css',
-
-], 'public/css/libs-sticky.css');
-
-mix.scripts([
-
-    'resources/assets/js/libs/vendor.min.js',
-    'resources/assets/js/libs/elephant.min.js',
-    'resources/assets/js/libs/application.min.js',
-
-], 'public/js/libs-sticky.js');

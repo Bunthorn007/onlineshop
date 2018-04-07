@@ -15,7 +15,7 @@
 Route::get('/search', 'UserController@search');
 Route::get('/search/{id}', 'UserController@searchbycategory');
 
-//Route for User
+//Route for User or Visitor
 Route::get('/', 'UserController@index');
 Route::get('/home', 'UserController@index');
 Route::post('/','UserController@getVueSearch');

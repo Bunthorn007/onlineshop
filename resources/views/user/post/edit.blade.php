@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{mix('css/libs.css')}}">
     <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/dropzone.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/sidebar.min.css')}}">
 
 </head>
 <body class="layout layout-header-fixed">
@@ -40,8 +41,8 @@
                             <div class="row gutter-xs">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label for="first-name">Title</label>
-                                        <input id="first-name" value="{{$post->title}}" class="form-control" type="text" name="title" spellcheck="false" data-msg-required="Please enter title." required>
+                                        <label for="title">Title</label>
+                                        <input id="title" value="{{$post->title}}" class="form-control" type="text" name="title" spellcheck="false" data-msg-required="Please enter title." required>
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +50,12 @@
                                 <div class="col-xs-4">
                                     <div class="form-group">
                                         <label for="price">Price</label>
-                                        <input id="price" value="{{$post->price}}" class="form-control" type="text" name="price" data-msg-required="Please enter price or just put Not specify" required>
+                                        <div class="col-xs-12 col-sm-12" style="padding: 0px;">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">$</span>
+                                                <input id="price" class="form-control" type="number" value="{{$post->price}}" min="0" step="1" data-bind="value:price" name="price" data-msg-required="Please enter price." required>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-8">

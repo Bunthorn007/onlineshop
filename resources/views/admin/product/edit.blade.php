@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{mix('css/libs.css')}}">
     <link rel="stylesheet" href="{{asset('css/signup-2.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/dropzone.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/sidebar.min.css')}}">
 
 </head>
 <body class="layout layout-header-fixed">
@@ -44,7 +45,9 @@
                                             <select id="shop_id" class="custom-select" name="shop_id" data-msg-required="Please select shop name." required>
                                                 <option value="{{$product->shop->id}}" selected="selected">{{$product->shop->name}}</option>
                                                 @foreach($shops as $shop)
-                                                    <option value="{{$shop->id}}">{{$shop->name}}</option>
+                                                    @if($shop->id != $product->shop->id)
+                                                        <option value="{{$shop->id}}">{{$shop->name}}</option>
+                                                    @endif
                                                 @endforeach
                                             </select>
                                         </div>

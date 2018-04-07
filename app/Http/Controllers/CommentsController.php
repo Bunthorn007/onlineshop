@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class CommentsController extends Controller
 {
 
+
     public function addComment(Request $request)
     {
         $input = $request->all();
@@ -34,4 +35,5 @@ class CommentsController extends Controller
         Comment::find ($input['id'])->delete ();
         return response ()->json ();
     }
+
 }

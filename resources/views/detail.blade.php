@@ -4,12 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/png" href="{{asset('images/favicon.png')}}" sizes="16x16">
+    <link rel="icon" type="image/x-icon" href="{{asset('images/favicon.png')}}" >
     <title>Detail - Onlineshop</title>
     <link rel="stylesheet" href="{{mix('css/libs.css')}}">
     <link rel="stylesheet" href="{{asset('css/product.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/shopping-cart.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/sidebar.min.css')}}">
 </head>
-<body class="layout layout-header-fixed">
+<body class="layout layout-header-fixed layout-sidebar-fixed">
 <div class="layout-header">
 
     @include('layouts.navbar-header')
@@ -36,8 +39,8 @@
                     @guest
                         <div class="product-divider"></div>
                         <div class="md-form-group md-label-floating">
-                            <input class="md-form-control" type="text" name="comment"readonly>
-                            <label class="md-control-label">Please login first.</label>
+                            <input class="md-form-control" type="text" name="comment" readonly>
+                            <label class="md-control-label">Sign in first</label>
                         </div>
                     @else
                         <div class="product-divider"></div>
@@ -45,7 +48,7 @@
                             <div class="col-xs-12">
                                 <div class="col-xs-0 col-md-1">
                                     <div class="media-middle media-left" style="padding-top: 18px;">
-                                        <img class="media-object img-circle" width="32" height="32" src="{{$post->user->photo->file}}">
+                                        <img class="media-object img-circle" width="32" height="32" src="{{asset(session('image'))}}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-md-11">
@@ -88,7 +91,7 @@
                                                 <span class="media-content">{{$comment->content}}</span>
                                                 <div class="media-actions">
                                                     <span aria-hidden="true">{{$comment->created_at->diffForHumans()}} · </span>
-                                                    @if(Auth::id()==$comment->user_id)
+                                                    @if(Auth::id()==$comment->user_id || Auth::id()==$post->user->id)
                                                         <a class="delete-modal" data-id="{{$comment->id}}" data-name="{{$comment->content}}">Delete</a>
                                                     @endif
                                                 </div>
@@ -109,14 +112,15 @@
                     </p>
                     <div class="product-divider"></div>
                     <div class="product-price">
-                        <span class="product-price-current"><span class="label label-info label-pill">{{$post->price}}</span></span>
+                        <span class="product-price-current"><span class="label label-primary label-pill">$ {{$post->price}}</span></span>
                     </div>
                     <div class="product-description" style="padding-top: 10px;">
                         <?php echo $post->content ?>
                     </div>
 
                     <p style="padding-top: 15px;">
-                        <span class="icon icon-location-arrow icon-lg icon-fw"></span>{{$post->location}}
+                        <span class="label label-outline-primary label-pill"><strong><span class="icon icon-phone icon-lg icon-fw"></span>Phone: </strong>{{$post->user->phone}}</span>
+                        <span class="pull-right"><span class="icon icon-location-arrow icon-lg icon-fw"></span>{{$post->location}}</span>
                     </p>
 
                     <div class="product-sku">

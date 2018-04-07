@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{{mix('css/libs.css')}}">
     <link rel="stylesheet" href="{{asset('css/product.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/shopping-cart.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/sidebar.min.css')}}">
+
 </head>
 <body class="layout layout-header-fixed">
 <div class="layout-header">
@@ -111,18 +113,19 @@
                     </p>
                     <div class="product-divider"></div>
                     <div class="product-price">
-                        <span class="product-price-current"><span class="label label-info label-pill">{{$post->price}}</span></span>
+                        <span class="product-price-current"><span class="label label-primary label-pill">$ {{$post->price}}</span></span>
                     </div>
                     <div class="product-description" style="padding-top: 10px;">
                         <?php echo $post->content ?>
                     </div>
 
                     <p style="padding-top: 15px;">
-                        <span class="icon icon-location-arrow icon-lg icon-fw"></span>{{$post->location}}
+                        <span class="label label-outline-primary label-pill"><strong><span class="icon icon-phone icon-lg icon-fw"></span>Phone: </strong>{{$post->user->phone}}</span>
+                        <span class="pull-right"><span class="icon icon-location-arrow icon-lg icon-fw"></span>{{$post->location}}</span>
                     </p>
 
                     <div class="product-sku">
-                        <span><strong><span class="icon icon-user icon-lg icon-fw"></span> Posted By :  </strong>{{$post->user->firstname.' '.$post->user->lastname}}</span>
+                        <span><strong><span class="icon icon-user icon-lg icon-fw"></span> Posted By :  </strong><a href="/profile/{{$post->user_id}}">{{$post->user->firstname.' '.$post->user->lastname}}</a></span>
                         <span class="pull-right"><span class="icon icon-clock-o icon-lg icon-fw"></span>{{$post->created_at->diffForHumans()}}</span>
                     </div>
                     <div class="product-share">

@@ -8,6 +8,7 @@
 @endsection
 
 @section('content')
+
     <div class="title-bar">
         <div class="title-bar-actions">
             <div class="btn-group">
@@ -46,7 +47,7 @@
                                                     <a v-bind:href="post.url" class="messenger-list-link">
 
                                                         <div class="messenger-list-avatar">
-                                                            <img v-bind:src="post.image" class="rounded" width="40" height="40">
+                                                            <img v-bind:src="post.image" class="rounded" width="60" height="40">
                                                         </div>
                                                         <div class="messenger-list-details">
                                                             <div class="messenger-list-name truncate">@{{ post.name  }}</div>
@@ -68,7 +69,7 @@
                                                 <li class="messenger-list-item">
                                                     <a class="messenger-list-link" href="{{url('/shop/'.$shop->id)}}">
                                                         <div class="messenger-list-avatar">
-                                                            <img class="rounded" width="40" height="40" src="{{$shop->photo->file}}">
+                                                            <img class="rounded" width="60" height="40" src="{{$shop->photo->file}}">
                                                         </div>
                                                         <div class="messenger-list-details">
                                                             <div class="messenger-list-name truncate">{{ $shop->name  }}</div>

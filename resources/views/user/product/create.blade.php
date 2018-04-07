@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="row gutter-xs">
-                        <div class="col-xs-6">
+                        <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="category">Category</label>
                                 <select id="category" class="custom-select" name="product_category_id" data-msg-required="Please select category." required>
@@ -39,13 +39,18 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-xs-3">
+                        <div class="col-xs-4">
                             <div class="form-group">
-                                <label for="price">Price ($)</label>
-                                <input id="price" class="form-control" type="number" min="0" step="1" data-bind="value:price" name="price" data-msg-required="Please enter product price ($)." required>
+                                <label for="price">Price</label>
+                                <div class="col-xs-12 col-sm-12" style="padding: 0px;">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">$</span>
+                                        <input id="price" class="form-control" type="number" min="0" step="1" data-bind="value:price" name="price" data-msg-required="Please enter product price." required>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-xs-3">
+                        <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select id="status" class="custom-select" name="status" data-msg-required="Please choose product status." required>

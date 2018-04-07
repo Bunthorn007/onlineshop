@@ -22,7 +22,7 @@ class SearchController extends Controller
 
             $posts = $posts->map(function ($post, $key) {
                 return [
-                    'title' => str_limit($post->title, 22),
+                    'title' => str_limit($post->title, 19),
                     'content' => str_limit($post->content, 35),
                     'photo' => $post->user->photo->file,
                     'url'  => url('/detail/'.$post['id']),

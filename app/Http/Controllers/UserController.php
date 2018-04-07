@@ -23,9 +23,9 @@ class UserController extends Controller
     {
 
 //        $posts = Post::orderByRaw('RAND()')->take(8)->get();
-        $posts = Post::orderBy('created_at','DESC')->limit(4)->get();
+        $posts = Post::orderBy('created_at','DESC')->limit(8)->get();
         $categories = Category::all()->sortBy('name');
-        $shops = Shop::all();
+        $shops = Shop::where('status','=',1)->get();
         $rmposts = Post::all()->sortByDesc('view')->take(8);
 
         return view('home', compact('posts', 'rmposts', 'categories', 'shops'));
@@ -278,7 +278,8 @@ class UserController extends Controller
         $shops = '';
 
         if (trim($request->search)) {
-            $shops = Shop::where('name','LIKE',"%{$search}%")->orderBy('created_at','DESC')->limit(8)->get();
+            $shops = Shop::where('status','=', 1);
+            $shops = $shops->where('name','LIKE',"%{$search}%")->orderBy('created_at','DESC')->limit(8)->get();
 
             $shops = $shops->map(function ($shop, $key) {
                 return [
@@ -305,7 +306,7 @@ class UserController extends Controller
 
     public function search(){
 
-        $categories = Category::all();
+        $categories = Category::all()->sortBy('name');
         return view('search', compact('categories'));
     }
 
