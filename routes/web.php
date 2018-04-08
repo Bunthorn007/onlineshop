@@ -43,7 +43,6 @@ Route::group(['middleware'=>'auth'], function (){
 
     //Edit Profile
     Route::get('/user/edit/{id}', 'UserController@edit');
-    Route::get('/user/myprofile', 'UserController@myProfile');
     Route::patch('/user/update/{id}', 'UserController@update');
 
     //Comment Route

@@ -144,7 +144,7 @@
                         </div>
                     </div>
 
-                    <h4>Recently</h4>
+                    <h4>Related</h4>
                     <div class="cart">
                         <ul class="cart-list" id="load-data">
                             @foreach($posts as $rmpost)
@@ -168,7 +168,9 @@
                         </ul>
                     </div>
                     <div id="remove-row" style="padding-left: 5px; padding-right: 5px;">
+                        @if($posts->has(0))
                         <button id="btn-more" data-id="{{ $rmpost->id }}" class="nounderline btn-block mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn btn-primary"> Load More </button>
+                        @endif
                     </div>
 
                 </div>

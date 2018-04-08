@@ -155,6 +155,6 @@
         Already have an account? <a href="/login">Log in</a>
     </div>
 </div>
-<script src="{{mix('js/libs-sticky.js')}}"></script>
+<script src="{{mix('js/libs.js')}}"></script>
 </body>
 </html>

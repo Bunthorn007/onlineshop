@@ -36,7 +36,8 @@ class UserController extends Controller
 
         $post = Post::find($id);
         $images = Image::where('post_id',$post->id)->get();
-        $posts = Post::orderBy('created_at','DESC')->limit(4)->get();
+        $posts = Post::where('category_id', $post->category_id);
+        $posts = $posts->where('id','!=', $id)->orderBy('created_at','DESC')->limit(4)->get();
         $comments = Comment::where('post_id', $post->id)->get();
         $categories = Category::all()->sortBy('name');
 
@@ -238,7 +239,10 @@ class UserController extends Controller
         $output = '';
         $id = $request->id;
 
-        $posts = Post::where('id','<',$id)->orderBy('created_at','DESC')->limit(4)->get();
+        $post = Post::find($id);
+        $posts = Post::where('category_id', $post->category_id);
+        $posts = $posts->where('id','<',$id);
+        $posts = $posts->where('id','!=',$id-1)->orderBy('created_at','DESC')->limit(4)->get();
 
         if(!$posts->isEmpty())
         {
@@ -292,16 +296,6 @@ class UserController extends Controller
         }
 
         return $shops;
-    }
-
-    public function myProfile()
-    {
-
-        $user = User::find(Auth::user()->id);
-        $posts = Post::where('user_id', Auth::user()->id)->orderBy('created_at','DESC')->limit(8)->get();
-        $categories = Category::all()->sortBy('name');
-
-        return view('user.myprofile', compact('user', 'posts', 'categories'));
     }
 
     public function search(){

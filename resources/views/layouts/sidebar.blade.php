@@ -173,7 +173,7 @@
                         </li>
                         @endif
                         <li class="sidenav-item">
-                            <a href="/user/myprofile">
+                            <a href="/profile/{{Auth::id()}}">
                                 <span class="sidenav-icon icon icon-user" style="color:#d9230f"></span>
                                 <span class="sidenav-label">Profile</span>
                             </a>

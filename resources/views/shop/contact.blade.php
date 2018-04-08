@@ -67,16 +67,15 @@
                     <address>
                         <strong>{{$shop->name}}</strong><br>
                         <?php echo$shop->address ?>
-                        <abbr title="Phone">
-                            <br/><br/>Phone:</abbr>
+                        <abbr title="Phone"><br/><br/>Phone:</abbr>
                         (+91) {{$shop->user->phone}}
                     </address>
                     <address>
-                        <strong>Email</strong><br>
+                        <strong>Email:</strong><br>
                         {{$shop->user->email}}
                     </address>
                     <address>
-                        <strong>Owner Name</strong><br>
+                        <strong>Owner's Name:</strong><br>
                         <a href="/profile/{{$shop->user->id}}">{{$shop->user->firstname.' '.$shop->user->lastname}}</a>
                     </address>
                 </form>

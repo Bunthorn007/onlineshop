@@ -57,6 +57,6 @@
         Don't have an account? <a href="{{ route('register') }}">Sign Up</a>
     </div>
 </div>
-<script src="{{mix('js/libs-sticky.js')}}"></script>
+<script src="{{mix('js/libs.js')}}"></script>
 </body>
 </html>
