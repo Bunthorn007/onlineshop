@@ -35,7 +35,7 @@ class UserProductsController extends Controller
     public function create()
     {
         $categories = Category::all()->sortBy('name');
-        $proCategories = ProductCategory::where('shop_id', Auth::user()->shop->id)->get();
+        $proCategories = ProductCategory::where('shop_id', Auth::user()->shop->id)->get()->sortBy('name');
 
         return view('user.product.create', compact('categories', 'proCategories'));
     }

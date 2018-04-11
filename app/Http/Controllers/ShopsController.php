@@ -17,7 +17,8 @@ class ShopsController extends Controller
 
         $shop = Shop::find($id);
         $categories = ProductCategory::where('shop_id', $id)->orderBy('name','ASC')->get();
-        $products = Product::where('shop_id', $shop->id)->orderBy('created_at','DESC')->limit(16)->get();
+        $products = Product::where('shop_id', $shop->id);
+        $products = $products->where('status','=',1)->orderBy('created_at','DESC')->limit(16)->get();
 
         return view('shop.shop', compact('categories', 'shop', 'products'));
     }

@@ -25,13 +25,13 @@
                     <div class="col-sm-6">
                         <div class="md-form-group md-label-floating">
                             <input class="md-form-control" type="text" name="firstname" spellcheck="false" data-msg-required="Please enter your first name." required>
-                            <label class="md-control-label">First name</label>
+                            <label class="md-control-label">First Name</label>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="md-form-group md-label-floating">
                             <input class="md-form-control" type="text" name="lastname" spellcheck="false" data-msg-required="Please enter your last name." required>
-                            <label class="md-control-label">Last name</label>
+                            <label class="md-control-label">Last Name</label>
                         </div>
                     </div>
                 </div>
@@ -77,18 +77,9 @@
                                     <div class="md-form-group">
                                         <select class="md-form-control" name="birth_month" data-msg-required="Please enter your birthday." required>
                                             <option value="" disabled="disabled" selected="selected">Birth Month</option>
-                                            <option value="01">January</option>
-                                            <option value="02">February</option>
-                                            <option value="03">March</option>
-                                            <option value="04">April</option>
-                                            <option value="05">May</option>
-                                            <option value="06">June</option>
-                                            <option value="07">July</option>
-                                            <option value="08">August</option>
-                                            <option value="09">September</option>
-                                            <option value="10">October</option>
-                                            <option value="11">November</option>
-                                            <option value="12">December</option>
+                                            @foreach($months as $month)
+                                                <option value="{{$month->id}}">{{$month->name}}</option>
+                                            @endforeach
                                         </select>
                                         <label class="md-control-label"></label>
                                     </div>

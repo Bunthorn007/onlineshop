@@ -31,6 +31,7 @@ class SearchController extends Controller
                     'time' => $post-> created_at->diffForHumans(),
                     'user' => $post->user->firstname.' '.$post->user->lastname,
                     'user_id' => $post->user_id,
+                    'price' => $post->price,
                 ];
             });
             // If there are results return them, if none, return the error message.

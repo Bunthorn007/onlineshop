@@ -16,14 +16,19 @@
         </div>
         <div class="card-image">
             <a class="link-muted" href="/detail/{{$post->id}}">
-                <img class="img-responsive" width="100%" height="50%" src="{{asset($post->images->first()->file)}}">
+                <div class="overlay-image">
+                    <img class="img-responsive" width="100%" height="50%" src="{{asset($post->images->first()->file)}}">
+                </div>
+                <div class="overlay-content overlay-top">
+                    <span class="label label-success pull-right">$ {{$post->price}}</span>
+                </div>
             </a>
         </div>
         <div class="card-body">
             <h4 class="card-title fw-l">
                 <strong><a class="link-muted" href="/detail/{{$post->id}}">{{str_limit($post->title, 14)}}</a></strong>
             </h4>
-            <small>{{str_limit($post->content, 25)}}</small>
+            <small>{{str_limit($post->content, 30)}}</small>
         </div>
         <div class="card-footer">
             <small>

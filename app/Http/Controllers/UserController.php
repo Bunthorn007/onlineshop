@@ -55,7 +55,7 @@ class UserController extends Controller
         $user = User::find($id);
         $posts = Post::where('user_id','=', $user->id);
         $count = $posts->count();
-        $posts = $posts->orderBy('created_at','DESC')->limit(4)->get();
+        $posts = $posts->orderBy('created_at','DESC')->limit(8)->get();
         $categories = Category::all()->sortBy('name');
 
         return view('profile', compact('user', 'posts', 'categories', 'count'));
@@ -122,7 +122,7 @@ class UserController extends Controller
         $output = '';
         $id = $request->id;
 
-        $posts = Post::where('id','<',$id)->orderBy('created_at','DESC')->limit(4)->get();
+        $posts = Post::where('id','<',$id)->orderBy('created_at','DESC')->limit(8)->get();
 
         if(!$posts->isEmpty())
         {
@@ -147,14 +147,19 @@ class UserController extends Controller
                                     </div>
                                     <div class="card-image">
                                         <a class="link-muted" href="/detail/'.$post->id.'">
-                                            <img class="img-responsive" width="100%" height="50%" src="'.asset($post->images->first()->file).'">
+                                            <div class="overlay-image">
+                                                <img class="img-responsive" width="100%" height="50%" src="'.asset($post->images->first()->file).'">
+                                            </div>
+                                            <div class="overlay-content overlay-top">
+                                                <span class="label label-success pull-right">$ '.$post->price.'</span>
+                                            </div>
                                         </a>
                                     </div>
                                     <div class="card-body">
                                         <h4 class="card-title fw-l">
                                             <strong><a class="link-muted" href="/detail/'.$post->id.'">'.str_limit($post->title, 14).'</a></strong>
                                         </h4>
-                                        <small>'.str_limit($post->content, 25).'</small>
+                                        <small>'.str_limit($post->content, 34).'</small>
                                     </div>
                                     <div class="card-footer">
                                         <small>
@@ -181,7 +186,7 @@ class UserController extends Controller
         $id = $request->id;
         $post = Post::find($id);
         $posts = Post::where('user_id', $post->user->id);
-        $posts = $posts->where('id','<',$id)->orderBy('created_at','DESC')->limit(4)->get();
+        $posts = $posts->where('id','<',$id)->orderBy('created_at','DESC')->limit(8)->get();
 
         if(!$posts->isEmpty())
         {
@@ -261,7 +266,7 @@ class UserController extends Controller
                                     </h4>
                                     <p class="cart-list-description">
                                         <small><span class="icon icon-user icon-lg icon-fw"></span> Posted By :'.$post->user->firstname.' '. $post->user->lastname.'</small>
-                                        <span class="pull-right"><span class="icon icon-eye icon-lg icon-fw"></span>'.$post->view.' views</span>
+                                        <span class="pull-right"><span class="label label-success pull-right">$'.$post->price.' </span></span>
                                     </p>
                                 </div>
                             </li>';

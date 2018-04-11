@@ -160,7 +160,7 @@
                                     </h4>
                                     <p class="cart-list-description">
                                         <small><span class="icon icon-user icon-lg icon-fw"></span> Posted By : {{$rmpost->user->firstname.' '. $rmpost->user->lastname}}</small>
-                                        <span class="pull-right"><span class="icon icon-eye icon-lg icon-fw"></span>{{$rmpost->view}} views</span>
+                                        <span class="pull-right"><span class="label label-success pull-right">$ {{$rmpost->price}}</span></span>
                                     </p>
                                 </div>
                             </li>

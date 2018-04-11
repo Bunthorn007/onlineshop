@@ -47,7 +47,12 @@
                             </div>
                             <div class="card-image">
                                 <a class="link-muted" v-bind:href="post.url">
-                                    <img class="img-responsive" width="100%" height="50%" v-bind:src="post.image">
+                                    <div class="overlay-image">
+                                        <img class="img-responsive" width="100%" height="50%" v-bind:src="post.image">
+                                    </div>
+                                    <div class="overlay-content overlay-top">
+                                        <span class="label label-success pull-right">$ @{{post.price}}</span>
+                                    </div>
                                 </a>
                             </div>
                             <div class="card-body">

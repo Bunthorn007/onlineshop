@@ -52,7 +52,7 @@
                                             <strong>{{str_limit($post->title, 25)}}</strong>
                                         </td>
                                         <td class="maw-320">
-                                            <span class="truncate">{{str_limit($post->content, 45)}}</span>
+                                            <span class="truncate">{{str_limit($post->content, 35)}}</span>
                                         </td>
                                         <td>{{$post->price}}</td>
                                         <td>{{$post->user->firstname.' '.$post->user->lastname}}</td>
